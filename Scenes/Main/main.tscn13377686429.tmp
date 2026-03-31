@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://c0u42jtjjbkm0"]
+
+[ext_resource type="PackedScene" uid="uid://dty5cnth88hfs" path="res://Scenes/Circle/circle.tscn" id="1_1r6ip"]
+[ext_resource type="Script" uid="uid://dyyeceb5kg02w" path="res://Scenes/Main/main.gd" id="1_lixft"]
+[ext_resource type="Script" uid="uid://xnv2kgpno3yr" path="res://Scripts/initializer.gd" id="2_qw60k"]
+[ext_resource type="Script" uid="uid://boaom8khtl786" path="res://Scripts/debug.gd" id="3_p6jpk"]
+[ext_resource type="Script" uid="uid://dx8y26yhyg3o7" path="res://Scenes/Main/label_cash.gd" id="4_5yls4"]
+[ext_resource type="Script" uid="uid://destw1qjy6dm3" path="res://Scenes/Main/grid.gd" id="6_2a143"]
+
+[node name="Main" type="Node2D" unique_id=1507799017]
+script = ExtResource("1_lixft")
+
+[node name="Initializer" type="Node" parent="." unique_id=668347709]
+script = ExtResource("2_qw60k")
+metadata/_custom_type_script = "uid://xnv2kgpno3yr"
+
+[node name="Debug" type="Node" parent="." unique_id=530505277]
+script = ExtResource("3_p6jpk")
+metadata/_custom_type_script = "uid://boaom8khtl786"
+
+[node name="Circle" parent="." unique_id=232125473 instance=ExtResource("1_1r6ip")]
+position = Vector2(165, 85)
+radius = 8
+
+[node name="LayerUI" type="CanvasLayer" parent="." unique_id=1799045463 groups=["g"]]
+
+[node name="LabelCash" type="RichTextLabel" parent="LayerUI" unique_id=1621480141]
+clip_contents = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "$0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+script = ExtResource("4_5yls4")
+
+[node name="Grid" type="Node2D" parent="." unique_id=1825264458]
+script = ExtResource("6_2a143")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Grid" unique_id=264681673]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 304.0
+offset_bottom = 160.0

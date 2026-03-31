@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dty5cnth88hfs"]
+
+[ext_resource type="Texture2D" uid="uid://clwgpyvutd48d" path="res://Assets/circle_progress.png" id="1_7cct2"]
+[ext_resource type="Script" uid="uid://dgjbkiufj0rr3" path="res://Scenes/Circle/circle.gd" id="1_e28ma"]
+[ext_resource type="Script" uid="uid://chnmavrn1xaor" path="res://Scenes/Circle/graphics.gd" id="2_62jh2"]
+[ext_resource type="Script" uid="uid://bnmtrfp3jctx7" path="res://Scenes/Circle/controller.gd" id="3_dxrai"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_62jh2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n42ld"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oieyk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_08f7a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jxhk6"]
+
+[node name="Circle" type="Node2D" unique_id=1806639541]
+script = ExtResource("1_e28ma")
+radius = 16
+
+[node name="Graphics" type="Node2D" parent="." unique_id=302220172]
+script = ExtResource("2_62jh2")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Graphics" unique_id=1893704523]
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+scale = Vector2(0.16, 0.16)
+pivot_offset = Vector2(50, 50)
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("1_7cct2")
+
+[node name="Controller" type="Node2D" parent="." unique_id=106449727]
+script = ExtResource("3_dxrai")
+
+[node name="Button" type="Button" parent="Controller" unique_id=722652024]
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+scale = Vector2(0.08, 0.08)
+pivot_offset = Vector2(50, 50)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_62jh2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_n42ld")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_oieyk")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_08f7a")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jxhk6")
+
+[node name="Timer" type="Timer" parent="Controller" unique_id=960778022]
+wait_time = 0.4
+one_shot = true

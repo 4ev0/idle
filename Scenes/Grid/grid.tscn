@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://61cdjwgr7qun"]
+
+[ext_resource type="Script" uid="uid://destw1qjy6dm3" path="res://Scenes/Main/grid.gd" id="1_wp7i6"]
+[ext_resource type="Script" uid="uid://vj858xggndvb" path="res://Scenes/Grid/graphics.gd" id="2_22v8v"]
+
+[node name="Grid" type="Node2D" unique_id=1595610565 groups=["g"]]
+script = ExtResource("1_wp7i6")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=1445020920]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -72.0
+offset_right = 144.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Graphics" type="Node2D" parent="." unique_id=105282766]
+script = ExtResource("2_22v8v")

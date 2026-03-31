@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CircleData" format=3 uid="uid://q2qh1h13hc5u"]
+
+[ext_resource type="Script" uid="uid://64ocepqsgtt4" path="res://Resources/circle_data.gd" id="1_4438y"]
+
+[resource]
+script = ExtResource("1_4438y")
+hp = 30.0
+metadata/_custom_type_script = "uid://64ocepqsgtt4"
