@@ -7,3 +7,4 @@ func _ready() -> void:
 	for n in nodes:
 		var formatted : String = n.name.to_snake_case()
 		G.nodes[formatted] = n
+		G.get_n("debug").write("G -> %s = %s" %[n, formatted])

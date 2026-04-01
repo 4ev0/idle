@@ -17,12 +17,10 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jxhk6"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_oieyk"]
-radius = 6.0827627
-
 [node name="Circle" type="Node2D" unique_id=1806639541]
 script = ExtResource("1_e28ma")
 radius = 16
+randomize_color = true
 
 [node name="Graphics" type="Node2D" parent="." unique_id=302220172]
 script = ExtResource("2_62jh2")
@@ -66,13 +64,11 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_jxhk6")
 wait_time = 0.4
 one_shot = true
 
-[node name="Sliceable" type="Area2D" parent="Controller" unique_id=2046018414]
-monitorable = false
+[node name="Sliceable" type="Control" parent="Controller" unique_id=254343274]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
 script = ExtResource("5_n42ld")
-
-[node name="ComponentWriter" type="Node" parent="Controller/Sliceable" unique_id=1603877860]
-script = ExtResource("5_oieyk")
-metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/Sliceable" unique_id=1590823875]
-shape = SubResource("CircleShape2D_oieyk")

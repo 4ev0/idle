@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://destw1qjy6dm3" path="res://Scenes/Main/grid.gd" id="1_wp7i6"]
 [ext_resource type="Script" uid="uid://vj858xggndvb" path="res://Scenes/Grid/graphics.gd" id="2_22v8v"]
+[ext_resource type="Script" uid="uid://bdfxxarh3ap7g" path="res://Scripts/component_writer.gd" id="3_ihvcw"]
 
 [node name="Grid" type="Node2D" unique_id=1595610565 groups=["g"]]
 script = ExtResource("1_wp7i6")
@@ -12,13 +13,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -144.0
+offset_left = -80.0
 offset_top = -72.0
-offset_right = 144.0
+offset_right = 80.0
 offset_bottom = 72.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
 [node name="Graphics" type="Node2D" parent="." unique_id=105282766]
+modulate = Color(1, 1, 1, 0.1764706)
 script = ExtResource("2_22v8v")
+
+[node name="ComponentWriter" type="Node" parent="Graphics" unique_id=742561769]
+script = ExtResource("3_ihvcw")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"

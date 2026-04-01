@@ -40,9 +40,13 @@ func occupy_cell(coords: Vector2) -> void:
 		free_cells.erase(coords)
 
 func free_cell(global_coords: Vector2) -> void:
-	var coords: Vector2 = (global_coords - Vector2.ONE * cell_size.x / 2) / cell_size - Vector2.ONE
+	var coords: Vector2 = get_cell_coords(global_coords, int(global_coords.x) % int(cell_size.x/2) == 0)
 	if !free_cells.has(coords):
 		free_cells.append(coords)
 
 func get_cell_center(coords: Vector2) -> Vector2:
 	return global_position + reference_rect.get_rect().position + coords * cell_size.x + Vector2.ONE * cell_size.x / 2
+
+func get_cell_coords(global_coords: Vector2, centered: bool = false) -> Vector2:
+	var uncentered_coords: Vector2 = global_coords if !centered else (global_coords - Vector2.ONE * cell_size.x / 2)
+	return uncentered_coords / cell_size - Vector2.ONE

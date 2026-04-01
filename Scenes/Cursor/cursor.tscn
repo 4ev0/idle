@@ -1,5 +1,31 @@
 [gd_scene format=3 uid="uid://daoj4og62n0jv"]
 
+[ext_resource type="Script" uid="uid://niyxx305n1d7" path="res://Scenes/Cursor/cursor.gd" id="1_5vt27"]
+[ext_resource type="Script" uid="uid://qdfivh2d0f8q" path="res://Scenes/Cursor/graphics.gd" id="2_kq13a"]
+[ext_resource type="Texture2D" uid="uid://cu2ffxj6x7vs3" path="res://Assets/cursor.png" id="3_kq13a"]
+[ext_resource type="Script" uid="uid://bdfxxarh3ap7g" path="res://Scripts/component_writer.gd" id="3_wwrcd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wwrcd"]
+radius = 2.0
+
 [node name="LayerCursor" type="CanvasLayer" unique_id=791419552]
 
-[node name="Cursor" type="Node2D" parent="." unique_id=1469347903]
+[node name="Cursor" type="Node2D" parent="." unique_id=1469347903 groups=["g"]]
+script = ExtResource("1_5vt27")
+
+[node name="Graphics" type="Node2D" parent="Cursor" unique_id=1167374755]
+script = ExtResource("2_kq13a")
+
+[node name="ComponentWriter" type="Node" parent="Cursor/Graphics" unique_id=375772357]
+script = ExtResource("3_wwrcd")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
+
+[node name="Cursor" type="Sprite2D" parent="Cursor/Graphics" unique_id=1938791786]
+visible = false
+texture = ExtResource("3_kq13a")
+
+[node name="Area2D" type="Area2D" parent="Cursor" unique_id=224097585]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor/Area2D" unique_id=325464463]
+shape = SubResource("CircleShape2D_wwrcd")

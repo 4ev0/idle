@@ -1,6 +1,7 @@
-extends Node2DComponent
+extends Node2D
 class_name GridGraphics
 
+var parent: Grid
 @export var __draw: bool = true:
 	set(v):
 		__draw = v

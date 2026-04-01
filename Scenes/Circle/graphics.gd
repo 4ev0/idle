@@ -1,6 +1,7 @@
-extends Node2DComponent
+extends Node2D
 class_name CircleGraphics
 
+var parent: Circle
 @onready var texture_progress_bar: TextureProgressBar = $TextureProgressBar
 @onready var texture_scale: Vector2 = texture_progress_bar.size
 
