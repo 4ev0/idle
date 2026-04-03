@@ -6,20 +6,15 @@
 [ext_resource type="Script" uid="uid://boaom8khtl786" path="res://Scripts/debug.gd" id="3_p6jpk"]
 [ext_resource type="Script" uid="uid://dx8y26yhyg3o7" path="res://Scenes/Main/label_cash.gd" id="4_5yls4"]
 [ext_resource type="PackedScene" uid="uid://61cdjwgr7qun" path="res://Scenes/Grid/grid.tscn" id="6_2a143"]
-[ext_resource type="Script" uid="uid://pq5f1qp1sbkg" path="res://Scenes/Main/circle_container.gd" id="6_hfg1r"]
-[ext_resource type="Resource" uid="uid://q2qh1h13hc5u" path="res://Resources/data_circle_white.tres" id="7_4e4y2"]
-[ext_resource type="PackedScene" uid="uid://c7gtxtlj3u4sv" path="res://Scenes/ButtonPar/button_par.tscn" id="7_hryqi"]
+[ext_resource type="PackedScene" uid="uid://c1dljlx3v7kph" path="res://Scenes/CircleContainer/circle_container.tscn" id="6_hfg1r"]
 [ext_resource type="PackedScene" uid="uid://daoj4og62n0jv" path="res://Scenes/Cursor/cursor.tscn" id="7_xlvfx"]
-[ext_resource type="Resource" uid="uid://cavqoy3wyepf7" path="res://Resources/data_circle_red.tres" id="8_6t3k2"]
 [ext_resource type="PackedScene" uid="uid://b1iibeujrlljf" path="res://Scenes/ButtonAddCircle/button_add_circle.tscn" id="10_4e4y2"]
+[ext_resource type="PackedScene" uid="uid://couq62m8unk82" path="res://Scenes/ButtonMergeCircles/button_merge_circles.tscn" id="12_4e4y2"]
+[ext_resource type="PackedScene" uid="uid://dy4b4brh7j6p1" path="res://Scenes/LayerChestScreen/layer_chest_screen.tscn" id="12_6t3k2"]
+[ext_resource type="PackedScene" uid="uid://lujfgni33qin" path="res://Scenes/ProgressBarLevelUp/progress_bar_level_up.tscn" id="13_6t3k2"]
 
 [node name="Main" type="Node2D" unique_id=1507799017]
 script = ExtResource("1_lixft")
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1692488081]
-offset_right = 320.0
-offset_bottom = 184.0
-color = Color(0.09019608, 0.09019608, 0.09019608, 1)
 
 [node name="Initializer" type="Node" parent="." unique_id=668347709]
 script = ExtResource("2_qw60k")
@@ -28,26 +23,47 @@ metadata/_custom_type_script = "uid://xnv2kgpno3yr"
 [node name="Debug" type="Node" parent="." unique_id=530505277]
 script = ExtResource("3_p6jpk")
 start_circles = Dictionary[int, int]({
-1: 4,
-2: 3
+1: 0,
+2: 0
 })
+xp = 100
 merge_type = 2
 metadata/_custom_type_script = "uid://boaom8khtl786"
 
 [node name="VisualController" type="Node" parent="." unique_id=351351275 groups=["g"]]
 script = ExtResource("2_y3v7k")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1692488081]
+offset_right = 320.0
+offset_bottom = 184.0
+color = Color(0.09019608, 0.09019608, 0.09019608, 1)
+
 [node name="Grid" parent="." unique_id=1595610565 instance=ExtResource("6_2a143")]
 position = Vector2(96, 88)
 
-[node name="CircleContainer" type="Node2D" parent="." unique_id=984661226 groups=["g"]]
-script = ExtResource("6_hfg1r")
-circle_data = Dictionary[int, Resource]({
-1: ExtResource("7_4e4y2"),
-2: ExtResource("8_6t3k2")
-})
+[node name="CircleContainer" parent="." unique_id=973414043 instance=ExtResource("6_hfg1r")]
+
+[node name="ButtonAddCircle" parent="." unique_id=1556365795 instance=ExtResource("10_4e4y2")]
+offset_left = 254.0
+offset_top = 41.0
+offset_right = 254.0
+offset_bottom = 41.0
+
+[node name="ButtonMergeCircles" parent="." unique_id=1039839020 instance=ExtResource("12_4e4y2")]
+offset_left = 254.0
+offset_top = 67.0
+offset_right = 254.0
+offset_bottom = 67.0
+type = 1
+
+[node name="Purchase" parent="ButtonMergeCircles" index="2" unique_id=870633994]
+currency = 1
+price = 2.0
 
 [node name="LayerUI" type="CanvasLayer" parent="." unique_id=1799045463 groups=["g"]]
+
+[node name="ProgressBarLevelUp" parent="LayerUI" unique_id=157443035 instance=ExtResource("13_6t3k2")]
+offset_top = -5.0
 
 [node name="LabelCash" type="RichTextLabel" parent="LayerUI" unique_id=1621480141]
 clip_contents = false
@@ -66,16 +82,9 @@ autowrap_mode = 0
 horizontal_alignment = 1
 script = ExtResource("4_5yls4")
 
+[node name="LayerChestScreen" parent="." unique_id=1138933061 instance=ExtResource("12_6t3k2")]
+
 [node name="LayerCursor" parent="." unique_id=791419552 instance=ExtResource("7_xlvfx")]
+layer = 2
 
-[node name="ButtonAddCircle" parent="." unique_id=1556365795 instance=ExtResource("10_4e4y2")]
-offset_left = 249.0
-offset_top = 70.0
-offset_right = 249.0
-offset_bottom = 70.0
-
-[node name="ButtonPar" parent="." unique_id=1258866337 instance=ExtResource("7_hryqi")]
-offset_left = 249.0
-offset_top = 33.0
-offset_right = 249.0
-offset_bottom = 33.0
+[editable path="ButtonMergeCircles"]

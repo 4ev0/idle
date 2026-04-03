@@ -1,8 +1,6 @@
 extends Node2D
 class_name Circle
 
-var type
-
 @export var radius: int = 8
 @export var randomize_color: bool = false
 @onready var graphics: CircleGraphics
@@ -11,7 +9,6 @@ var type
 @onready var value: int = data.hp:
 	set(v):
 		value = max(0, v)
-		print(value)
 		if value <= 0:
 			die()
 
@@ -39,5 +36,6 @@ func get_target_scale() -> Vector2:
 		
 func die() -> void:
 	G.cash += data.cost
+	G.xp += data.xp
 	G.get_n("grid").free_cell(global_position)
 	spawn(Vector2(180, 90) + Vector2(randf_range(0, spawn_offset), randf_range(0, spawn_offset)))

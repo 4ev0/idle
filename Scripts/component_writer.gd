@@ -7,5 +7,7 @@ func _enter_tree() -> void:
 	parent.set("parent", gparent) 
 	var vars: String = parent.name.to_snake_case()
 	gparent.set(vars, parent)
-	G.get_n("debug").write("%s -> %s = %s" %[gparent.name, vars, gparent.get(vars)])
+	if G.nodes.has("debug"):
+		G.get_n("debug").write("%s -> %s = %s" %[gparent.name, vars, gparent.get(vars)])
+	
 	queue_free()

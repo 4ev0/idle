@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b1iibeujrlljf"]
 
-[ext_resource type="PackedScene" uid="uid://c7gtxtlj3u4sv" path="res://Scenes/ButtonPar/button_par.tscn" id="1_ksgys"]
+[ext_resource type="PackedScene" uid="uid://befybjylwmv3o" path="res://Scenes/ButtonForPurchase/button_for_purchase.tscn" id="1_ksgys"]
 [ext_resource type="Script" uid="uid://csydit2k0it26" path="res://Scenes/ButtonAddCircle/button_add_circle.gd" id="2_8dbwm"]
 
 [node name="ButtonAddCircle" unique_id=1556365795 instance=ExtResource("1_ksgys")]

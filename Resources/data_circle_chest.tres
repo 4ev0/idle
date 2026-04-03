@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CircleData" format=3 uid="uid://cp6bui6k0lvya"]
+
+[ext_resource type="Script" uid="uid://64ocepqsgtt4" path="res://Resources/circle_data.gd" id="1_mrep4"]
+
+[resource]
+script = ExtResource("1_mrep4")
+xp = 0
+color = Color(0.39, 0.27170002, 0.1872, 1)
+metadata/_custom_type_script = "uid://64ocepqsgtt4"

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://1g7e6y7f6y6b"]
+
+[ext_resource type="PackedScene" uid="uid://dty5cnth88hfs" path="res://Scenes/Circle/circle.tscn" id="1_quoe3"]
+[ext_resource type="Script" uid="uid://cs25jmj3tmkqy" path="res://Scenes/CircleChest/circle_chest.gd" id="2_725ja"]
+
+[node name="CircleChest" unique_id=1806639541 instance=ExtResource("1_quoe3")]
+script = ExtResource("2_725ja")
+radius = 8

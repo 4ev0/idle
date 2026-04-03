@@ -1,23 +1,20 @@
 extends Node
 class_name Debug
 
-enum CircleTypes {
-	NULL,
-	WHITE,
-	RED }
-@export var start_circles: Dictionary[CircleTypes, int]
+@export var start_circles: Dictionary[CircleContainer.CircleTypes, int]
 @export var cash: int = 0:
 	set(v):
 		cash = v
 		G.cash = cash
 @export var print_writing: bool = false
+@export var xp: int = 0
 
 @export_category("merge debug")
-@export var merge_type: CircleTypes
+@export var merge_type: CircleContainer.CircleTypes
 @export var merge: bool = false:
 	set(v):
 		merge = v
-		if v && merge_type && merge_type != CircleTypes.NULL:
+		if v && merge_type && merge_type != CircleContainer.CircleTypes.NULL:
 			var ck: CircleContainer = G.get_n("circle_container")
 			if ck:
 				ck.merge_circles(merge_type)
@@ -29,6 +26,7 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	await owner.ready
 	G.cash = cash
+	G.xp = xp
 	var ck: CircleContainer = G.get_n("circle_container")
 	if ck:
 		for i in start_circles:

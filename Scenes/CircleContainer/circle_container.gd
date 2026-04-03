@@ -4,9 +4,13 @@ class_name CircleContainer
 enum CircleTypes {
 	NULL,
 	WHITE,
-	RED }
+	RED,
+	CHEST }
 
 @export var circle_data: Dictionary[CircleTypes, Resource]
+var special_circle_scenes: Dictionary[CircleTypes, PackedScene] = {
+	CircleTypes.CHEST : load("uid://1g7e6y7f6y6b")
+}
 var circle_scene: PackedScene = load("uid://dty5cnth88hfs")
 var circles: Dictionary[CircleTypes, Array]
 
@@ -15,19 +19,21 @@ func _ready() -> void:
 	for i in range(1, CircleTypes.size()):
 		circles[CircleTypes[k[i]]] = []
 	
+	G.lvl_uped.connect(_on_lvl_uped)
 	add_circle()
 	
-func add_circle(type: int = CircleTypes.WHITE, r: int = 8) -> void:
+func add_circle(type: CircleTypes = CircleTypes.WHITE, r: int = 8) -> void:
 	if type == CircleTypes.NULL:
 		return
 		
-	var c: Circle = circle_scene.instantiate()
+	var scene: PackedScene = special_circle_scenes[type] if special_circle_scenes.has(type) else circle_scene
+	var c: Circle = scene.instantiate()
 	c.radius = r
 	circles[type].append(c)
 	c.data = circle_data[type]
 	add_child.call_deferred(c)
 
-func merge_circles(type: int) -> bool:
+func merge_circles(type: CircleTypes) -> bool:
 	if CircleTypes.size()-1 < type + 1:
 		return false
 		
@@ -61,3 +67,6 @@ func get_circle_count(type: CircleTypes) -> int:
 		return 0
 		
 	return circles.get(type).size()
+
+func _on_lvl_uped() -> void:
+	add_circle(CircleTypes.CHEST)

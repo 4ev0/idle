@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://dy4b4brh7j6p1"]
+
+[ext_resource type="Script" uid="uid://crbjnw8m3l2or" path="res://Scenes/LayerChestScreen/layer_chest_screen.gd" id="1_8el6p"]
+[ext_resource type="PackedScene" uid="uid://cgveddt2ivqjd" path="res://Scenes/LayerChestScreen/ButtonChestUpgrade/button_chest_upgrade.tscn" id="1_jrrvw"]
+[ext_resource type="PackedScene" uid="uid://bpchi16op1moa" path="res://Scenes/LayerChestScreen/ButtonChestAccept/button_chest_accept.tscn" id="2_2t4d8"]
+
+[node name="LayerChestScreen" type="CanvasLayer" unique_id=1138933061]
+script = ExtResource("1_8el6p")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=421828626]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5921569)
+
+[node name="ChestScreen" type="Control" parent="." unique_id=1498337893]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChestScreen" unique_id=1595303852]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = -23.0
+offset_right = 61.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 46
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ChestScreen/VBoxContainer" unique_id=1405960237]
+layout_mode = 2
+theme_override_constants/separation = 61
+
+[node name="ButtonChestUpgrade" parent="ChestScreen/VBoxContainer/HBoxContainer" unique_id=1556365795 instance=ExtResource("1_jrrvw")]
+layout_mode = 2
+
+[node name="ButtonChestUpgrade2" parent="ChestScreen/VBoxContainer/HBoxContainer" unique_id=172118534 instance=ExtResource("1_jrrvw")]
+layout_mode = 2
+
+[node name="ButtonChestUpgrade3" parent="ChestScreen/VBoxContainer/HBoxContainer" unique_id=1775824528 instance=ExtResource("1_jrrvw")]
+layout_mode = 2
+
+[node name="ButtonChestAccept" parent="ChestScreen/VBoxContainer" unique_id=246998267 instance=ExtResource("2_2t4d8")]
+layout_mode = 2
+size_flags_horizontal = 4

@@ -5,10 +5,9 @@
 [ext_resource type="Script" uid="uid://c3febher86nyd" path="res://Scenes/Circle/sliceable.gd" id="1_wi6w6"]
 [ext_resource type="Script" uid="uid://bdfxxarh3ap7g" path="res://Scripts/component_writer.gd" id="2_6alkb"]
 [ext_resource type="Script" uid="uid://cf6j3lsdq5evj" path="res://Scenes/ButtonPar/graphics.gd" id="2_8bpv6"]
-[ext_resource type="Texture2D" uid="uid://csxxq0weicg4s" path="res://Assets/button_white.png" id="4_3sw1g"]
-[ext_resource type="Texture2D" uid="uid://h3x5c034vd6x" path="res://Assets/button_green.png" id="5_7qjda"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7fm0j"]
+size = Vector2(18, 18)
 
 [node name="ButtonPar" type="Control" unique_id=1556365795]
 layout_mode = 3
@@ -27,42 +26,6 @@ script = ExtResource("2_8bpv6")
 [node name="ComponentWriter" type="Node" parent="Graphics" unique_id=350845307]
 script = ExtResource("2_6alkb")
 metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Graphics" unique_id=106543143]
-layout_mode = 0
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 8.0
-nine_patch_stretch = true
-stretch_margin_left = 2
-stretch_margin_top = 2
-stretch_margin_right = 2
-stretch_margin_bottom = 2
-texture_under = ExtResource("4_3sw1g")
-texture_progress = ExtResource("5_7qjda")
-
-[node name="LabelPrice" type="Label" parent="Graphics" unique_id=311060862]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5254902)
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 0
-theme_override_font_sizes/font_size = 8
-text = "12"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Controller" type="Node2D" parent="." unique_id=865613728]
 script = ExtResource("1_6alkb")

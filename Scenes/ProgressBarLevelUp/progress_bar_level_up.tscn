@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://lujfgni33qin"]
+
+[ext_resource type="Script" uid="uid://cgjl1gynxlxpw" path="res://Scenes/ProgressBarLevelUp/progress_bar_level_up.gd" id="1_ojdq6"]
+
+[node name="ProgressBarLevelUp" type="ProgressBar" unique_id=157443035 groups=["g"]]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+show_percentage = false
+script = ExtResource("1_ojdq6")

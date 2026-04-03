@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bpchi16op1moa"]
+
+[ext_resource type="PackedScene" uid="uid://c7gtxtlj3u4sv" path="res://Scenes/ButtonPar/button_par.tscn" id="1_c1c70"]
+[ext_resource type="Texture2D" uid="uid://m65crbu0wdaj" path="res://Assets/chest_accept.png" id="2_ob5p5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c1c70"]
+size = Vector2(48, 16)
+
+[node name="ButtonChestAccept" unique_id=1556365795 instance=ExtResource("1_c1c70")]
+
+[node name="ChestAccept" type="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1544941131) index="1" unique_id=1391656947]
+texture = ExtResource("2_ob5p5")
+
+[node name="Sliceable" parent="Controller" parent_id_path=PackedInt32Array(865613728) index="1" unique_id=632753328]
+working_states = Array[int]([1])
+
+[node name="CollisionShape2D" parent="Controller/Sliceable" index="1" unique_id=1125003320]
+shape = SubResource("RectangleShape2D_c1c70")

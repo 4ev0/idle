@@ -3,6 +3,7 @@ class_name Sliceable
 
 @export var min_velocity: float = 4
 @onready var cursor: Cursor = G.get_n("cursor")
+@export var working_states: Array[G.GameStates] = [G.GameStates.GAME]
 var collision_shape: CollisionShape2D:
 	get:
 		if !collision_shape:

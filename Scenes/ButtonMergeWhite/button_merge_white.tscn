@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://bvrbt1wxg3i4m"]
-
-[ext_resource type="PackedScene" uid="uid://c7gtxtlj3u4sv" path="res://Scenes/ButtonPar/button_par.tscn" id="1_mflvr"]
-
-[node name="ButtonMergeWhite" unique_id=1556365795 instance=ExtResource("1_mflvr")]
-currency = 1
-max_price = 2

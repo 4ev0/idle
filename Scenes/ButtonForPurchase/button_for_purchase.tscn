@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://befybjylwmv3o"]
+
+[ext_resource type="PackedScene" uid="uid://c7gtxtlj3u4sv" path="res://Scenes/ButtonPar/button_par.tscn" id="1_k3ybs"]
+[ext_resource type="Script" uid="uid://d26my35p50vkt" path="res://Scenes/ButtonForPurchase/button_for_purchase.gd" id="2_3uufy"]
+[ext_resource type="Script" uid="uid://clg6out462pxk" path="res://Scenes/ButtonForPurchase/graphics.gd" id="2_4i4ij"]
+[ext_resource type="Texture2D" uid="uid://csxxq0weicg4s" path="res://Assets/button_white.png" id="2_w64jj"]
+[ext_resource type="Texture2D" uid="uid://h3x5c034vd6x" path="res://Assets/button_green.png" id="3_4i4ij"]
+[ext_resource type="Script" uid="uid://c0m0quju64xdw" path="res://Scripts/purchase_component.gd" id="5_gywi4"]
+[ext_resource type="Script" uid="uid://bdfxxarh3ap7g" path="res://Scripts/component_writer.gd" id="6_3uufy"]
+
+[node name="ButtonForPurchase" unique_id=1556365795 instance=ExtResource("1_k3ybs")]
+script = ExtResource("2_3uufy")
+
+[node name="Graphics" parent="." index="0" unique_id=1544941131]
+script = ExtResource("2_4i4ij")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Graphics" index="1" unique_id=2025445946]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_under = ExtResource("2_w64jj")
+texture_progress = ExtResource("3_4i4ij")
+
+[node name="LabelPrice" type="Label" parent="Graphics" index="2" unique_id=1150124060]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5254902)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 8
+text = "12"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sliceable" parent="Controller" parent_id_path=PackedInt32Array(865613728) index="1" unique_id=632753328]
+monitorable = false
+
+[node name="Purchase" type="Node" parent="." index="2" unique_id=870633994]
+script = ExtResource("5_gywi4")
+price = 10.0
+metadata/_custom_type_script = "uid://c0m0quju64xdw"
+
+[node name="ComponentWriter" type="Node" parent="Purchase" index="0" unique_id=841443124]
+script = ExtResource("6_3uufy")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
