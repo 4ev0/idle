@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://cgveddt2ivqjd"]
 
 [ext_resource type="PackedScene" uid="uid://c7gtxtlj3u4sv" path="res://Scenes/ButtonPar/button_par.tscn" id="1_orrds"]
-[ext_resource type="Texture2D" uid="uid://wnpl1osifavq" path="res://Assets/chest_upgrade_back.png" id="2_dk1u2"]
+[ext_resource type="Texture2D" uid="uid://csxxq0weicg4s" path="res://Assets/button_white.png" id="2_gpvlc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gpvlc"]
-size = Vector2(48, 64)
+size = Vector2(16, 16)
 
 [node name="ButtonChestUpgrade" unique_id=1556365795 instance=ExtResource("1_orrds")]
 
-[node name="ChestUpgradeBack" type="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1544941131) index="1" unique_id=742514197]
-texture = ExtResource("2_dk1u2")
+[node name="ButtonWhite" type="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1544941131) index="1" unique_id=303462524]
+texture = ExtResource("2_gpvlc")
 
 [node name="CollisionShape2D" parent="Controller/Sliceable" parent_id_path=PackedInt32Array(632753328) index="1" unique_id=1125003320]
 shape = SubResource("RectangleShape2D_gpvlc")

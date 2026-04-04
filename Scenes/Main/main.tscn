@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://daoj4og62n0jv" path="res://Scenes/Cursor/cursor.tscn" id="7_xlvfx"]
 [ext_resource type="PackedScene" uid="uid://b1iibeujrlljf" path="res://Scenes/ButtonAddCircle/button_add_circle.tscn" id="10_4e4y2"]
 [ext_resource type="PackedScene" uid="uid://couq62m8unk82" path="res://Scenes/ButtonMergeCircles/button_merge_circles.tscn" id="12_4e4y2"]
-[ext_resource type="PackedScene" uid="uid://dy4b4brh7j6p1" path="res://Scenes/LayerChestScreen/layer_chest_screen.tscn" id="12_6t3k2"]
 [ext_resource type="PackedScene" uid="uid://lujfgni33qin" path="res://Scenes/ProgressBarLevelUp/progress_bar_level_up.tscn" id="13_6t3k2"]
+[ext_resource type="PackedScene" uid="uid://dy4b4brh7j6p1" path="res://Scenes/LayerChestScreen/layer_chest_screen.tscn" id="13_vk4q2"]
 
 [node name="Main" type="Node2D" unique_id=1507799017]
 script = ExtResource("1_lixft")
@@ -49,16 +49,18 @@ offset_top = 41.0
 offset_right = 254.0
 offset_bottom = 41.0
 
-[node name="ButtonMergeCircles" parent="." unique_id=1039839020 instance=ExtResource("12_4e4y2")]
+[node name="ButtonMergeCircles" parent="." unique_id=419416923 instance=ExtResource("12_4e4y2")]
 offset_left = 254.0
-offset_top = 67.0
+offset_top = 63.0
 offset_right = 254.0
-offset_bottom = 67.0
+offset_bottom = 63.0
 type = 1
+
+[node name="ProgressBarButton" parent="ButtonMergeCircles/Graphics" parent_id_path=PackedInt32Array(419416923, 1544941131) index="1" unique_id=2025445946]
+unique_name_in_owner = true
 
 [node name="Purchase" parent="ButtonMergeCircles" index="2" unique_id=870633994]
 currency = 1
-price = 2.0
 
 [node name="LayerUI" type="CanvasLayer" parent="." unique_id=1799045463 groups=["g"]]
 
@@ -82,9 +84,9 @@ autowrap_mode = 0
 horizontal_alignment = 1
 script = ExtResource("4_5yls4")
 
-[node name="LayerChestScreen" parent="." unique_id=1138933061 instance=ExtResource("12_6t3k2")]
-
 [node name="LayerCursor" parent="." unique_id=791419552 instance=ExtResource("7_xlvfx")]
 layer = 2
+
+[node name="LayerChestScreen" parent="." unique_id=1138933061 instance=ExtResource("13_vk4q2")]
 
 [editable path="ButtonMergeCircles"]

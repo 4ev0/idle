@@ -2,5 +2,5 @@ extends Circle
 class_name CircleChest
 
 func die() -> void:
-	print("chest broken")
+	G.chest_broken.emit()
 	queue_free()

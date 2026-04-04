@@ -2,7 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://befybjylwmv3o" path="res://Scenes/ButtonForPurchase/button_for_purchase.tscn" id="1_oyx0a"]
 [ext_resource type="Script" uid="uid://bc2u5r5o4blxc" path="res://Scenes/ButtonMergeCircles/button_merge_circles.gd" id="2_0hohb"]
+[ext_resource type="Script" uid="uid://cq7whtm4eov34" path="res://Scenes/ButtonMergeCircles/controller.gd" id="3_0hohb"]
 
 [node name="ButtonMergeCircles" unique_id=1556365795 instance=ExtResource("1_oyx0a")]
 script = ExtResource("2_0hohb")
 type = 0
+
+[node name="Controller" parent="." index="1" unique_id=865613728]
+script = ExtResource("3_0hohb")
+
+[node name="Purchase" parent="." index="2" unique_id=870633994]
+price = 2.0

@@ -8,6 +8,7 @@ enum Currencies {
 enum GameStates {
 	GAME,
 	MENU,
+	CHEST,
 }
 
 var nodes: Dictionary = {}
@@ -38,9 +39,12 @@ var game_state: GameStates = GameStates.GAME:
 		game_state = v
 		print(GameStates.keys()[game_state])
 
+
 signal cash_updated(v: int)
 signal main_ready
 signal lvl_uped
+signal chest_broken
+signal chest_closed
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey && event.is_pressed():
@@ -52,25 +56,3 @@ func _input(event: InputEvent) -> void:
 
 func get_n(_name: String) -> Node:
 	return nodes.get(_name)
-
-func get_currecny(type: Currencies) -> int:
-	match type:
-		Currencies.DOLLAR:
-			return cash
-		_:
-			var ck: CircleContainer = nodes.get("circle_container")
-			if ck:
-				return ck.get_circle_count(ck.get_type_from_str(Currencies.keys()[type]))
-	
-	return 0
-	
-func get_currency_sign(type: Currencies) -> String:
-	match type:
-		Currencies.DOLLAR:
-			return "$"
-		_:
-			return "o"
-	
-	return ""
-		
-	

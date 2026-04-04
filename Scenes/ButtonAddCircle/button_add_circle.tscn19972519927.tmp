@@ -10,6 +10,3 @@ hit_buffer = 2
 
 [node name="Controller" parent="." index="1" unique_id=865613728]
 script = ExtResource("3_a6yxf")
-
-[node name="Sliceable" parent="Controller" index="1" unique_id=632753328]
-working_states = Array[int]([0])

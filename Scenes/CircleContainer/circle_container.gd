@@ -36,8 +36,8 @@ func add_circle(type: CircleTypes = CircleTypes.WHITE, r: int = 8) -> void:
 func merge_circles(type: CircleTypes) -> bool:
 	if CircleTypes.size()-1 < type + 1:
 		return false
-		
-	var arr: Array = circles[type]
+	
+	var arr: Array = circles[type] if circles.has(type) else []
 	if arr.size() < 2:
 		return false
 		

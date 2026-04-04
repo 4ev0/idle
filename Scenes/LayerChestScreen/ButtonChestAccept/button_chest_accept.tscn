@@ -11,8 +11,5 @@ size = Vector2(48, 16)
 [node name="ChestAccept" type="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1544941131) index="1" unique_id=1391656947]
 texture = ExtResource("2_ob5p5")
 
-[node name="Sliceable" parent="Controller" parent_id_path=PackedInt32Array(865613728) index="1" unique_id=632753328]
-working_states = Array[int]([1])
-
-[node name="CollisionShape2D" parent="Controller/Sliceable" index="1" unique_id=1125003320]
+[node name="CollisionShape2D" parent="Controller/Sliceable" parent_id_path=PackedInt32Array(632753328) index="1" unique_id=1125003320]
 shape = SubResource("RectangleShape2D_c1c70")

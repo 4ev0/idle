@@ -19,7 +19,7 @@ func divide_price(parts: int, _price: float = price) -> int:
 	return round(_price / parts)
 
 func try_to_pay() -> bool:
-	return G.get_currecny(currency) >= current_price
+	return get_currecny(currency) >= current_price
 
 func pay() -> void:
 	match currency:
@@ -28,3 +28,23 @@ func pay() -> void:
 		_:
 			var ck: CircleContainer = G.get_n("circle_container")
 			ck.merge_circles(ck.get_type_from_str(G.Currencies.keys()[currency]))
+
+func get_currecny(type: G.Currencies = currency) -> int:
+	match type:
+		G.Currencies.DOLLAR:
+			return G.cash
+		_:
+			var ck: CircleContainer = G.get_n("circle_container")
+			if ck:
+				return ck.get_circle_count(ck.get_type_from_str(G.Currencies.keys()[type]))
+	
+	return 0
+	
+func get_currency_sign(type: G.Currencies = currency) -> String:
+	match type:
+		G.Currencies.DOLLAR:
+			return "$"
+		_:
+			return "o"
+	
+	return ""

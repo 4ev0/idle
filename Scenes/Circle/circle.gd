@@ -18,9 +18,9 @@ class_name Circle
 signal value_updated(new_v: float)
 
 func _ready() -> void:
-	spawn(Vector2.ZERO)
+	spawn()
 
-func spawn(pos: Vector2) -> void:
+func spawn() -> void:
 	var grid: Grid = G.get_n("grid")
 	var target_cell_pos : Vector2 = grid.get_rand_free_cell()
 	global_position = grid.get_cell_center(target_cell_pos)
@@ -38,4 +38,5 @@ func die() -> void:
 	G.cash += data.cost
 	G.xp += data.xp
 	G.get_n("grid").free_cell(global_position)
-	spawn(Vector2(180, 90) + Vector2(randf_range(0, spawn_offset), randf_range(0, spawn_offset)))
+	spawn()
+	#spawn(Vector2(180, 90) + Vector2(randf_range(0, spawn_offset), randf_range(0, spawn_offset)))

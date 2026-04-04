@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://cp4cs8ck5k44v"]
+
+[ext_resource type="PackedScene" uid="uid://c7gtxtlj3u4sv" path="res://Scenes/ButtonPar/button_par.tscn" id="1_btf6l"]
+[ext_resource type="Script" uid="uid://bcrgg62b2cqp8" path="res://Scripts/button_graphics_progress.gd" id="2_i737o"]
+[ext_resource type="Texture2D" uid="uid://dbmevgxfs2u33" path="res://Assets/chest_skip.png" id="2_s0mwf"]
+[ext_resource type="Texture2D" uid="uid://csxxq0weicg4s" path="res://Assets/button_white.png" id="4_i737o"]
+[ext_resource type="Script" uid="uid://bc7ojr1iy7qs6" path="res://Scenes/LayerChestScreen/ButtonChestSkip/controller.gd" id="5_b4fdr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i737o"]
+size = Vector2(48, 16)
+
+[node name="ButtonChestSkip" unique_id=1556365795 instance=ExtResource("1_btf6l")]
+
+[node name="Graphics" parent="." index="0" unique_id=1544941131]
+script = ExtResource("2_i737o")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Graphics" index="1" unique_id=229863019]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -8.0
+offset_right = 24.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_under = ExtResource("2_s0mwf")
+texture_progress = ExtResource("4_i737o")
+
+[node name="Label" type="Label" parent="Graphics" index="2" unique_id=1654680690]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -12.5
+offset_right = 24.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.34117648)
+text = "SKIP"
+horizontal_alignment = 1
+
+[node name="Controller" parent="." index="1" unique_id=865613728]
+script = ExtResource("5_b4fdr")
+
+[node name="CollisionShape2D" parent="Controller/Sliceable" parent_id_path=PackedInt32Array(632753328) index="1" unique_id=1125003320]
+shape = SubResource("RectangleShape2D_i737o")
