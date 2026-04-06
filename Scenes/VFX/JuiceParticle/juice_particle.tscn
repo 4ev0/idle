@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b6gitxgsj51kg"]
+
+[ext_resource type="Script" uid="uid://dofisp42gdic2" path="res://Scenes/VFX/juice_particle.gd" id="1_8uocd"]
+[ext_resource type="Texture2D" uid="uid://b6sp7383m17ne" path="res://Assets/juice_particle.png" id="1_luekq"]
+
+[node name="JuiceParticle" type="CPUParticles2D" unique_id=539614375]
+texture = ExtResource("1_luekq")
+explosiveness = 1.0
+spread = 90.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 15.85
+initial_velocity_max = 58.75
+angular_velocity_min = -312.0
+angular_velocity_max = 280.0
+script = ExtResource("1_8uocd")
+
+[node name="Timer" type="Timer" parent="." unique_id=1057858192]
+wait_time = 0.15
+one_shot = true
+autostart = true

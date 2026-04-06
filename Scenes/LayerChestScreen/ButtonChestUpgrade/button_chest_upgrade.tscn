@@ -2,14 +2,37 @@
 
 [ext_resource type="PackedScene" uid="uid://c7gtxtlj3u4sv" path="res://Scenes/ButtonPar/button_par.tscn" id="1_orrds"]
 [ext_resource type="Texture2D" uid="uid://csxxq0weicg4s" path="res://Assets/button_white.png" id="2_gpvlc"]
+[ext_resource type="Script" uid="uid://b07ynhpx566o0" path="res://Scenes/LayerChestScreen/ButtonChestUpgrade/graphics.gd" id="2_ok0d1"]
+[ext_resource type="Script" uid="uid://bq14dn3xj0es0" path="res://Scenes/LayerChestScreen/ButtonChestUpgrade/controller.gd" id="3_3msa0"]
+[ext_resource type="Texture2D" uid="uid://clwgpyvutd48d" path="res://Assets/circle_progress.png" id="3_82j31"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gpvlc"]
 size = Vector2(16, 16)
 
 [node name="ButtonChestUpgrade" unique_id=1556365795 instance=ExtResource("1_orrds")]
 
-[node name="ButtonWhite" type="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1544941131) index="1" unique_id=303462524]
+[node name="Graphics" parent="." index="0" unique_id=1544941131]
+script = ExtResource("2_ok0d1")
+
+[node name="ButtonWhite" type="Sprite2D" parent="Graphics" index="1" unique_id=303462524]
 texture = ExtResource("2_gpvlc")
 
-[node name="CollisionShape2D" parent="Controller/Sliceable" parent_id_path=PackedInt32Array(632753328) index="1" unique_id=1125003320]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Graphics" index="2" unique_id=220672208]
+self_modulate = Color(0.363125, 0.83, 0.2075, 1)
+layout_mode = 0
+offset_left = -7.9999995
+offset_top = -7.9999995
+offset_right = 92.0
+offset_bottom = 92.0
+scale = Vector2(0.16, 0.16)
+fill_mode = 4
+texture_progress = ExtResource("3_82j31")
+
+[node name="Controller" parent="." index="1" unique_id=865613728]
+script = ExtResource("3_3msa0")
+
+[node name="Sliceable" parent="Controller" index="1" unique_id=632753328]
+working_states = Array[int]([2])
+
+[node name="CollisionShape2D" parent="Controller/Sliceable" index="1" unique_id=1125003320]
 shape = SubResource("RectangleShape2D_gpvlc")

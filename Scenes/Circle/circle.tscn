@@ -4,8 +4,91 @@
 [ext_resource type="Script" uid="uid://dgjbkiufj0rr3" path="res://Scenes/Circle/circle.gd" id="1_e28ma"]
 [ext_resource type="Script" uid="uid://chnmavrn1xaor" path="res://Scenes/Circle/graphics.gd" id="2_62jh2"]
 [ext_resource type="Script" uid="uid://bnmtrfp3jctx7" path="res://Scenes/Circle/controller.gd" id="3_dxrai"]
+[ext_resource type="Texture2D" uid="uid://dtsg4nm15dhei" path="res://Assets/tomato.png" id="5_08f7a"]
 [ext_resource type="Script" uid="uid://c3febher86nyd" path="res://Scenes/Circle/sliceable.gd" id="5_n42ld"]
 [ext_resource type="Script" uid="uid://bdfxxarh3ap7g" path="res://Scripts/component_writer.gd" id="5_oieyk"]
+[ext_resource type="Texture2D" uid="uid://doqsabc4sld2g" path="res://Assets/tomato_cut_particle.png" id="6_jxhk6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxhk6"]
+atlas = ExtResource("5_08f7a")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qh1p6"]
+atlas = ExtResource("5_08f7a")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tngtp"]
+atlas = ExtResource("5_08f7a")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4v54l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxhk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qh1p6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tngtp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="Curve" id="Curve_qh1p6"]
+_limits = [0.0, 25.75, 0.0, 1.0]
+_data = [Vector2(0.10087721, 0), 0.0, 34.05645, 0, 0, Vector2(0.97807014, 13.982527), 29.03936, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tngtp"]
+curve = SubResource("Curve_qh1p6")
+
+[sub_resource type="Curve" id="Curve_4v54l"]
+_limits = [1.85, 21.560482, 0.0, 1.0]
+_data = [Vector2(0, 14.776921), 0.0, -58.634422, 0, 0, Vector2(0.24999997, 2.4897194), -0.7482647, -0.7482647, 0, 0, Vector2(0.4166667, 17.003757), 42.314034, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_va5it"]
+curve = SubResource("Curve_4v54l")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7cgit"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 15.035
+flatness = 1.0
+initial_velocity_min = 140.55
+initial_velocity_max = 144.05
+angular_velocity_min = -2.550016
+angular_velocity_max = 4.799984
+angular_velocity_curve = SubResource("CurveTexture_tngtp")
+gravity = Vector3(0, 350, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = -2.2351742e-06
+linear_accel_curve = SubResource("CurveTexture_va5it")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4v54l"]
+atlas = ExtResource("5_08f7a")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_va5it"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 16.183
+flatness = 1.0
+initial_velocity_min = 153.55
+initial_velocity_max = 187.05
+angular_velocity_min = -2.550016
+angular_velocity_max = 4.799984
+angular_velocity_curve = SubResource("CurveTexture_tngtp")
+gravity = Vector3(0, 800, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = -2.2351742e-06
+linear_accel_curve = SubResource("CurveTexture_va5it")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_62jh2"]
 
@@ -22,7 +105,6 @@ radius = 6.0827627
 
 [node name="Circle" type="Node2D" unique_id=1806639541]
 script = ExtResource("1_e28ma")
-radius = 16
 
 [node name="Graphics" type="Node2D" parent="." unique_id=302220172]
 script = ExtResource("2_62jh2")
@@ -32,6 +114,7 @@ script = ExtResource("5_oieyk")
 metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Graphics" unique_id=1893704523]
+visible = false
 offset_left = -50.0
 offset_top = -50.0
 offset_right = 50.0
@@ -41,6 +124,37 @@ pivot_offset = Vector2(50, 50)
 value = 100.0
 fill_mode = 5
 texture_progress = ExtResource("1_7cct2")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Graphics" unique_id=317883701]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1, 2)
+sprite_frames = SubResource("SpriteFrames_4v54l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Graphics" unique_id=1922748872]
+sprite_frames = SubResource("SpriteFrames_4v54l")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Graphics" unique_id=140154313]
+modulate = Color(1, 1, 1, 0.92156863)
+emitting = false
+amount = 1
+texture = ExtResource("6_jxhk6")
+lifetime = 2.0
+one_shot = true
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_7cgit")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Graphics" unique_id=526993743]
+modulate = Color(1, 1, 1, 0.92156863)
+position = Vector2(0, -3)
+emitting = false
+amount = 3
+texture = SubResource("AtlasTexture_4v54l")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+randomness = 0.93
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_va5it")
 
 [node name="Controller" type="Node2D" parent="." unique_id=106449727]
 script = ExtResource("3_dxrai")

@@ -22,7 +22,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Graphics" type="Node2D" parent="." unique_id=105282766]
-modulate = Color(1, 1, 1, 0.1764706)
+modulate = Color(0.15278518, 0.16571754, 0.19595855, 0.13725491)
 script = ExtResource("2_22v8v")
 
 [node name="ComponentWriter" type="Node" parent="Graphics" unique_id=742561769]

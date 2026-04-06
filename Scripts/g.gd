@@ -1,5 +1,7 @@
 extends Node
 
+var tree: SceneTree
+
 enum Currencies {
 	DOLLAR,
 	CIRCLE_WHITE,
@@ -48,11 +50,24 @@ signal chest_closed
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey && event.is_pressed():
+		if !tree:
+			return
+			
 		match event.keycode:
 			KEY_R:
-				get_tree().reload_current_scene()
+				if !tree.current_scene:
+					return
+				
+				tree.reload_current_scene()
 			KEY_ESCAPE:
-				get_tree().quit()
+				tree.quit()
 
 func get_n(_name: String) -> Node:
 	return nodes.get(_name)
+
+func setup_tw(tw: Tween) -> Tween:
+	if tw:
+		tw.kill()
+	
+	tw = create_tween()
+	return tw

@@ -22,7 +22,7 @@ func _ready() -> void:
 	G.lvl_uped.connect(_on_lvl_uped)
 	add_circle()
 	
-func add_circle(type: CircleTypes = CircleTypes.WHITE, r: int = 8) -> void:
+func add_circle(type: CircleTypes = CircleTypes.WHITE, r: int = 6) -> void:
 	if type == CircleTypes.NULL:
 		return
 		

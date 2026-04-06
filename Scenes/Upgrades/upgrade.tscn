@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://53ifaq8mdgtj"]
+
+[ext_resource type="Script" uid="uid://bdfxxarh3ap7g" path="res://Scripts/component_writer.gd" id="1_ega8d"]
+[ext_resource type="Script" uid="uid://dpnnek057eqio" path="res://Scenes/Upgrades/upgrade.gd" id="1_w4l7t"]
+[ext_resource type="Script" uid="uid://c31gt3j2xqjls" path="res://Scenes/Upgrades/graphics.gd" id="2_goq2p"]
+[ext_resource type="Texture2D" uid="uid://cpcmsjn882y5j" path="res://Assets/knife.png" id="4_wmxt8"]
+[ext_resource type="Script" uid="uid://cpr47j2dl7mah" path="res://Scenes/Upgrades/controller.gd" id="5_thtp8"]
+
+[node name="Upgrade" type="Node2D" unique_id=1369309341]
+script = ExtResource("1_w4l7t")
+
+[node name="Graphics" type="Node2D" parent="." unique_id=2058551908]
+script = ExtResource("2_goq2p")
+
+[node name="ComponentWriter" type="Node" parent="Graphics" unique_id=1689638153]
+script = ExtResource("1_ega8d")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
+
+[node name="Knife" type="Sprite2D" parent="Graphics" unique_id=2057618162]
+position = Vector2(0, -4)
+texture = ExtResource("4_wmxt8")
+
+[node name="Controller" type="Node2D" parent="." unique_id=1340696156]
+script = ExtResource("5_thtp8")
+
+[node name="ComponentWriter" type="Node" parent="Controller" unique_id=176561996]
+script = ExtResource("1_ega8d")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
+
+[node name="ComponentWriter" type="Node" parent="." unique_id=915708095]
+script = ExtResource("1_ega8d")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"

@@ -22,8 +22,6 @@ func _on_sliced() -> void:
 	if !parent || !is_hitted():
 		return
 	
-	print(self)
-		
 	hitted += 1
 	if hitted >= parent.hit_buffer:
 		hitted = 0

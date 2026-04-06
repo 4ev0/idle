@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://crbjnw8m3l2or" path="res://Scenes/LayerChestScreen/layer_chest_screen.gd" id="1_8el6p"]
 [ext_resource type="PackedScene" uid="uid://cgveddt2ivqjd" path="res://Scenes/LayerChestScreen/ButtonChestUpgrade/button_chest_upgrade.tscn" id="1_jrrvw"]
-[ext_resource type="PackedScene" uid="uid://bpchi16op1moa" path="res://Scenes/LayerChestScreen/ButtonChestAccept/button_chest_accept.tscn" id="2_2t4d8"]
 [ext_resource type="PackedScene" uid="uid://cp4cs8ck5k44v" path="res://Scenes/LayerChestScreen/ButtonChestSkip/button_chest_skip.tscn" id="4_3u5xv"]
 
 [node name="LayerChestScreen" type="CanvasLayer" unique_id=1138933061]
@@ -50,27 +49,12 @@ offset_top = 95.0
 offset_right = 39.0
 offset_bottom = 95.0
 
-[node name="VBoxContainer" type="HBoxContainer" parent="ChestScreen" unique_id=1975104108]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -58.5
-offset_top = 68.0
-offset_right = 63.5
-offset_bottom = 88.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="ButtonChestAccept" parent="ChestScreen/VBoxContainer" unique_id=246998267 instance=ExtResource("2_2t4d8")]
-custom_minimum_size = Vector2(49.25, 20.395)
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="ButtonChestSkip" parent="ChestScreen/VBoxContainer" unique_id=1849891961 instance=ExtResource("4_3u5xv")]
-layout_mode = 2
+[node name="ButtonChestSkip" parent="ChestScreen" unique_id=1849891961 instance=ExtResource("4_3u5xv")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 62.0
+offset_top = 155.0
+offset_right = 62.0
+offset_bottom = 155.0
 size_flags_horizontal = 4
 size_flags_vertical = 0

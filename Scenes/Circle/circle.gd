@@ -9,23 +9,16 @@ class_name Circle
 @onready var value: int = data.hp:
 	set(v):
 		value = max(0, v)
-		if value <= 0:
-			die()
+		if value <= 0 && controller:
+			controller.die()
 
 		value_updated.emit(value)
 		
 @onready var spawn_offset : float = 80
+signal sliced(mouse_pos: Vector2)
+signal spawned
 signal value_updated(new_v: float)
-
-func _ready() -> void:
-	spawn()
-
-func spawn() -> void:
-	var grid: Grid = G.get_n("grid")
-	var target_cell_pos : Vector2 = grid.get_rand_free_cell()
-	global_position = grid.get_cell_center(target_cell_pos)
-	grid.occupy_cell(target_cell_pos)
-	value = data.hp
+signal died
 
 func get_target_scale() -> Vector2:
 	if graphics:
@@ -34,9 +27,3 @@ func get_target_scale() -> Vector2:
 		print("%s graphics == null" %name)
 		return Vector2.ONE * radius * 2 / Vector2(100, 100)
 		
-func die() -> void:
-	G.cash += data.cost
-	G.xp += data.xp
-	G.get_n("grid").free_cell(global_position)
-	spawn()
-	#spawn(Vector2(180, 90) + Vector2(randf_range(0, spawn_offset), randf_range(0, spawn_offset)))

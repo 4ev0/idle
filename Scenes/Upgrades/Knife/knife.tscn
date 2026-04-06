@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bvcwhnhmhn2c4"]
+
+[ext_resource type="Script" uid="uid://dd7fm4uonx1s5" path="res://Scenes/Upgrades/Knife/knife.gd" id="1_nmg5m"]
+[ext_resource type="Texture2D" uid="uid://cpcmsjn882y5j" path="res://Assets/knife.png" id="2_q4wlw"]
+
+[node name="Knife" type="Node2D" unique_id=2099338201]
+script = ExtResource("1_nmg5m")
+
+[node name="Knife" type="Sprite2D" parent="." unique_id=1082099272]
+texture = ExtResource("2_q4wlw")

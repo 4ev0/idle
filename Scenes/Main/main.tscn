@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://d1d24dhuiw2mp" path="res://Scripts/visual_controller.gd" id="2_y3v7k"]
 [ext_resource type="Script" uid="uid://boaom8khtl786" path="res://Scripts/debug.gd" id="3_p6jpk"]
 [ext_resource type="Script" uid="uid://dx8y26yhyg3o7" path="res://Scenes/Main/label_cash.gd" id="4_5yls4"]
+[ext_resource type="Texture2D" uid="uid://bnud66p0i6k6g" path="res://Assets/table.png" id="5_vk4q2"]
 [ext_resource type="PackedScene" uid="uid://61cdjwgr7qun" path="res://Scenes/Grid/grid.tscn" id="6_2a143"]
 [ext_resource type="PackedScene" uid="uid://c1dljlx3v7kph" path="res://Scenes/CircleContainer/circle_container.tscn" id="6_hfg1r"]
 [ext_resource type="PackedScene" uid="uid://daoj4og62n0jv" path="res://Scenes/Cursor/cursor.tscn" id="7_xlvfx"]
@@ -12,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://couq62m8unk82" path="res://Scenes/ButtonMergeCircles/button_merge_circles.tscn" id="12_4e4y2"]
 [ext_resource type="PackedScene" uid="uid://lujfgni33qin" path="res://Scenes/ProgressBarLevelUp/progress_bar_level_up.tscn" id="13_6t3k2"]
 [ext_resource type="PackedScene" uid="uid://dy4b4brh7j6p1" path="res://Scenes/LayerChestScreen/layer_chest_screen.tscn" id="13_vk4q2"]
+[ext_resource type="Script" uid="uid://b3d68r0vec8ei" path="res://Scripts/upgrade_manager.gd" id="13_wliom"]
+[ext_resource type="Script" uid="uid://coymq41g10ud8" path="res://Scenes/VFX/effect_pop.gd" id="15_2ok46"]
 
 [node name="Main" type="Node2D" unique_id=1507799017]
 script = ExtResource("1_lixft")
@@ -23,7 +26,7 @@ metadata/_custom_type_script = "uid://xnv2kgpno3yr"
 [node name="Debug" type="Node" parent="." unique_id=530505277]
 script = ExtResource("3_p6jpk")
 start_circles = Dictionary[int, int]({
-1: 0,
+1: 4,
 2: 0
 })
 xp = 100
@@ -38,28 +41,44 @@ offset_right = 320.0
 offset_bottom = 184.0
 color = Color(0.09019608, 0.09019608, 0.09019608, 1)
 
+[node name="Table" type="Sprite2D" parent="." unique_id=938831221]
+position = Vector2(96, 88)
+texture = ExtResource("5_vk4q2")
+
+[node name="JuiceGroup" type="CanvasGroup" parent="." unique_id=482395136 groups=["g"]]
+self_modulate = Color(1, 1, 1, 0.52156866)
+
 [node name="Grid" parent="." unique_id=1595610565 instance=ExtResource("6_2a143")]
 position = Vector2(96, 88)
 
 [node name="CircleContainer" parent="." unique_id=973414043 instance=ExtResource("6_hfg1r")]
 
-[node name="ButtonAddCircle" parent="." unique_id=1556365795 instance=ExtResource("10_4e4y2")]
-offset_left = 254.0
+[node name="Shop" type="Control" parent="." unique_id=951134513]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 192.0
+offset_right = 312.0
+offset_bottom = 176.0
+
+[node name="ButtonAddCircle" parent="Shop" unique_id=1556365795 instance=ExtResource("10_4e4y2")]
+layout_mode = 0
+offset_left = 62.0
 offset_top = 41.0
-offset_right = 254.0
+offset_right = 62.0
 offset_bottom = 41.0
 
-[node name="ButtonMergeCircles" parent="." unique_id=419416923 instance=ExtResource("12_4e4y2")]
-offset_left = 254.0
+[node name="ButtonMergeCircles" parent="Shop" unique_id=419416923 instance=ExtResource("12_4e4y2")]
+layout_mode = 0
+offset_left = 62.0
 offset_top = 63.0
-offset_right = 254.0
+offset_right = 62.0
 offset_bottom = 63.0
 type = 1
 
-[node name="ProgressBarButton" parent="ButtonMergeCircles/Graphics" parent_id_path=PackedInt32Array(419416923, 1544941131) index="1" unique_id=2025445946]
+[node name="ProgressBarButton" parent="Shop/ButtonMergeCircles/Graphics" parent_id_path=PackedInt32Array(419416923, 1544941131) index="1" unique_id=2025445946]
 unique_name_in_owner = true
 
-[node name="Purchase" parent="ButtonMergeCircles" index="2" unique_id=870633994]
+[node name="Purchase" parent="Shop/ButtonMergeCircles" index="2" unique_id=870633994]
 currency = 1
 
 [node name="LayerUI" type="CanvasLayer" parent="." unique_id=1799045463 groups=["g"]]
@@ -69,15 +88,19 @@ offset_top = -5.0
 
 [node name="LabelCash" type="RichTextLabel" parent="LayerUI" unique_id=1621480141]
 clip_contents = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
-grow_horizontal = 2
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = 62.0
+offset_right = 1.0
+offset_bottom = 85.0
+grow_horizontal = 0
+grow_vertical = 2
 bbcode_enabled = true
-text = "$0"
+text = "$1"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -88,5 +111,14 @@ script = ExtResource("4_5yls4")
 layer = 2
 
 [node name="LayerChestScreen" parent="." unique_id=1138933061 instance=ExtResource("13_vk4q2")]
+visible = false
 
-[editable path="ButtonMergeCircles"]
+[node name="UpgradeManager" type="Node" parent="." unique_id=1342850851]
+script = ExtResource("13_wliom")
+
+[node name="EffectPop" type="Node2D" parent="." unique_id=1492446941]
+position = Vector2(248, 136)
+script = ExtResource("15_2ok46")
+metadata/_custom_type_script = "uid://coymq41g10ud8"
+
+[editable path="Shop/ButtonMergeCircles"]
