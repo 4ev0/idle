@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dy4b4brh7j6p1" path="res://Scenes/LayerChestScreen/layer_chest_screen.tscn" id="13_vk4q2"]
 [ext_resource type="Script" uid="uid://b3d68r0vec8ei" path="res://Scripts/upgrade_manager.gd" id="13_wliom"]
 [ext_resource type="Script" uid="uid://coymq41g10ud8" path="res://Scenes/VFX/effect_pop.gd" id="15_2ok46"]
+[ext_resource type="PackedScene" uid="uid://cxaaqmn6mts8a" path="res://Scenes/VFX/ParticleCoin/CoinLabel/coin_label.tscn" id="16_2ok46"]
 
 [node name="Main" type="Node2D" unique_id=1507799017]
 script = ExtResource("1_lixft")
@@ -35,6 +36,7 @@ metadata/_custom_type_script = "uid://boaom8khtl786"
 
 [node name="VisualController" type="Node" parent="." unique_id=351351275 groups=["g"]]
 script = ExtResource("2_y3v7k")
+custom_cursor = false
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1692488081]
 offset_right = 320.0
@@ -47,6 +49,9 @@ texture = ExtResource("5_vk4q2")
 
 [node name="JuiceGroup" type="CanvasGroup" parent="." unique_id=482395136 groups=["g"]]
 self_modulate = Color(1, 1, 1, 0.52156866)
+
+[node name="ShadowGroup" type="CanvasGroup" parent="." unique_id=1466570637 groups=["g"]]
+self_modulate = Color(1, 1, 1, 0.7411765)
 
 [node name="Grid" parent="." unique_id=1595610565 instance=ExtResource("6_2a143")]
 position = Vector2(96, 88)
@@ -99,6 +104,7 @@ offset_right = 1.0
 offset_bottom = 85.0
 grow_horizontal = 0
 grow_vertical = 2
+pivot_offset = Vector2(63, 22)
 bbcode_enabled = true
 text = "$1"
 fit_content = true
@@ -106,6 +112,9 @@ scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 script = ExtResource("4_5yls4")
+
+[node name="CashMarker" type="Marker2D" parent="LayerUI" unique_id=376996472 groups=["g"]]
+position = Vector2(320, 180)
 
 [node name="LayerCursor" parent="." unique_id=791419552 instance=ExtResource("7_xlvfx")]
 layer = 2
@@ -120,5 +129,8 @@ script = ExtResource("13_wliom")
 position = Vector2(248, 136)
 script = ExtResource("15_2ok46")
 metadata/_custom_type_script = "uid://coymq41g10ud8"
+
+[node name="CoinLabel" parent="." unique_id=1192074437 instance=ExtResource("16_2ok46")]
+position = Vector2(159, 149)
 
 [editable path="Shop/ButtonMergeCircles"]

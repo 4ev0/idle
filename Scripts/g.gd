@@ -71,3 +71,14 @@ func setup_tw(tw: Tween) -> Tween:
 	
 	tw = create_tween()
 	return tw
+
+func add_shadow(shadow: Node2D) -> Node2D:
+	var sg: CanvasGroup = nodes.get("shadow_group")
+	if !sg:
+		return Node2D.new()
+		
+	var new_s: Node2D = shadow.duplicate()
+	new_s.global_position = shadow.global_position
+	sg.add_child(new_s)
+	shadow.queue_free()
+	return new_s

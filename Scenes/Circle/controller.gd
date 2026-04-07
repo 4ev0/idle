@@ -7,6 +7,8 @@ var hit_ready: bool = true
 
 var sliceable: Sliceable
 
+var coin_scene: PackedScene = load("uid://c6g5a4ot6t8tx")
+
 func _ready() -> void:
 	if sliceable:
 		sliceable.sliced.connect(_on_sliced)
@@ -27,6 +29,10 @@ func spawn() -> void:
 	parent.spawned.emit()
 
 func die() -> void:
+	var c: ParticleCoin = coin_scene.instantiate()
+	c.global_position = global_position
+	G.get_n("main").add_child(c)
+	
 	G.cash += parent.data.cost
 	G.xp += parent.data.xp
 	G.get_n("grid").free_cell(global_position)

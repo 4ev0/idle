@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c6g5a4ot6t8tx"]
+
+[ext_resource type="Script" uid="uid://3bgp6jipph5x" path="res://Scenes/VFX/ParticleCoin/particle_coin.gd" id="1_5rnhj"]
+[ext_resource type="Texture2D" uid="uid://d4fdx4i465f84" path="res://Assets/coin_silver.png" id="1_dh34t"]
+
+[node name="ParticleCoin" type="Node2D" unique_id=1076028724]
+script = ExtResource("1_5rnhj")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=149975460]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1, 1)
+texture = ExtResource("1_dh34t")
+
+[node name="Depth" type="Sprite2D" parent="." unique_id=1130888836]
+texture = ExtResource("1_dh34t")
+
+[node name="CoinSilver" type="Sprite2D" parent="." unique_id=33679943]
+texture = ExtResource("1_dh34t")

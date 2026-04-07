@@ -5,7 +5,7 @@ var parent: Circle
 @onready var texture_progress_bar: TextureProgressBar = $TextureProgressBar
 @onready var texture_scale: Vector2 = texture_progress_bar.size
 @onready var sprite: AnimatedSprite2D = get_node("AnimatedSprite2D")
-@onready var sprite_shadow: AnimatedSprite2D = get_node("AnimatedSprite2D2")
+@onready var sprite_shadow: Node2D = get_node("AnimatedSprite2D2")
 @onready var gpu_particles_2d: GPUParticles2D = get_node("GPUParticles2D")
 @onready var particles: Dictionary = {1 : get_node("GPUParticles2D"), 2 : get_node("GPUParticles2D2") }
 
