@@ -28,6 +28,9 @@ func pay() -> void:
 		_:
 			var ck: CircleContainer = G.get_n("circle_container")
 			ck.merge_circles(ck.get_type_from_str(G.Currencies.keys()[currency]))
+	
+	purchased.emit()
+
 
 func get_currecny(type: G.Currencies = currency) -> int:
 	match type:

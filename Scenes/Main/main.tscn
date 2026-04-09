@@ -23,10 +23,11 @@ metadata/_custom_type_script = "uid://xnv2kgpno3yr"
 [node name="Debug" type="Node" parent="." unique_id=530505277]
 script = ExtResource("3_p6jpk")
 start_circles = Dictionary[int, int]({
-1: 0,
-2: 0
+1: 0
 })
+cash = 50
 xp = 100
+infinite_cash = true
 merge_type = 2
 metadata/_custom_type_script = "uid://boaom8khtl786"
 
@@ -37,11 +38,12 @@ custom_cursor = false
 [node name="CircleManager" type="Node" parent="." unique_id=606129403 groups=["g"]]
 script = ExtResource("5_hfg1r")
 circle_list = Dictionary[int, int]({
-1: 100
+1: 7
 })
 circle_data = Dictionary[int, Resource]({
 1: ExtResource("6_4e4y2")
 })
+circles_on_table = 7
 metadata/_custom_type_script = "uid://bw0iw5udc3pgu"
 
 [node name="Game" parent="." unique_id=435544845 instance=ExtResource("5_4e4y2")]

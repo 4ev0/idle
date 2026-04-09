@@ -29,7 +29,10 @@ stretch_margin_bottom = 2
 texture_under = ExtResource("2_w64jj")
 texture_progress = ExtResource("3_4i4ij")
 
-[node name="LabelPrice" type="Label" parent="Graphics" index="2" unique_id=1150124060]
+[node name="LabelContainer" type="Control" parent="Graphics" index="2" unique_id=1351386464]
+anchors_preset = 0
+
+[node name="LabelPrice" type="Label" parent="Graphics/LabelContainer" index="0" unique_id=1150124060]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8

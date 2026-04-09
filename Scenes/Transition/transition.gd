@@ -8,6 +8,9 @@ var playing: bool = false:
 			transition_ended.emit()
 			
 		playing = v
+var animation: String:
+	get:
+		return animation_player.current_animation
 
 signal transition_ended
 
@@ -32,4 +35,5 @@ func _show(to_show: Node, to_hide: Node = null) -> void:
 		to_hide.hide()
 		
 	play_out()
+	await animation_player.animation_finished
 	playing = false

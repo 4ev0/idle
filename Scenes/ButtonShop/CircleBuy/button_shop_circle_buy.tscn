@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cf3jf85vdgnmb"]
+
+[ext_resource type="PackedScene" uid="uid://befybjylwmv3o" path="res://Scenes/ButtonForPurchase/button_for_purchase.tscn" id="1_kwkdh"]
+[ext_resource type="Script" uid="uid://cs8rrvttyk8e3" path="res://Scenes/ButtonShop/CircleBuy/controller.gd" id="2_skm1r"]
+[ext_resource type="Script" uid="uid://brk3xjirswnqy" path="res://Scenes/ButtonShop/CircleBuy/button_shop_circle_buy.gd" id="2_vvh58"]
+[ext_resource type="Script" uid="uid://cji4jgdq5g0sq" path="res://Scenes/ButtonShop/CircleBuy/graphics.gd" id="3_6nthu"]
+
+[node name="ButtonShopCircleBuy" unique_id=1556365795 instance=ExtResource("1_kwkdh")]
+script = ExtResource("2_vvh58")
+circle_type = 0
+circle_amount = 0
+hit_buffer = 1
+
+[node name="Graphics" parent="." index="0" unique_id=1544941131]
+script = ExtResource("3_6nthu")
+
+[node name="ProgressBarButton" parent="Graphics" index="1" unique_id=2025445946]
+visible = false
+
+[node name="LabelContainer" parent="Graphics" index="2" unique_id=1351386464]
+offset_top = 10.0
+offset_bottom = 10.0
+
+[node name="LabelPrice" parent="Graphics/LabelContainer" index="0" unique_id=1150124060]
+offset_left = -5.0
+offset_top = -6.0
+offset_right = 5.0
+offset_bottom = 6.0
+
+[node name="CircleSprite" type="Sprite2D" parent="Graphics" index="3" unique_id=43972513]
+unique_name_in_owner = true
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="Controller" parent="." index="1" unique_id=865613728]
+script = ExtResource("2_skm1r")
+
+[node name="Sliceable" parent="Controller" index="1" unique_id=632753328]
+working_states = Array[int]([3])

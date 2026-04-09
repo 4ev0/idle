@@ -29,7 +29,7 @@ func _on_mouse_exited(area: Area2D) -> void:
 		
 	var t: Transition = G.get_n("transition")
 	if t:
-		if t.playing:
+		if t.playing && t.animation != "transition_out":
 			return
 			
 	if !working_states.has(G.game_state):

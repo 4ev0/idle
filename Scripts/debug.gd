@@ -8,6 +8,7 @@ class_name Debug
 		G.cash = cash
 @export var print_writing: bool = false
 @export var xp: int = 0
+@export var infinite_cash: bool = false
 
 @export_category("merge debug")
 @export var merge_type: CircleManager.CircleTypes

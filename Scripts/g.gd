@@ -31,24 +31,27 @@ var nodes: Dictionary = {}
 		#
 #var lvls: Array[int] = [100, 200, 300, 400, 500, 600, 700, 800]
 
+var circle_atlas_textures: Dictionary = load("uid://d32wwffqfu8ui").textures
 var strength: float = 10
 var cash: int = 0:
 	set(v):
+		if v < cash && nodes.debug.infinite_cash:
+			v = cash
+			
 		cash = v
 		cash_updated.emit(cash)
 
 var game_state: GameStates = GameStates.GAME:
 	set(v):
 		game_state = v
-		print(GameStates.keys()[game_state])
-
-var circles_on_table: int = 35
+		state_changed.emit(game_state)
 
 signal cash_updated(v: int)
 signal main_ready
 signal lvl_uped
 signal chest_broken
 signal chest_closed
+signal state_changed(state: GameStates)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey && event.is_pressed():

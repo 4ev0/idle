@@ -5,7 +5,6 @@ var tw: Tween
 
 @onready var crate_front: Sprite2D = $CrateFront
 @onready var crate_back: Sprite2D = $CrateBack
-@onready var textures: Dictionary = load("uid://d32wwffqfu8ui").textures
 @onready var circle_container: Node2D = $CircleContainer
 @onready var manager: CircleManager = G.get_n("circle_manager")
 
@@ -22,7 +21,7 @@ func _on_circle_picked(type: CircleManager.CircleTypes) -> void:
 	
 	var c: CrateCircleSprite = CrateCircleSprite.new()
 	c.position.x = randi_range(-18,18) 
-	c.texture = textures[type]
+	c.texture = G.circle_atlas_textures[type]
 	circle_container.add_child(c)
 	tw = create_tween()
 	scale = Vector2(0.9, 1.1)
