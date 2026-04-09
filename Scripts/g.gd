@@ -11,25 +11,26 @@ enum GameStates {
 	GAME,
 	MENU,
 	CHEST,
+	SHOP,
 }
 
 var nodes: Dictionary = {}
-var xp: int = 0:
-	set(v):
-		var target_xp: int = lvls[lvl]
-		xp = v % target_xp
-		nodes.progress_bar_level_up.value = xp
-		if v >= target_xp:
-			lvl += 1
-			lvl_uped.emit()
-			
-var lvl: int = 0:
-	set(v):
-		lvl = v
-		nodes.progress_bar_level_up.max_value = lvls[lvl]
-		
-var lvls: Array[int] = [100, 200, 300, 400, 500, 600, 700, 800]
-		
+#var xp: int = 0:
+	#set(v):
+		#var target_xp: int = lvls[lvl]
+		#xp = v % target_xp
+		#nodes.progress_bar_level_up.value = xp
+		#if v >= target_xp:
+			#lvl += 1
+			#lvl_uped.emit()
+			#
+#var lvl: int = 0:
+	#set(v):
+		#lvl = v
+		#nodes.progress_bar_level_up.max_value = lvls[lvl]
+		#
+#var lvls: Array[int] = [100, 200, 300, 400, 500, 600, 700, 800]
+
 var strength: float = 10
 var cash: int = 0:
 	set(v):
@@ -41,6 +42,7 @@ var game_state: GameStates = GameStates.GAME:
 		game_state = v
 		print(GameStates.keys()[game_state])
 
+var circles_on_table: int = 35
 
 signal cash_updated(v: int)
 signal main_ready
@@ -64,13 +66,6 @@ func _input(event: InputEvent) -> void:
 
 func get_n(_name: String) -> Node:
 	return nodes.get(_name)
-
-func setup_tw(tw: Tween) -> Tween:
-	if tw:
-		tw.kill()
-	
-	tw = create_tween()
-	return tw
 
 func add_shadow(shadow: Node2D) -> Node2D:
 	var sg: CanvasGroup = nodes.get("shadow_group")

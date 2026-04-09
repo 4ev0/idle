@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://bp6encvbptsfp"]
+
+[ext_resource type="Shader" uid="uid://jdqd20sdh0lk" path="res://Shaders/bayer_mat_dither.gdshader" id="1_flgk0"]
+[ext_resource type="Script" uid="uid://c311xuhbw137s" path="res://Scripts/state_changer.gd" id="1_vifcx"]
+[ext_resource type="Texture2D" uid="uid://bnud66p0i6k6g" path="res://Assets/table.png" id="2_vifcx"]
+[ext_resource type="PackedScene" uid="uid://61cdjwgr7qun" path="res://Scenes/Grid/grid.tscn" id="3_xfil1"]
+[ext_resource type="PackedScene" uid="uid://c1dljlx3v7kph" path="res://Scenes/CircleContainer/circle_container.tscn" id="4_huoen"]
+[ext_resource type="Script" uid="uid://bs1xjohivlj6e" path="res://Scenes/Game/button_open_shop.gd" id="5_ciybh"]
+[ext_resource type="PackedScene" uid="uid://dgttkbwbtrllk" path="res://Scenes/Crate/crate.tscn" id="6_vifcx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ypmwd"]
+shader = ExtResource("1_flgk0")
+shader_parameter/dither_type = 0
+shader_parameter/invert = false
+shader_parameter/matrix_size = 8
+shader_parameter/debug = false
+shader_parameter/flat_dither_level = 0.606000028785
+shader_parameter/gradient_point_opaque = Vector2(0, 0)
+shader_parameter/gradient_point_trans = Vector2(0, 0)
+shader_parameter/dither_point = Vector2(0, 0)
+shader_parameter/dither_point_radius = 16.0
+
+[sub_resource type="Gradient" id="Gradient_c4b4r"]
+colors = PackedColorArray(0.2752, 0.2990933, 0.32, 1, 0, 0, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1t20g"]
+noise_type = 0
+frequency = 0.0855
+offset = Vector3(351.65, -60.15, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oejk7"]
+width = 128
+height = 128
+noise = SubResource("FastNoiseLite_1t20g")
+color_ramp = SubResource("Gradient_c4b4r")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i1e5p"]
+
+[node name="Game" type="Node2D" unique_id=435544845]
+
+[node name="Factory" type="Node2D" parent="." unique_id=759195891]
+unique_name_in_owner = true
+script = ExtResource("1_vifcx")
+
+[node name="ColorRect" type="ColorRect" parent="Factory" unique_id=600841154]
+offset_right = 320.0
+offset_bottom = 184.0
+color = Color(0.09019608, 0.09019608, 0.09019608, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Factory" unique_id=1821756432]
+material = SubResource("ShaderMaterial_ypmwd")
+offset_left = -5.0
+offset_top = -4.0
+offset_right = 329.0
+offset_bottom = 186.0
+texture = SubResource("NoiseTexture2D_oejk7")
+
+[node name="Table" type="Sprite2D" parent="Factory" unique_id=1223654119]
+position = Vector2(96, 88)
+texture = ExtResource("2_vifcx")
+
+[node name="JuiceGroup" type="CanvasGroup" parent="Factory" unique_id=1088164821 groups=["g"]]
+self_modulate = Color(1, 1, 1, 0.52156866)
+
+[node name="ShadowGroup" type="CanvasGroup" parent="Factory" unique_id=1992419262 groups=["g"]]
+self_modulate = Color(1, 1, 1, 0.7411765)
+
+[node name="Grid" parent="Factory" unique_id=1595610565 instance=ExtResource("3_xfil1")]
+position = Vector2(96, 88)
+
+[node name="CircleContainer" parent="Factory" unique_id=973414043 instance=ExtResource("4_huoen")]
+
+[node name="Crate" parent="Factory" unique_id=1149799375 instance=ExtResource("6_vifcx")]
+position = Vector2(266, 157)
+
+[node name="Shop" type="Node2D" parent="." unique_id=893517563]
+unique_name_in_owner = true
+visible = false
+script = ExtResource("1_vifcx")
+target_state = 3
+
+[node name="ColorRect" type="ColorRect" parent="Shop" unique_id=909386811]
+offset_right = 320.0
+offset_bottom = 183.0
+color = Color(0.8748501, 0.9009755, 0.8592492, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Shop" unique_id=109267797]
+offset_right = 144.0
+offset_bottom = 183.0
+color = Color(0.033853278, 0.033853278, 0.033853274, 1)
+
+[node name="ButtonOpenShop" type="Button" parent="." unique_id=1278702201]
+offset_left = 240.0
+offset_top = 96.0
+offset_right = 264.0
+offset_bottom = 112.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_i1e5p")
+script = ExtResource("5_ciybh")

@@ -37,7 +37,7 @@ custom_cursor = false
 [node name="CircleManager" type="Node" parent="." unique_id=606129403 groups=["g"]]
 script = ExtResource("5_hfg1r")
 circle_list = Dictionary[int, int]({
-1: 100
+1: 0
 })
 circle_data = Dictionary[int, Resource]({
 1: ExtResource("6_4e4y2")

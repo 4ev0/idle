@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dgttkbwbtrllk"]
+
+[ext_resource type="Script" uid="uid://8ybnhlteobua" path="res://Scenes/Crate/graphics.gd" id="1_kv8em"]
+[ext_resource type="Texture2D" uid="uid://byyc6x0yqf564" path="res://Assets/crate_back.png" id="1_yvpso"]
+[ext_resource type="Texture2D" uid="uid://br1jmprqq32hx" path="res://Assets/crate_front.png" id="2_kv8em"]
+
+[node name="Crate" type="Node2D" unique_id=1149799375]
+
+[node name="Graphics" type="Node2D" parent="." unique_id=339179709]
+script = ExtResource("1_kv8em")
+
+[node name="CrateBack" type="Sprite2D" parent="Graphics" unique_id=273736861]
+texture = ExtResource("1_yvpso")
+
+[node name="CircleContainer" type="Node2D" parent="Graphics" unique_id=943333791]
+
+[node name="CrateFront" type="Sprite2D" parent="Graphics" unique_id=479408175]
+texture = ExtResource("2_kv8em")

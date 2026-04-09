@@ -6,6 +6,5 @@ func _enter_tree() -> void:
 	print("started")
 	G.nodes["main"] = self
 	
-
 func _ready() -> void:
 	G.main_ready.emit()

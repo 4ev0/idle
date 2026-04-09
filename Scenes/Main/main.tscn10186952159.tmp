@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://dx8y26yhyg3o7" path="res://Scenes/Main/label_cash.gd" id="4_5yls4"]
 [ext_resource type="PackedScene" uid="uid://bp6encvbptsfp" path="res://Scenes/Game/game.tscn" id="5_4e4y2"]
 [ext_resource type="Script" uid="uid://bw0iw5udc3pgu" path="res://Scripts/circle_manager.gd" id="5_hfg1r"]
-[ext_resource type="Resource" uid="uid://q2qh1h13hc5u" path="res://Resources/data_circle_tomato.tres" id="6_4e4y2"]
 [ext_resource type="PackedScene" uid="uid://daoj4og62n0jv" path="res://Scenes/Cursor/cursor.tscn" id="7_xlvfx"]
 [ext_resource type="PackedScene" uid="uid://lujfgni33qin" path="res://Scenes/ProgressBarLevelUp/progress_bar_level_up.tscn" id="13_6t3k2"]
 [ext_resource type="PackedScene" uid="uid://dy4b4brh7j6p1" path="res://Scenes/LayerChestScreen/layer_chest_screen.tscn" id="13_vk4q2"]
@@ -34,14 +33,8 @@ metadata/_custom_type_script = "uid://boaom8khtl786"
 script = ExtResource("2_y3v7k")
 custom_cursor = false
 
-[node name="CircleManager" type="Node" parent="." unique_id=606129403 groups=["g"]]
+[node name="CircleManager" type="Node" parent="." unique_id=606129403]
 script = ExtResource("5_hfg1r")
-circle_list = Dictionary[int, int]({
-1: 100
-})
-circle_data = Dictionary[int, Resource]({
-1: ExtResource("6_4e4y2")
-})
 metadata/_custom_type_script = "uid://bw0iw5udc3pgu"
 
 [node name="Game" parent="." unique_id=435544845 instance=ExtResource("5_4e4y2")]

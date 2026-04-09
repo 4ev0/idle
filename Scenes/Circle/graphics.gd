@@ -17,25 +17,17 @@ var stw: Tween
 @onready var hit_circle: HitCircle
 
 func _ready() -> void:
-	if parent:
-		if parent.randomize_color:
-			texture_progress_bar.modulate = Color(randf_range(0,1),randf_range(0,1),randf_range(0,1),1)
-		else:
-			texture_progress_bar.modulate = parent.data.color
-			
-		texture_progress_bar.max_value = parent.data.hp
-		texture_progress_bar.scale = parent.get_target_scale()
-		parent.value_updated.connect(_on_value_updated)
-	
-		parent.sliced.connect(_on_sliced)
-		parent.spawned.connect(_on_spawned)
-		parent.died.connect(_on_died)
+	parent.value_updated.connect(_on_value_updated)
+
+	parent.sliced.connect(_on_sliced)
+	parent.spawned.connect(_on_spawned)
+	parent.died.connect(_on_died)
 
 func _on_value_updated(new_v: float) -> void:
-	texture_progress_bar.value = new_v
-	var vv: float = parent.data.hp - (parent.data.hp / sprite.sprite_frames.get_frame_count("default"))
+	#todo: make more beautiful 
+	var vv: float = parent.data.hp - (parent.data.hp / (sprite.sprite_frames.get_frame_count("default") - sprite.frame))
 	if new_v <= vv:
-		sprite.frame += vv / new_v
+		sprite.frame += vv / new_v 
 		tw = setup_tw(tw)
 		stw = setup_tw(stw)
 		
@@ -45,7 +37,7 @@ func _on_value_updated(new_v: float) -> void:
 		tw.tween_property(sprite, "scale", Vector2.ONE, 0.15).set_ease(Tween.EASE_IN_OUT)
 		stw.tween_property(sprite_shadow, "scale", Vector2.ONE, 0.23).set_ease(Tween.EASE_IN_OUT)
 		tw.tween_property(sprite, "position", Vector2.ZERO, 0.23).set_ease(Tween.EASE_IN_OUT)
-		var p: GPUParticles2D = particles.get(sprite.frame)
+		var p: GPUParticles2D = particles.get(sprite.frame) #todo: spawn particles outside of an object
 		if p:
 			p.restart()
 			p.emitting = true
@@ -103,7 +95,3 @@ func spawn_juice() -> void:
 		p.direction = global_position.direction_to(get_global_mouse_position())
 		p.global_position = global_position
 		group.add_child(p)
-
-#func _draw() -> void:
-	#if parent:
-		#draw_circle(Vector2.ZERO, parent.radius, Color.BLACK, false)

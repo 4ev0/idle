@@ -10,6 +10,9 @@ var collision_shape: CollisionShape2D:
 			collision_shape = get_node("CollisionShape2D")
 		return collision_shape
 
+@export var disabled: bool = false
+
+
 signal sliced
 
 func _ready() -> void:
@@ -21,6 +24,14 @@ func set_collision_radius(r: float) -> void:
 		collision_shape.shape.radius = r
 	
 func _on_mouse_exited(area: Area2D) -> void:
+	if disabled:
+		return
+		
+	var t: Transition = G.get_n("transition")
+	if t:
+		if t.playing:
+			return
+			
 	if !working_states.has(G.game_state):
 		return
 		

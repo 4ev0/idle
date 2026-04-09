@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CircleTextures" format=3 uid="uid://d32wwffqfu8ui"]
+
+[ext_resource type="Script" uid="uid://cjls4beapmh3y" path="res://Resources/circle_textures.gd" id="1_qojxh"]
+[ext_resource type="Texture2D" uid="uid://dtsg4nm15dhei" path="res://Assets/tomato.png" id="2_wscsn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdfh8"]
+atlas = ExtResource("2_wscsn")
+region = Rect2(0, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_qojxh")
+textures = Dictionary[int, AtlasTexture]({
+1: SubResource("AtlasTexture_qdfh8")
+})
+metadata/_custom_type_script = "uid://cjls4beapmh3y"
