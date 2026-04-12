@@ -50,7 +50,7 @@ func _on_sliced(mouse_pos: Vector2) -> void:
 		
 	spawn_juice()
 	var hc: HitCircle = HitCircle.new()
-	hc.global_position += global_position.direction_to(mouse_pos) * parent.radius
+	hc.global_position = global_position.direction_to(mouse_pos) * parent.radius
 	add_child(hc)
 
 func _on_spawned() -> void:

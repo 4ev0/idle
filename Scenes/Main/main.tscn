@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://bw0iw5udc3pgu" path="res://Scripts/circle_manager.gd" id="5_hfg1r"]
 [ext_resource type="Resource" uid="uid://q2qh1h13hc5u" path="res://Resources/data_circle_tomato.tres" id="6_4e4y2"]
 [ext_resource type="PackedScene" uid="uid://daoj4og62n0jv" path="res://Scenes/Cursor/cursor.tscn" id="7_xlvfx"]
-[ext_resource type="PackedScene" uid="uid://lujfgni33qin" path="res://Scenes/ProgressBarLevelUp/progress_bar_level_up.tscn" id="13_6t3k2"]
+[ext_resource type="Script" uid="uid://cpks4253uw683" path="res://Scripts/camera.gd" id="8_4e4y2"]
 [ext_resource type="PackedScene" uid="uid://dy4b4brh7j6p1" path="res://Scenes/LayerChestScreen/layer_chest_screen.tscn" id="13_vk4q2"]
 [ext_resource type="PackedScene" uid="uid://b7hf188tlruw" path="res://Scenes/Transition/transition.tscn" id="18_es6iu"]
 
@@ -48,10 +48,11 @@ metadata/_custom_type_script = "uid://bw0iw5udc3pgu"
 
 [node name="Game" parent="." unique_id=435544845 instance=ExtResource("5_4e4y2")]
 
-[node name="LayerUI" type="CanvasLayer" parent="." unique_id=1799045463 groups=["g"]]
+[node name="Camera" type="Camera2D" parent="." unique_id=2110349832 groups=["g"]]
+position = Vector2(160, 90)
+script = ExtResource("8_4e4y2")
 
-[node name="ProgressBarLevelUp" parent="LayerUI" unique_id=157443035 instance=ExtResource("13_6t3k2")]
-offset_top = -5.0
+[node name="LayerUI" type="CanvasLayer" parent="." unique_id=1799045463 groups=["g"]]
 
 [node name="LabelCash" type="RichTextLabel" parent="LayerUI" unique_id=1621480141]
 clip_contents = false
@@ -74,9 +75,6 @@ scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 script = ExtResource("4_5yls4")
-
-[node name="CashMarker" type="Marker2D" parent="LayerUI" unique_id=376996472 groups=["g"]]
-position = Vector2(320, 180)
 
 [node name="LayerCursor" parent="." unique_id=791419552 instance=ExtResource("7_xlvfx")]
 layer = 2

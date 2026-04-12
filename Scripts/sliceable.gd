@@ -3,7 +3,7 @@ class_name Sliceable
 
 @export var min_velocity: float = 4
 @onready var cursor: Cursor = G.get_n("cursor")
-@export var working_states: Array[G.GameStates] = [G.GameStates.GAME, G.GameStates.CHEST]
+@export var working_states: Array[G.GameStates] = [G.GameStates.GAME]
 var collision_shape: CollisionShape2D:
 	get:
 		if !collision_shape:
@@ -11,7 +11,6 @@ var collision_shape: CollisionShape2D:
 		return collision_shape
 
 @export var disabled: bool = false
-
 
 signal sliced
 
@@ -36,9 +35,13 @@ func _on_mouse_exited(area: Area2D) -> void:
 		return
 		
 	if cursor.velocity.length() >= min_velocity:
-		sliced.emit()
+		if slice_condition():
+			sliced.emit()
 	else:
 		print(cursor.velocity.length())
+
+func slice_condition() -> bool:
+	return true
 
 func get_dir_to_cursor() -> Vector2:
 	return global_position.direction_to(cursor.global_position)

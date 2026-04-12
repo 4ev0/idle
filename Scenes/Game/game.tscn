@@ -7,7 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://c1dljlx3v7kph" path="res://Scenes/CircleContainer/circle_container.tscn" id="4_huoen"]
 [ext_resource type="Script" uid="uid://bs1xjohivlj6e" path="res://Scenes/Game/button_open_shop.gd" id="5_ciybh"]
 [ext_resource type="PackedScene" uid="uid://dgttkbwbtrllk" path="res://Scenes/Crate/crate.tscn" id="6_vifcx"]
+[ext_resource type="PackedScene" uid="uid://dl54qocimd4t0" path="res://Scenes/Telephone/telephone.tscn" id="7_7jvlm"]
+[ext_resource type="PackedScene" uid="uid://c3afs2wrpfstv" path="res://Scenes/ShopTool/shop_tool.tscn" id="8_huoen"]
+[ext_resource type="PackedScene" uid="uid://856dktccf7g8" path="res://Scenes/Pipe/pipe.tscn" id="8_oejk7"]
 [ext_resource type="PackedScene" uid="uid://cf3jf85vdgnmb" path="res://Scenes/ButtonShop/CircleBuy/button_shop_circle_buy.tscn" id="8_xfil1"]
+[ext_resource type="Script" uid="uid://dm8ss63fr1bcb" path="res://Scenes/Game/telephone_upgrade.gd" id="11_ypmwd"]
+[ext_resource type="PackedScene" uid="uid://q5a621f3j2mg" path="res://Scenes/TelephoneDial/telephone_dial.tscn" id="12_ypmwd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ypmwd"]
 shader = ExtResource("1_flgk0")
@@ -41,7 +46,6 @@ color_ramp = SubResource("Gradient_c4b4r")
 
 [node name="Factory" type="Node2D" parent="." unique_id=759195891]
 unique_name_in_owner = true
-visible = false
 script = ExtResource("1_vifcx")
 
 [node name="ColorRect" type="ColorRect" parent="Factory" unique_id=600841154]
@@ -75,8 +79,15 @@ position = Vector2(96, 88)
 [node name="Crate" parent="Factory" unique_id=1149799375 instance=ExtResource("6_vifcx")]
 position = Vector2(266, 157)
 
+[node name="Telephone" parent="Factory" unique_id=409880358 instance=ExtResource("7_7jvlm")]
+position = Vector2(255, 73)
+
+[node name="Pipe" parent="Factory" unique_id=1461174019 instance=ExtResource("8_oejk7")]
+position = Vector2(202, 90)
+
 [node name="Shop" type="Node2D" parent="." unique_id=893517563]
 unique_name_in_owner = true
+visible = false
 script = ExtResource("1_vifcx")
 target_state = 3
 
@@ -112,6 +123,12 @@ circle_amount = 10
 [node name="Purchase" parent="Shop/ButtonShopCircleBuy2" index="2" unique_id=870633994]
 price = 80.0
 
+[node name="ShopTool" parent="Shop" unique_id=553715286 instance=ExtResource("8_huoen")]
+offset_left = 153.0
+offset_top = 158.0
+offset_right = 153.0
+offset_bottom = 158.0
+
 [node name="ButtonOpenShop" type="Button" parent="." unique_id=1278702201]
 offset_left = 240.0
 offset_top = 96.0
@@ -119,6 +136,22 @@ offset_right = 264.0
 offset_bottom = 112.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_i1e5p")
 script = ExtResource("5_ciybh")
+
+[node name="TelephoneUpgrade" type="Node2D" parent="." unique_id=572736264]
+unique_name_in_owner = true
+visible = false
+script = ExtResource("11_ypmwd")
+target_state = 2
+
+[node name="ColorRect" type="ColorRect" parent="TelephoneUpgrade" unique_id=1234066815]
+offset_left = -33.0
+offset_top = -28.0
+offset_right = 353.0
+offset_bottom = 209.0
+color = Color(0.10747976, 0.10747973, 0.10747973, 1)
+
+[node name="TelephoneDial" parent="TelephoneUpgrade" unique_id=239160478 instance=ExtResource("12_ypmwd")]
+position = Vector2(270, 92)
 
 [editable path="Shop/ButtonShopCircleBuy"]
 [editable path="Shop/ButtonShopCircleBuy2"]

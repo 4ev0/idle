@@ -10,10 +10,14 @@ enum Currencies {
 enum GameStates {
 	GAME,
 	MENU,
-	CHEST,
+	TELEPHONE_UPGRADE,
 	SHOP,
 }
-
+enum CollisionLayers {
+	NULL,
+	CURSOR,
+	DIAL_SUBMISSION
+}
 var nodes: Dictionary = {}
 #var xp: int = 0:
 	#set(v):
@@ -45,6 +49,7 @@ var game_state: GameStates = GameStates.GAME:
 	set(v):
 		game_state = v
 		state_changed.emit(game_state)
+		print(GameStates.keys()[game_state])
 
 signal cash_updated(v: int)
 signal main_ready

@@ -12,5 +12,4 @@ func _on_visibility_changed() -> void:
 	change_game_state()
 
 func change_game_state() -> void:
-	G.game_state = G.GameStates.CHEST if visible else G.GameStates.GAME
 	button_chest_skip.set_hitted(0)

@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://dl54qocimd4t0"]
+
+[ext_resource type="Texture2D" uid="uid://o4s47supx88d" path="res://Assets/telephone_base.png" id="1_anube"]
+[ext_resource type="Script" uid="uid://bgpfh7lo6ul2k" path="res://Scenes/Telephone/telephone.gd" id="1_vptc0"]
+[ext_resource type="Texture2D" uid="uid://byjeee0rcexsy" path="res://Assets/telephone_handset.png" id="2_6f70i"]
+[ext_resource type="Script" uid="uid://7s2f3pc2irlx" path="res://Scenes/Telephone/graphics.gd" id="2_b2uys"]
+[ext_resource type="Texture2D" uid="uid://b6r0ijweopi8k" path="res://Assets/telephone_wire.png" id="3_eoffh"]
+[ext_resource type="Script" uid="uid://bdfxxarh3ap7g" path="res://Scripts/component_writer.gd" id="3_jtt0c"]
+[ext_resource type="Script" uid="uid://cxllrkp7skdvq" path="res://Scripts/pickup_component.gd" id="4_6f70i"]
+[ext_resource type="Script" uid="uid://2mfn4l6dpwwn" path="res://Scenes/Telephone/controller.gd" id="7_jk851"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eoffh"]
+size = Vector2(34, 5)
+
+[node name="Telephone" type="Node2D" unique_id=409880358 groups=["g"]]
+script = ExtResource("1_vptc0")
+
+[node name="Graphics" type="Node2D" parent="." unique_id=600866036]
+script = ExtResource("2_b2uys")
+
+[node name="ComponentWriter" type="Node" parent="Graphics" unique_id=854565459]
+script = ExtResource("3_jtt0c")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
+
+[node name="TelephoneBase" type="Sprite2D" parent="Graphics" unique_id=1106750358]
+unique_name_in_owner = true
+position = Vector2(0, -7)
+texture = ExtResource("1_anube")
+
+[node name="TelephoneHandset" type="Sprite2D" parent="Graphics" unique_id=813143711]
+unique_name_in_owner = true
+position = Vector2(-22, -15)
+texture = ExtResource("2_6f70i")
+offset = Vector2(22, 0)
+
+[node name="TelephoneWire" type="Sprite2D" parent="Graphics" unique_id=2009584089]
+unique_name_in_owner = true
+position = Vector2(0, -7)
+texture = ExtResource("3_eoffh")
+
+[node name="Controller" type="Node2D" parent="." unique_id=1119284117]
+script = ExtResource("7_jk851")
+
+[node name="ComponentWriter" type="Node" parent="Controller" unique_id=891833765]
+script = ExtResource("3_jtt0c")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
+
+[node name="Pickup" type="Area2D" parent="Controller" unique_id=1659612084]
+position = Vector2(0, -14)
+monitorable = false
+script = ExtResource("4_6f70i")
+min_velocity = 0.7
+metadata/_custom_type_script = "uid://cxllrkp7skdvq"
+
+[node name="ComponentWriter" type="Node" parent="Controller/Pickup" unique_id=248175511]
+script = ExtResource("3_jtt0c")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/Pickup" unique_id=1264465287]
+shape = SubResource("RectangleShape2D_eoffh")

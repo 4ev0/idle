@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://c3afs2wrpfstv"]
+
+[ext_resource type="Texture2D" uid="uid://d253rqpvuwc8e" path="res://Assets/magnifying_glass.png" id="1_36wxs"]
+[ext_resource type="Script" uid="uid://cupiouvy5ftm3" path="res://Scenes/ShopTool/shop_tool.gd" id="1_nkkla"]
+[ext_resource type="Script" uid="uid://b5qa24ymdg0x3" path="res://Scenes/ShopTool/graphics.gd" id="2_46qkb"]
+[ext_resource type="Script" uid="uid://be7vel57klj01" path="res://Scenes/ShopTool/controller.gd" id="2_cr0sj"]
+[ext_resource type="Script" uid="uid://bdfxxarh3ap7g" path="res://Scripts/component_writer.gd" id="3_pl113"]
+[ext_resource type="Texture2D" uid="uid://dk4v1c5gnrgnd" path="res://Assets/shop_tool_palm.png" id="4_mdded"]
+[ext_resource type="Script" uid="uid://cxllrkp7skdvq" path="res://Scripts/pickup_component.gd" id="7_mdded"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cr0sj"]
+size = Vector2(17, 9)
+
+[node name="ShopTool" type="Control" unique_id=553715286]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_nkkla")
+
+[node name="Graphics" type="Node2D" parent="." unique_id=296947888]
+script = ExtResource("2_46qkb")
+
+[node name="ComponentWriter" type="Node" parent="Graphics" unique_id=1493731507]
+script = ExtResource("3_pl113")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
+
+[node name="PalmContainer" type="Node2D" parent="Graphics" unique_id=2023220374]
+position = Vector2(1, 21)
+
+[node name="ShopToolPalm" type="Sprite2D" parent="Graphics/PalmContainer" unique_id=1569876334]
+unique_name_in_owner = true
+position = Vector2(0, -12)
+texture = ExtResource("4_mdded")
+hframes = 2
+
+[node name="ToolSprite" type="Sprite2D" parent="Graphics" unique_id=1838587154]
+unique_name_in_owner = true
+texture = ExtResource("1_36wxs")
+
+[node name="Controller" type="Node2D" parent="." unique_id=365788887]
+script = ExtResource("2_cr0sj")
+
+[node name="ComponentWriter" type="Node" parent="Controller" unique_id=900454287]
+script = ExtResource("3_pl113")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
+
+[node name="Pickup" type="Area2D" parent="Controller" unique_id=791446028]
+monitorable = false
+script = ExtResource("7_mdded")
+min_velocity = 1.0
+working_states = Array[int]([3])
+metadata/_custom_type_script = "uid://cxllrkp7skdvq"
+
+[node name="ComponentWriter" type="Node" parent="Controller/Pickup" unique_id=361931097]
+script = ExtResource("3_pl113")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/Pickup" unique_id=497868876]
+position = Vector2(0.5, 4.5)
+shape = SubResource("RectangleShape2D_cr0sj")

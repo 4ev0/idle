@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://chnmavrn1xaor" path="res://Scenes/Circle/graphics.gd" id="2_62jh2"]
 [ext_resource type="Script" uid="uid://bnmtrfp3jctx7" path="res://Scenes/Circle/controller.gd" id="3_dxrai"]
 [ext_resource type="Texture2D" uid="uid://dtsg4nm15dhei" path="res://Assets/tomato.png" id="5_08f7a"]
-[ext_resource type="Script" uid="uid://c3febher86nyd" path="res://Scenes/Circle/sliceable.gd" id="5_n42ld"]
+[ext_resource type="Script" uid="uid://c3febher86nyd" path="res://Scripts/sliceable.gd" id="5_n42ld"]
 [ext_resource type="Script" uid="uid://bdfxxarh3ap7g" path="res://Scripts/component_writer.gd" id="5_oieyk"]
 [ext_resource type="Texture2D" uid="uid://doqsabc4sld2g" path="res://Assets/tomato_cut_particle.png" id="6_jxhk6"]
 

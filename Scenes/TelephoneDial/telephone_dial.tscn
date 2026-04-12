@@ -1,0 +1,177 @@
+[gd_scene format=3 uid="uid://q5a621f3j2mg"]
+
+[ext_resource type="Texture2D" uid="uid://bye66xfd0u64w" path="res://Assets/telephone_dial.png" id="1_lbup5"]
+[ext_resource type="Script" uid="uid://dybuttbume4an" path="res://Scenes/TelephoneDial/graphics.gd" id="1_umw64"]
+[ext_resource type="Script" uid="uid://buywooys36hda" path="res://Scenes/TelephoneDial/telephone_dial.gd" id="1_ydv4j"]
+[ext_resource type="Texture2D" uid="uid://8gn1nvlwx680" path="res://Assets/telephone_pointer.png" id="2_umw64"]
+[ext_resource type="Script" uid="uid://bdfxxarh3ap7g" path="res://Scripts/component_writer.gd" id="3_ariys"]
+[ext_resource type="Script" uid="uid://da2kl0bocm38n" path="res://Scenes/TelephoneDial/controller.gd" id="4_ifa0e"]
+[ext_resource type="Texture2D" uid="uid://bpha2f4g0hba" path="res://Assets/telephone_dial_bg.png" id="4_mmbgd"]
+[ext_resource type="Script" uid="uid://dbk7ibkohpwtl" path="res://Scenes/TelephoneDial/dial_button_area.gd" id="8_pw230"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_umw64"]
+radius = 37.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ydv4j"]
+radius = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmbgd"]
+size = Vector2(5, 5)
+
+[node name="TelephoneDial" type="Node2D" unique_id=239160478]
+script = ExtResource("1_ydv4j")
+
+[node name="Graphics" type="Node2D" parent="." unique_id=520874310]
+script = ExtResource("1_umw64")
+
+[node name="ComponentWriter" type="Node" parent="Graphics" unique_id=1011385544]
+script = ExtResource("3_ariys")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
+
+[node name="TelephoneDialBg" type="Sprite2D" parent="Graphics" unique_id=2142892487]
+show_behind_parent = true
+texture = ExtResource("4_mmbgd")
+
+[node name="TelephoneDial" type="Sprite2D" parent="Graphics" unique_id=892916544]
+show_behind_parent = true
+texture = ExtResource("1_lbup5")
+
+[node name="TelephonePointer" type="Sprite2D" parent="Graphics" unique_id=2047379249]
+show_behind_parent = true
+position = Vector2(17, 32)
+texture = ExtResource("2_umw64")
+offset = Vector2(-2, -5)
+
+[node name="Controller" type="Node2D" parent="." unique_id=649855485]
+script = ExtResource("4_ifa0e")
+
+[node name="ComponentWriter" type="Node" parent="Controller" unique_id=226575201]
+script = ExtResource("3_ariys")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
+
+[node name="DialArea" type="Area2D" parent="Controller" unique_id=1240740898]
+position = Vector2(1, 1)
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/DialArea" unique_id=1701258857]
+shape = SubResource("CircleShape2D_umw64")
+
+[node name="ButtonContainer" type="Node2D" parent="Controller" unique_id=1839375540]
+unique_name_in_owner = true
+
+[node name="1" type="Area2D" parent="Controller/ButtonContainer" unique_id=371360885]
+position = Vector2(26, -9)
+collision_layer = 4
+collision_mask = 3
+monitorable = false
+script = ExtResource("8_pw230")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/ButtonContainer/1" unique_id=2005353740]
+shape = SubResource("CircleShape2D_ydv4j")
+
+[node name="2" type="Area2D" parent="Controller/ButtonContainer" unique_id=437614196]
+position = Vector2(17, -21)
+collision_layer = 2
+collision_mask = 3
+monitorable = false
+script = ExtResource("8_pw230")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/ButtonContainer/2" unique_id=1045234936]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_ydv4j")
+
+[node name="3" type="Area2D" parent="Controller/ButtonContainer" unique_id=548880791]
+position = Vector2(5, -28)
+collision_layer = 2
+collision_mask = 3
+monitorable = false
+script = ExtResource("8_pw230")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/ButtonContainer/3" unique_id=1067652058]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_ydv4j")
+
+[node name="4" type="Area2D" parent="Controller/ButtonContainer" unique_id=721127272]
+position = Vector2(-8, -28)
+collision_layer = 2
+collision_mask = 3
+monitorable = false
+script = ExtResource("8_pw230")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/ButtonContainer/4" unique_id=978602426]
+shape = SubResource("CircleShape2D_ydv4j")
+
+[node name="5" type="Area2D" parent="Controller/ButtonContainer" unique_id=1249247922]
+position = Vector2(-21, -21)
+collision_layer = 2
+collision_mask = 3
+monitorable = false
+script = ExtResource("8_pw230")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/ButtonContainer/5" unique_id=1558938247]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_ydv4j")
+
+[node name="6" type="Area2D" parent="Controller/ButtonContainer" unique_id=593775212]
+position = Vector2(-28, -10)
+collision_layer = 2
+collision_mask = 3
+monitorable = false
+script = ExtResource("8_pw230")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/ButtonContainer/6" unique_id=1567043048]
+shape = SubResource("CircleShape2D_ydv4j")
+
+[node name="7" type="Area2D" parent="Controller/ButtonContainer" unique_id=1302076123]
+position = Vector2(-29, 2)
+collision_layer = 2
+collision_mask = 3
+monitorable = false
+script = ExtResource("8_pw230")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/ButtonContainer/7" unique_id=433437555]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_ydv4j")
+
+[node name="8" type="Area2D" parent="Controller/ButtonContainer" unique_id=2726515]
+position = Vector2(-25, 15)
+collision_layer = 2
+collision_mask = 3
+monitorable = false
+script = ExtResource("8_pw230")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/ButtonContainer/8" unique_id=415203321]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_ydv4j")
+
+[node name="9" type="Area2D" parent="Controller/ButtonContainer" unique_id=556789750]
+position = Vector2(-15, 24)
+collision_layer = 2
+collision_mask = 3
+monitorable = false
+script = ExtResource("8_pw230")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/ButtonContainer/9" unique_id=64244675]
+position = Vector2(1, 1)
+shape = SubResource("CircleShape2D_ydv4j")
+
+[node name="0" type="Area2D" parent="Controller/ButtonContainer" unique_id=410171830]
+position = Vector2(-2, 27)
+collision_layer = 2
+collision_mask = 3
+monitorable = false
+script = ExtResource("8_pw230")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/ButtonContainer/0" unique_id=1812620093]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_ydv4j")
+
+[node name="SubmissionArea" type="Area2D" parent="Controller" unique_id=475947373]
+position = Vector2(13, 25)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/SubmissionArea" unique_id=248347873]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_mmbgd")

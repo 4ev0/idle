@@ -5,6 +5,9 @@
 [ext_resource type="Script" uid="uid://brk3xjirswnqy" path="res://Scenes/ButtonShop/CircleBuy/button_shop_circle_buy.gd" id="2_vvh58"]
 [ext_resource type="Script" uid="uid://cji4jgdq5g0sq" path="res://Scenes/ButtonShop/CircleBuy/graphics.gd" id="3_6nthu"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nthu"]
+size = Vector2(14, 14)
+
 [node name="ButtonShopCircleBuy" unique_id=1556365795 instance=ExtResource("1_kwkdh")]
 script = ExtResource("2_vvh58")
 circle_type = 0
@@ -36,3 +39,6 @@ script = ExtResource("2_skm1r")
 
 [node name="Sliceable" parent="Controller" index="1" unique_id=632753328]
 working_states = Array[int]([3])
+
+[node name="CollisionShape2D" parent="Controller/Sliceable" index="1" unique_id=1125003320]
+shape = SubResource("RectangleShape2D_6nthu")
