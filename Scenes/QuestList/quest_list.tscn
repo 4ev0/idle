@@ -1,0 +1,424 @@
+[gd_scene format=3 uid="uid://nh6exgy0yw48"]
+
+[ext_resource type="Script" uid="uid://dpye8ll5f0k8d" path="res://Scenes/QuestList/progress_bar_quest.gd" id="1_3eccs"]
+[ext_resource type="Script" uid="uid://cm3i7rg4o0ii8" path="res://Scenes/QuestList/quest_list.gd" id="1_myeie"]
+[ext_resource type="Script" uid="uid://c0bwxlq3gjcg1" path="res://Scenes/QuestList/shrinking_container.gd" id="2_sml8p"]
+
+[node name="QuestList" type="Control" unique_id=1984024753 groups=["g"]]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 16.0
+offset_right = -192.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_myeie")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=379659878]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -2.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.5931336, 0.59313357, 0.59313357, 1)
+
+[node name="Button" type="Button" parent="." unique_id=263216856]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 24.0
+offset_right = 168.0
+offset_bottom = 40.0
+
+[node name="ShrinkingContainer" type="Control" parent="." unique_id=922819092]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 0.31100002
+offset_bottom = 33.727997
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_sml8p")
+
+[node name="Label2" type="Label" parent="ShrinkingContainer" unique_id=1472969659]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Control" type="Control" parent="ShrinkingContainer" unique_id=1363563737]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="ShrinkingContainer/Control" unique_id=1231212992]
+layout_mode = 0
+offset_right = 122.0
+offset_bottom = 12.0
+theme_override_colors/font_color = Color(0.12479354, 0.1337699, 0.14672744, 0.80784315)
+theme_override_font_sizes/font_size = 8
+text = "123"
+
+[node name="ProgressBarQuest" type="ProgressBar" parent="ShrinkingContainer/Control" unique_id=943168184]
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 0
+offset_top = 13.0
+offset_right = 122.0
+offset_bottom = 20.0
+show_percentage = false
+script = ExtResource("1_3eccs")
+
+[node name="Label" type="Label" parent="ShrinkingContainer/Control/ProgressBarQuest" unique_id=1250948906]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -7.0
+offset_right = 6.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "0%"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ShrinkingContainer/Control" unique_id=1381704597]
+layout_mode = 0
+offset_right = 122.0
+offset_bottom = 12.0
+theme_override_colors/font_color = Color(0.12479354, 0.1337699, 0.14672744, 0.80784315)
+theme_override_font_sizes/font_size = 8
+text = "123981203981029830912903810923891820398109238123"
+autowrap_mode = 3
+
+[node name="ProgressBarQuest2" type="ProgressBar" parent="ShrinkingContainer/Control" unique_id=1391887744]
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 0
+offset_top = 13.0
+offset_right = 122.0
+offset_bottom = 20.0
+show_percentage = false
+script = ExtResource("1_3eccs")
+
+[node name="Label" type="Label" parent="ShrinkingContainer/Control/ProgressBarQuest2" unique_id=569880894]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -7.0
+offset_right = 6.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "0%"
+horizontal_alignment = 1
+
+[node name="ReferenceRect" type="ReferenceRect" parent="ShrinkingContainer" unique_id=970641546]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+editor_only = false
+
+[node name="Node" type="Node" parent="." unique_id=724989289]
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Node" unique_id=762510836]
+offset_left = -500.0
+offset_top = 36.0
+offset_right = -378.0
+offset_bottom = 56.0
+theme_override_constants/separation = 1
+
+[node name="Label2" type="Label" parent="Node/VBoxContainer2" unique_id=821807124]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12479354, 0.1337699, 0.14672744, 0.80784315)
+theme_override_font_sizes/font_size = 8
+text = "123"
+
+[node name="ProgressBarQuest2" type="ProgressBar" parent="Node/VBoxContainer2" unique_id=1554521742]
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+show_percentage = false
+script = ExtResource("1_3eccs")
+
+[node name="Label" type="Label" parent="Node/VBoxContainer2/ProgressBarQuest2" unique_id=827185521]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -7.0
+offset_right = 6.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "0%"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Node" unique_id=1723185928]
+offset_left = -500.0
+offset_top = 16.0
+offset_right = -378.0
+offset_bottom = 36.0
+theme_override_constants/separation = 1
+
+[node name="Label3" type="Label" parent="Node/VBoxContainer3" unique_id=721780839]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12479354, 0.1337699, 0.14672744, 0.80784315)
+theme_override_font_sizes/font_size = 8
+text = "123"
+
+[node name="ProgressBarQuest3" type="ProgressBar" parent="Node/VBoxContainer3" unique_id=1899070334]
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+show_percentage = false
+script = ExtResource("1_3eccs")
+
+[node name="Label" type="Label" parent="Node/VBoxContainer3/ProgressBarQuest3" unique_id=129703974]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -7.0
+offset_right = 6.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "0%"
+horizontal_alignment = 1
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="Node" unique_id=772739576]
+offset_left = -500.0
+offset_top = 16.0
+offset_right = -378.0
+offset_bottom = 36.0
+theme_override_constants/separation = 1
+
+[node name="Label3" type="Label" parent="Node/VBoxContainer4" unique_id=1346141496]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12479354, 0.1337699, 0.14672744, 0.80784315)
+theme_override_font_sizes/font_size = 8
+text = "123"
+
+[node name="ProgressBarQuest3" type="ProgressBar" parent="Node/VBoxContainer4" unique_id=1798226045]
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+show_percentage = false
+script = ExtResource("1_3eccs")
+
+[node name="Label" type="Label" parent="Node/VBoxContainer4/ProgressBarQuest3" unique_id=702051147]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -7.0
+offset_right = 6.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "0%"
+horizontal_alignment = 1
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="Node" unique_id=1826296435]
+offset_left = -500.0
+offset_top = 16.0
+offset_right = -378.0
+offset_bottom = 36.0
+theme_override_constants/separation = 1
+
+[node name="Label3" type="Label" parent="Node/VBoxContainer5" unique_id=1209794544]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12479354, 0.1337699, 0.14672744, 0.80784315)
+theme_override_font_sizes/font_size = 8
+text = "123"
+
+[node name="ProgressBarQuest3" type="ProgressBar" parent="Node/VBoxContainer5" unique_id=1833934559]
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+show_percentage = false
+script = ExtResource("1_3eccs")
+
+[node name="Label" type="Label" parent="Node/VBoxContainer5/ProgressBarQuest3" unique_id=1353958621]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -7.0
+offset_right = 6.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "0%"
+horizontal_alignment = 1
+
+[node name="VBoxContainer6" type="VBoxContainer" parent="Node" unique_id=1151065896]
+offset_left = -500.0
+offset_top = 16.0
+offset_right = -378.0
+offset_bottom = 36.0
+theme_override_constants/separation = 1
+
+[node name="Label3" type="Label" parent="Node/VBoxContainer6" unique_id=333809889]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12479354, 0.1337699, 0.14672744, 0.80784315)
+theme_override_font_sizes/font_size = 8
+text = "123"
+
+[node name="ProgressBarQuest3" type="ProgressBar" parent="Node/VBoxContainer6" unique_id=82618951]
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+show_percentage = false
+script = ExtResource("1_3eccs")
+
+[node name="Label" type="Label" parent="Node/VBoxContainer6/ProgressBarQuest3" unique_id=1035033894]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -7.0
+offset_right = 6.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "0%"
+horizontal_alignment = 1
+
+[node name="VBoxContainer7" type="VBoxContainer" parent="Node" unique_id=1118881961]
+offset_left = -500.0
+offset_top = 16.0
+offset_right = -378.0
+offset_bottom = 36.0
+theme_override_constants/separation = 1
+
+[node name="Label3" type="Label" parent="Node/VBoxContainer7" unique_id=561598694]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12479354, 0.1337699, 0.14672744, 0.80784315)
+theme_override_font_sizes/font_size = 8
+text = "123"
+
+[node name="ProgressBarQuest3" type="ProgressBar" parent="Node/VBoxContainer7" unique_id=1167025837]
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+show_percentage = false
+script = ExtResource("1_3eccs")
+
+[node name="Label" type="Label" parent="Node/VBoxContainer7/ProgressBarQuest3" unique_id=708426162]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -7.0
+offset_right = 6.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "0%"
+horizontal_alignment = 1
+
+[node name="VBoxContainer8" type="VBoxContainer" parent="Node" unique_id=661076600]
+offset_left = -500.0
+offset_top = 16.0
+offset_right = -378.0
+offset_bottom = 36.0
+theme_override_constants/separation = 1
+
+[node name="Label3" type="Label" parent="Node/VBoxContainer8" unique_id=1775654602]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12479354, 0.1337699, 0.14672744, 0.80784315)
+theme_override_font_sizes/font_size = 8
+text = "123"
+
+[node name="ProgressBarQuest3" type="ProgressBar" parent="Node/VBoxContainer8" unique_id=589110558]
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+show_percentage = false
+script = ExtResource("1_3eccs")
+
+[node name="Label" type="Label" parent="Node/VBoxContainer8/ProgressBarQuest3" unique_id=956153905]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -7.0
+offset_right = 6.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "0%"
+horizontal_alignment = 1
+
+[node name="VBoxContainer9" type="VBoxContainer" parent="Node" unique_id=1828457474]
+offset_left = -500.0
+offset_top = 16.0
+offset_right = -378.0
+offset_bottom = 36.0
+theme_override_constants/separation = 1
+
+[node name="Label3" type="Label" parent="Node/VBoxContainer9" unique_id=2052520119]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12479354, 0.1337699, 0.14672744, 0.80784315)
+theme_override_font_sizes/font_size = 8
+text = "123"
+
+[node name="ProgressBarQuest3" type="ProgressBar" parent="Node/VBoxContainer9" unique_id=785898379]
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+show_percentage = false
+script = ExtResource("1_3eccs")
+
+[node name="Label" type="Label" parent="Node/VBoxContainer9/ProgressBarQuest3" unique_id=134312564]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -7.0
+offset_right = 6.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "0%"
+horizontal_alignment = 1

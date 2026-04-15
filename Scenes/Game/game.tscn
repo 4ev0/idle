@@ -11,8 +11,14 @@
 [ext_resource type="PackedScene" uid="uid://c3afs2wrpfstv" path="res://Scenes/ShopTool/shop_tool.tscn" id="8_huoen"]
 [ext_resource type="PackedScene" uid="uid://856dktccf7g8" path="res://Scenes/Pipe/pipe.tscn" id="8_oejk7"]
 [ext_resource type="PackedScene" uid="uid://cf3jf85vdgnmb" path="res://Scenes/ButtonShop/CircleBuy/button_shop_circle_buy.tscn" id="8_xfil1"]
+[ext_resource type="Script" uid="uid://cs21nfd1heaxo" path="res://Scenes/Game/shop_product_manager.gd" id="10_lemb1"]
 [ext_resource type="Script" uid="uid://dm8ss63fr1bcb" path="res://Scenes/Game/telephone_upgrade.gd" id="11_ypmwd"]
 [ext_resource type="PackedScene" uid="uid://q5a621f3j2mg" path="res://Scenes/TelephoneDial/telephone_dial.tscn" id="12_ypmwd"]
+[ext_resource type="Script" uid="uid://bvykrgvjvjva" path="res://Scenes/Game/quest_manager.gd" id="14_2vowc"]
+[ext_resource type="Script" uid="uid://bw0iw5udc3pgu" path="res://Scripts/circle_manager.gd" id="14_8e3kh"]
+[ext_resource type="Resource" uid="uid://q2qh1h13hc5u" path="res://Resources/data_circle_tomato.tres" id="15_56qi8"]
+[ext_resource type="Script" uid="uid://dx8y26yhyg3o7" path="res://Scenes/Main/label_cash.gd" id="16_56qi8"]
+[ext_resource type="PackedScene" uid="uid://nh6exgy0yw48" path="res://Scenes/QuestList/quest_list.tscn" id="18_yox4t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ypmwd"]
 shader = ExtResource("1_flgk0")
@@ -85,9 +91,15 @@ position = Vector2(255, 73)
 [node name="Pipe" parent="Factory" unique_id=1461174019 instance=ExtResource("8_oejk7")]
 position = Vector2(202, 90)
 
+[node name="QuestList" parent="Factory" unique_id=1984024753 instance=ExtResource("18_yox4t")]
+visible = false
+offset_left = 26.0
+offset_top = 23.0
+offset_right = 154.0
+offset_bottom = 156.0
+
 [node name="Shop" type="Node2D" parent="." unique_id=893517563]
 unique_name_in_owner = true
-visible = false
 script = ExtResource("1_vifcx")
 target_state = 3
 
@@ -101,26 +113,62 @@ offset_right = 144.0
 offset_bottom = 183.0
 color = Color(0.033853278, 0.033853278, 0.033853274, 1)
 
-[node name="ButtonShopCircleBuy" parent="Shop" unique_id=1556365795 instance=ExtResource("8_xfil1")]
+[node name="ShopProductManager" type="GridContainer" parent="Shop" unique_id=1197348893 groups=["g"]]
 offset_left = 15.0
 offset_top = 13.0
-offset_right = 15.0
+offset_right = 19.0
 offset_bottom = 13.0
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 32
+columns = 4
+script = ExtResource("10_lemb1")
+
+[node name="ButtonShopTomatoBuy" parent="Shop/ShopProductManager" unique_id=1556365795 instance=ExtResource("8_xfil1")]
+layout_mode = 2
 circle_type = 1
 circle_amount = 1
 
-[node name="Purchase" parent="Shop/ButtonShopCircleBuy" index="2" unique_id=870633994]
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShopTomatoBuy" index="2" unique_id=870633994]
 price = 8.0
 
-[node name="ButtonShopCircleBuy2" parent="Shop" unique_id=1933047955 instance=ExtResource("8_xfil1")]
-offset_left = 15.0
-offset_top = 45.0
-offset_right = 15.0
-offset_bottom = 45.0
+[node name="ButtonShop10TomatoBut" parent="Shop/ShopProductManager" unique_id=1933047955 instance=ExtResource("8_xfil1")]
+layout_mode = 2
 circle_type = 1
 circle_amount = 10
 
-[node name="Purchase" parent="Shop/ButtonShopCircleBuy2" index="2" unique_id=870633994]
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut2" parent="Shop/ShopProductManager" unique_id=1049363478 instance=ExtResource("8_xfil1")]
+layout_mode = 2
+circle_type = 1
+circle_amount = 10
+
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut2" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut3" parent="Shop/ShopProductManager" unique_id=1875780738 instance=ExtResource("8_xfil1")]
+layout_mode = 2
+circle_type = 1
+circle_amount = 10
+
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut3" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut4" parent="Shop/ShopProductManager" unique_id=361559732 instance=ExtResource("8_xfil1")]
+layout_mode = 2
+circle_type = 1
+circle_amount = 10
+
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut4" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut5" parent="Shop/ShopProductManager" unique_id=1376550367 instance=ExtResource("8_xfil1")]
+layout_mode = 2
+circle_type = 1
+circle_amount = 10
+
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut5" index="2" unique_id=870633994]
 price = 80.0
 
 [node name="ShopTool" parent="Shop" unique_id=553715286 instance=ExtResource("8_huoen")]
@@ -153,5 +201,47 @@ color = Color(0.10747976, 0.10747973, 0.10747973, 1)
 [node name="TelephoneDial" parent="TelephoneUpgrade" unique_id=239160478 instance=ExtResource("12_ypmwd")]
 position = Vector2(270, 92)
 
-[editable path="Shop/ButtonShopCircleBuy"]
-[editable path="Shop/ButtonShopCircleBuy2"]
+[node name="QuestManager" type="Node" parent="." unique_id=189391783 groups=["g"]]
+script = ExtResource("14_2vowc")
+
+[node name="CircleManager" type="Node" parent="." unique_id=1498096980 groups=["g"]]
+script = ExtResource("14_8e3kh")
+circle_list = Dictionary[int, int]({
+1: 7
+})
+circle_data = Dictionary[int, Resource]({
+1: ExtResource("15_56qi8")
+})
+circles_on_table = 7
+metadata/_custom_type_script = "uid://bw0iw5udc3pgu"
+
+[node name="LayerUI" type="CanvasLayer" parent="." unique_id=1244352334 groups=["g"]]
+
+[node name="LabelCash" type="RichTextLabel" parent="LayerUI" unique_id=2117241774]
+clip_contents = false
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = 62.0
+offset_right = 1.0
+offset_bottom = 85.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(63, 22)
+bbcode_enabled = true
+text = "$1"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+script = ExtResource("16_56qi8")
+
+[editable path="Shop/ShopProductManager/ButtonShopTomatoBuy"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut2"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut3"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut4"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut5"]

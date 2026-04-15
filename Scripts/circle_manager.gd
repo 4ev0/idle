@@ -32,6 +32,8 @@ func _ready() -> void:
 	for i in circle_list:
 		if circle_list[i] > 0:
 			circles_to_add.append(i)
+	
+	spawn_circles()
 
 func pick_circle() -> CircleTypes:
 	if circles_to_add.size() < 1:

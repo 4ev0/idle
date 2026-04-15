@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://dacajs6mrar70" path="res://Scenes/CapsuleQuest/capsule_quests.gd" id="2_0cbhf"]
 [ext_resource type="Script" uid="uid://ck453pdxkpcdb" path="res://Scenes/CapsuleQuest/graphics.gd" id="2_pe7y4"]
 [ext_resource type="Script" uid="uid://oc7ooydt2ije" path="res://Scenes/CapsuleQuest/controller.gd" id="4_rrf1w"]
+[ext_resource type="Texture2D" uid="uid://dfsgnl26js58l" path="res://Assets/exclamation_mark.png" id="6_kmknd"]
+[ext_resource type="Script" uid="uid://b15qtudpk5sty" path="res://Scripts/pulse.gd" id="7_vf6k7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pe7y4"]
 size = Vector2(6, 14)
@@ -12,6 +14,7 @@ size = Vector2(6, 14)
 [node name="CapsuleQuests" unique_id=1556365795 instance=ExtResource("1_lnrma")]
 script = ExtResource("2_0cbhf")
 falling_t = 0.13
+active = false
 
 [node name="Graphics" parent="." index="0" unique_id=1544941131]
 script = ExtResource("2_pe7y4")
@@ -23,6 +26,17 @@ unique_name_in_owner = true
 texture = ExtResource("1_rm7hp")
 offset = Vector2(0, -7)
 region_rect = Rect2(0, 0, 16, 26)
+
+[node name="ExclamationMark" type="Sprite2D" parent="Graphics/CapsuleSpriteContainer" index="1" unique_id=238385391]
+visible = false
+z_index = 2
+position = Vector2(-5, -16)
+texture = ExtResource("6_kmknd")
+
+[node name="Pulse" type="Node" parent="Graphics/CapsuleSpriteContainer/ExclamationMark" index="0" unique_id=588873305]
+script = ExtResource("7_vf6k7")
+min_v = 0.14
+duration = 1.2
 
 [node name="Controller" parent="." index="1" unique_id=865613728]
 script = ExtResource("4_rrf1w")

@@ -27,6 +27,7 @@ func play_out() -> void:
 	animation_player.play("transition_out")
 	playing = true
 	
+# todo: remove visibility change from transition
 func _show(to_show: Node, to_hide: Node = null) -> void:
 	play_in()
 	await animation_player.animation_finished

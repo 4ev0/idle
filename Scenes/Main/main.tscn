@@ -4,10 +4,7 @@
 [ext_resource type="Script" uid="uid://xnv2kgpno3yr" path="res://Scripts/initializer.gd" id="2_qw60k"]
 [ext_resource type="Script" uid="uid://d1d24dhuiw2mp" path="res://Scripts/visual_controller.gd" id="2_y3v7k"]
 [ext_resource type="Script" uid="uid://boaom8khtl786" path="res://Scripts/debug.gd" id="3_p6jpk"]
-[ext_resource type="Script" uid="uid://dx8y26yhyg3o7" path="res://Scenes/Main/label_cash.gd" id="4_5yls4"]
 [ext_resource type="PackedScene" uid="uid://bp6encvbptsfp" path="res://Scenes/Game/game.tscn" id="5_4e4y2"]
-[ext_resource type="Script" uid="uid://bw0iw5udc3pgu" path="res://Scripts/circle_manager.gd" id="5_hfg1r"]
-[ext_resource type="Resource" uid="uid://q2qh1h13hc5u" path="res://Resources/data_circle_tomato.tres" id="6_4e4y2"]
 [ext_resource type="PackedScene" uid="uid://daoj4og62n0jv" path="res://Scenes/Cursor/cursor.tscn" id="7_xlvfx"]
 [ext_resource type="Script" uid="uid://cpks4253uw683" path="res://Scripts/camera.gd" id="8_4e4y2"]
 [ext_resource type="PackedScene" uid="uid://dy4b4brh7j6p1" path="res://Scenes/LayerChestScreen/layer_chest_screen.tscn" id="13_vk4q2"]
@@ -35,46 +32,11 @@ metadata/_custom_type_script = "uid://boaom8khtl786"
 script = ExtResource("2_y3v7k")
 custom_cursor = false
 
-[node name="CircleManager" type="Node" parent="." unique_id=606129403 groups=["g"]]
-script = ExtResource("5_hfg1r")
-circle_list = Dictionary[int, int]({
-1: 7
-})
-circle_data = Dictionary[int, Resource]({
-1: ExtResource("6_4e4y2")
-})
-circles_on_table = 7
-metadata/_custom_type_script = "uid://bw0iw5udc3pgu"
-
 [node name="Game" parent="." unique_id=435544845 instance=ExtResource("5_4e4y2")]
 
 [node name="Camera" type="Camera2D" parent="." unique_id=2110349832 groups=["g"]]
 position = Vector2(160, 90)
 script = ExtResource("8_4e4y2")
-
-[node name="LayerUI" type="CanvasLayer" parent="." unique_id=1799045463 groups=["g"]]
-
-[node name="LabelCash" type="RichTextLabel" parent="LayerUI" unique_id=1621480141]
-clip_contents = false
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = 62.0
-offset_right = 1.0
-offset_bottom = 85.0
-grow_horizontal = 0
-grow_vertical = 2
-pivot_offset = Vector2(63, 22)
-bbcode_enabled = true
-text = "$1"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-script = ExtResource("4_5yls4")
 
 [node name="LayerCursor" parent="." unique_id=791419552 instance=ExtResource("7_xlvfx")]
 layer = 2
@@ -83,3 +45,6 @@ layer = 2
 visible = false
 
 [node name="Transition" parent="." unique_id=1449692987 instance=ExtResource("18_es6iu")]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=437233136]
+color = Color(0.8811, 0.94825494, 0.99, 1)
