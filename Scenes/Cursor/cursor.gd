@@ -5,9 +5,19 @@ var graphics: CursorGraphics
 var velocity: Vector2 = Vector2.ZERO
 @onready var prev_mouse_pos: Vector2 = get_global_mouse_position()
 var dir: Vector2 = Vector2.ZERO
+@onready var area: Area2D = $Area2D
 
 func _ready() -> void:
 	G.nodes.get("visual_controller").toggle_cursor.connect(_on_cursor_toggled)
+	await G.main_ready
+	G.window.focus_exited.connect(_on_focus_exited)
+	G.window.focus_entered.connect(_on_focus_entered)
+	
+func _on_focus_entered() -> void:
+	area.monitorable = true
+	
+func _on_focus_exited() -> void:
+	area.monitorable = false
 
 func _on_cursor_toggled(enabled: bool) -> void:
 	graphics.visible = enabled

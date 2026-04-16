@@ -1,11 +1,6 @@
 extends Node
 class_name QuestManager
 
-enum QuestTypes {
-	NULL, # args:
-	CUT, # [target_v, circle_type]
-}
-#static var quest_names: Array[String] = []#["50tomato"]
 var quests: Dictionary = {}
 var cutted: Dictionary[CircleManager.CircleTypes, Dictionary] = {}
 var default_reward: Callable = Callable(func(q: Quest) -> void: prints("completed", q._name))
@@ -42,12 +37,14 @@ func _ready() -> void:
 	for i in range(1, CircleManager.CircleTypes.size()):
 		cutted[i] = {"v" : 0, "connected_quests" : []}
 	
-	quests["50tomato"] = new_cut_quest("50tomato", "cut 50 tomatoes", 50, CircleManager.CircleTypes.TOMATO)
+	quests["50tomato"] = new_cut_quest("50tomato", "cut 50 tomatoes", 50, CircleManager.CircleTypes.TOMATO, 
+	Callable(func(q: Quest) -> void: 
+		G.get_n("shop_product_manager").change_product_state(CircleManager.CircleTypes.TOMATO, 10)
+		))
 	
 func count_cutted(type: CircleManager.CircleTypes) -> void:
 	var point: Dictionary = cutted[type]
 	point.v += 1
-	print(point.v)
 	for q in point.connected_quests:
 		if q.completed:
 			continue

@@ -1,6 +1,7 @@
 extends Node
 
 var tree: SceneTree
+var window: Window
 
 enum Currencies {
 	DOLLAR,
@@ -36,6 +37,7 @@ var nodes: Dictionary = {}
 #var lvls: Array[int] = [100, 200, 300, 400, 500, 600, 700, 800]
 
 var circle_atlas_textures: Dictionary = load("uid://d32wwffqfu8ui").textures
+
 var strength: float = 10
 var cash: int = 0:
 	set(v):
@@ -57,6 +59,9 @@ signal lvl_uped
 signal chest_broken
 signal chest_closed
 signal state_changed(state: GameStates)
+
+func _ready() -> void:
+	ButtonCircleBuyGraphics.hidden_texture = load("uid://c1t58btrcikcl")
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey && event.is_pressed():

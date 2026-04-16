@@ -13,6 +13,12 @@ func _ready() -> void:
 func _on_purchased() -> void:
 	manager.add_circles_to_crate(parent.circle_type, parent.circle_amount)
 
+func is_hitted() -> bool:
+	if purchase && parent.available:
+		return purchase.try_to_pay()
+	
+	return false
+
 func set_price() -> void:
 	purchase.current_price = purchase.price
 

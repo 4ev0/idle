@@ -2,15 +2,55 @@ extends ButtonForPurchaseGraphics
 class_name ButtonCircleBuyGraphics
 
 @onready var circle_sprite: Sprite2D = %CircleSprite
-var tw: Tween
 @onready var label_container: Control = $LabelContainer
 @onready var label_pos: Vector2 = label_container.position
+static var hidden_texture: Texture2D
+var tw: Tween
+var ttw: Tween
 
 func _ready() -> void:
 	super()
-	circle_sprite.texture = G.circle_atlas_textures[parent.circle_type]
 	purchase.purchased.connect(_on_purchased)
+	set_texture(parent.available)
+	parent.available_changed.connect(_on_available_changed)
+	G.state_changed.connect(_on_state_changed)
+
+func _on_state_changed(state: G.GameStates) -> void:
+	if state != G.GameStates.SHOP:
+		if ttw:
+			ttw.stop()
+			ttw.kill()
+	else:
+		animate_price()
+		
+func animate_price() -> void:
+	if parent.available || G.game_state != G.GameStates.SHOP:
+		return
 	
+	if ttw:
+		ttw.kill()
+		
+	ttw = create_tween()
+	var sign_pool: Array[String] = ["#", "?", "1", "3", "$", "@", "!", "/", " "]
+	var t: String = ""
+	for i in range(randi_range(3, 4)):
+		t += sign_pool.pick_random()
+		
+	ttw.tween_property(label_price, "text", t, 5).set_ease(Tween.EASE_IN_OUT)
+	await ttw.finished
+	animate_price()
+
+func set_texture(available: bool) -> void:
+	if available:
+		circle_sprite.texture = G.circle_atlas_textures[parent.circle_type]
+		modulate.a = 1
+		_on_price_updated(purchase.price)
+	else:
+		circle_sprite.texture = hidden_texture
+		modulate.a = 0.5
+		
+func _on_available_changed(available: bool) -> void:
+	set_texture(available)
 
 func _on_purchased() -> void:
 	if tw:

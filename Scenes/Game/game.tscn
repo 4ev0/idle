@@ -11,8 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://c3afs2wrpfstv" path="res://Scenes/ShopTool/shop_tool.tscn" id="8_huoen"]
 [ext_resource type="PackedScene" uid="uid://856dktccf7g8" path="res://Scenes/Pipe/pipe.tscn" id="8_oejk7"]
 [ext_resource type="PackedScene" uid="uid://cf3jf85vdgnmb" path="res://Scenes/ButtonShop/CircleBuy/button_shop_circle_buy.tscn" id="8_xfil1"]
+[ext_resource type="Script" uid="uid://b8yhyy3uu323t" path="res://Scenes/Game/coin_container.gd" id="9_nxex1"]
 [ext_resource type="Script" uid="uid://cs21nfd1heaxo" path="res://Scenes/Game/shop_product_manager.gd" id="10_lemb1"]
+[ext_resource type="Script" uid="uid://ctfu6bflfka6y" path="res://Scenes/Game/coin_label_container.gd" id="10_pa3qg"]
 [ext_resource type="Script" uid="uid://dm8ss63fr1bcb" path="res://Scenes/Game/telephone_upgrade.gd" id="11_ypmwd"]
+[ext_resource type="Script" uid="uid://dtu4xjwa0w2yk" path="res://Scenes/Game/shop_tool_manager.gd" id="12_a6ftd"]
 [ext_resource type="PackedScene" uid="uid://q5a621f3j2mg" path="res://Scenes/TelephoneDial/telephone_dial.tscn" id="12_ypmwd"]
 [ext_resource type="Script" uid="uid://bvykrgvjvjva" path="res://Scenes/Game/quest_manager.gd" id="14_2vowc"]
 [ext_resource type="Script" uid="uid://bw0iw5udc3pgu" path="res://Scripts/circle_manager.gd" id="14_8e3kh"]
@@ -54,12 +57,14 @@ color_ramp = SubResource("Gradient_c4b4r")
 unique_name_in_owner = true
 script = ExtResource("1_vifcx")
 
-[node name="ColorRect" type="ColorRect" parent="Factory" unique_id=600841154]
+[node name="RoomTable" type="Node2D" parent="Factory" unique_id=2106561433]
+
+[node name="ColorRect" type="ColorRect" parent="Factory/RoomTable" unique_id=600841154]
 offset_right = 320.0
 offset_bottom = 184.0
 color = Color(0.09019608, 0.09019608, 0.09019608, 1)
 
-[node name="TextureRect" type="TextureRect" parent="Factory" unique_id=1821756432]
+[node name="TextureRect" type="TextureRect" parent="Factory/RoomTable" unique_id=1821756432]
 material = SubResource("ShaderMaterial_ypmwd")
 offset_left = -5.0
 offset_top = -4.0
@@ -67,31 +72,37 @@ offset_right = 329.0
 offset_bottom = 186.0
 texture = SubResource("NoiseTexture2D_oejk7")
 
-[node name="Table" type="Sprite2D" parent="Factory" unique_id=1223654119]
+[node name="Table" type="Sprite2D" parent="Factory/RoomTable" unique_id=1223654119]
 position = Vector2(96, 88)
 texture = ExtResource("2_vifcx")
 
-[node name="JuiceGroup" type="CanvasGroup" parent="Factory" unique_id=1088164821 groups=["g"]]
+[node name="JuiceGroup" type="CanvasGroup" parent="Factory/RoomTable" unique_id=1088164821 groups=["g"]]
 self_modulate = Color(1, 1, 1, 0.52156866)
 
-[node name="ShadowGroup" type="CanvasGroup" parent="Factory" unique_id=1992419262 groups=["g"]]
+[node name="ShadowGroup" type="CanvasGroup" parent="Factory/RoomTable" unique_id=1992419262 groups=["g"]]
 self_modulate = Color(1, 1, 1, 0.7411765)
 
-[node name="Grid" parent="Factory" unique_id=1595610565 instance=ExtResource("3_xfil1")]
+[node name="Grid" parent="Factory/RoomTable" unique_id=1595610565 instance=ExtResource("3_xfil1")]
 position = Vector2(96, 88)
 
-[node name="CircleContainer" parent="Factory" unique_id=973414043 instance=ExtResource("4_huoen")]
+[node name="CircleContainer" parent="Factory/RoomTable" unique_id=973414043 instance=ExtResource("4_huoen")]
 
-[node name="Crate" parent="Factory" unique_id=1149799375 instance=ExtResource("6_vifcx")]
-position = Vector2(266, 157)
+[node name="Crate" parent="Factory/RoomTable" unique_id=1149799375 instance=ExtResource("6_vifcx")]
+position = Vector2(290, 157)
 
-[node name="Telephone" parent="Factory" unique_id=409880358 instance=ExtResource("7_7jvlm")]
+[node name="Telephone" parent="Factory/RoomTable" unique_id=409880358 instance=ExtResource("7_7jvlm")]
 position = Vector2(255, 73)
 
-[node name="Pipe" parent="Factory" unique_id=1461174019 instance=ExtResource("8_oejk7")]
+[node name="Pipe" parent="Factory/RoomTable" unique_id=1461174019 instance=ExtResource("8_oejk7")]
 position = Vector2(202, 90)
 
-[node name="QuestList" parent="Factory" unique_id=1984024753 instance=ExtResource("18_yox4t")]
+[node name="CoinContainer" type="Node2D" parent="Factory/RoomTable" unique_id=2072264454]
+script = ExtResource("9_nxex1")
+
+[node name="CoinLabelContainer" type="Node2D" parent="Factory/RoomTable" unique_id=1116755003]
+script = ExtResource("10_pa3qg")
+
+[node name="QuestList" parent="Factory/RoomTable" unique_id=1984024753 instance=ExtResource("18_yox4t")]
 visible = false
 offset_left = 26.0
 offset_top = 23.0
@@ -100,6 +111,7 @@ offset_bottom = 156.0
 
 [node name="Shop" type="Node2D" parent="." unique_id=893517563]
 unique_name_in_owner = true
+visible = false
 script = ExtResource("1_vifcx")
 target_state = 3
 
@@ -127,13 +139,13 @@ script = ExtResource("10_lemb1")
 layout_mode = 2
 circle_type = 1
 circle_amount = 1
+available = true
 
 [node name="Purchase" parent="Shop/ShopProductManager/ButtonShopTomatoBuy" index="2" unique_id=870633994]
 price = 8.0
 
 [node name="ButtonShop10TomatoBut" parent="Shop/ShopProductManager" unique_id=1933047955 instance=ExtResource("8_xfil1")]
 layout_mode = 2
-circle_type = 1
 circle_amount = 10
 
 [node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut" index="2" unique_id=870633994]
@@ -141,7 +153,6 @@ price = 80.0
 
 [node name="ButtonShop10TomatoBut2" parent="Shop/ShopProductManager" unique_id=1049363478 instance=ExtResource("8_xfil1")]
 layout_mode = 2
-circle_type = 1
 circle_amount = 10
 
 [node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut2" index="2" unique_id=870633994]
@@ -149,7 +160,6 @@ price = 80.0
 
 [node name="ButtonShop10TomatoBut3" parent="Shop/ShopProductManager" unique_id=1875780738 instance=ExtResource("8_xfil1")]
 layout_mode = 2
-circle_type = 1
 circle_amount = 10
 
 [node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut3" index="2" unique_id=870633994]
@@ -165,17 +175,150 @@ price = 80.0
 
 [node name="ButtonShop10TomatoBut5" parent="Shop/ShopProductManager" unique_id=1376550367 instance=ExtResource("8_xfil1")]
 layout_mode = 2
-circle_type = 1
 circle_amount = 10
 
 [node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut5" index="2" unique_id=870633994]
 price = 80.0
 
-[node name="ShopTool" parent="Shop" unique_id=553715286 instance=ExtResource("8_huoen")]
-offset_left = 153.0
-offset_top = 158.0
-offset_right = 153.0
-offset_bottom = 158.0
+[node name="ButtonShop10TomatoBut6" parent="Shop/ShopProductManager" unique_id=631308170 instance=ExtResource("8_xfil1")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut6" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut7" parent="Shop/ShopProductManager" unique_id=842625030 instance=ExtResource("8_xfil1")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut7" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut8" parent="Shop/ShopProductManager" unique_id=1178817428 instance=ExtResource("8_xfil1")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut8" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut9" parent="Shop/ShopProductManager" unique_id=2054919355 instance=ExtResource("8_xfil1")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut9" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut10" parent="Shop/ShopProductManager" unique_id=481592172 instance=ExtResource("8_xfil1")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut10" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut11" parent="Shop/ShopProductManager" unique_id=505587716 instance=ExtResource("8_xfil1")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut11" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut12" parent="Shop/ShopProductManager" unique_id=732855582 instance=ExtResource("8_xfil1")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut12" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut13" parent="Shop/ShopProductManager" unique_id=63650784 instance=ExtResource("8_xfil1")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut13" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut14" parent="Shop/ShopProductManager" unique_id=1029263725 instance=ExtResource("8_xfil1")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut14" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut15" parent="Shop/ShopProductManager" unique_id=218201153 instance=ExtResource("8_xfil1")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut15" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut16" parent="Shop/ShopProductManager" unique_id=1188120524 instance=ExtResource("8_xfil1")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut16" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut17" parent="Shop/ShopProductManager" unique_id=1386193770 instance=ExtResource("8_xfil1")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut17" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut18" parent="Shop/ShopProductManager" unique_id=15343862 instance=ExtResource("8_xfil1")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut18" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut19" parent="Shop/ShopProductManager" unique_id=1020721628 instance=ExtResource("8_xfil1")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut19" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut20" parent="Shop/ShopProductManager" unique_id=612128989 instance=ExtResource("8_xfil1")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut20" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut21" parent="Shop/ShopProductManager" unique_id=968486199 instance=ExtResource("8_xfil1")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut21" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut22" parent="Shop/ShopProductManager" unique_id=1872295909 instance=ExtResource("8_xfil1")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut22" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut23" parent="Shop/ShopProductManager" unique_id=919161631 instance=ExtResource("8_xfil1")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="Shop/ShopProductManager/ButtonShop10TomatoBut23" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ShopToolManager" type="HBoxContainer" parent="Shop" unique_id=44427229]
+offset_left = 149.0
+offset_top = 162.0
+offset_right = 189.0
+offset_bottom = 202.0
+theme_override_constants/separation = 23
+script = ExtResource("12_a6ftd")
+
+[node name="ShopTool" parent="Shop/ShopToolManager" unique_id=553715286 instance=ExtResource("8_huoen")]
+layout_mode = 2
+
+[node name="ShopTool2" parent="Shop/ShopToolManager" unique_id=1398438926 instance=ExtResource("8_huoen")]
+layout_mode = 2
 
 [node name="ButtonOpenShop" type="Button" parent="." unique_id=1278702201]
 offset_left = 240.0
@@ -219,18 +362,13 @@ metadata/_custom_type_script = "uid://bw0iw5udc3pgu"
 
 [node name="LabelCash" type="RichTextLabel" parent="LayerUI" unique_id=2117241774]
 clip_contents = false
-anchors_preset = 6
+anchors_preset = 1
 anchor_left = 1.0
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = 62.0
-offset_right = 1.0
-offset_bottom = 85.0
+offset_left = -19.0
+offset_bottom = 23.0
 grow_horizontal = 0
-grow_vertical = 2
-pivot_offset = Vector2(63, 22)
+pivot_offset = Vector2(9, 12)
 bbcode_enabled = true
 text = "$1"
 fit_content = true
@@ -245,3 +383,21 @@ script = ExtResource("16_56qi8")
 [editable path="Shop/ShopProductManager/ButtonShop10TomatoBut3"]
 [editable path="Shop/ShopProductManager/ButtonShop10TomatoBut4"]
 [editable path="Shop/ShopProductManager/ButtonShop10TomatoBut5"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut6"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut7"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut8"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut9"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut10"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut11"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut12"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut13"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut14"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut15"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut16"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut17"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut18"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut19"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut20"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut21"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut22"]
+[editable path="Shop/ShopProductManager/ButtonShop10TomatoBut23"]

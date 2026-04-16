@@ -10,6 +10,7 @@ var hit_ready: bool = true
 			qm = G.get_n("quest_manager")
 		
 		return qm
+static var coin_container: CoinContainer
 
 var sliceable: Sliceable
 
@@ -46,7 +47,11 @@ func die() -> void:
 	
 	var c: ParticleCoin = coin_scene.instantiate()
 	c.global_position = global_position
-	G.get_n("main").add_child(c) #todo: add coin container
+	if coin_container:
+		coin_container.add_child(c)
+	else:
+		G.get_n("main").add_child(c)
+		
 	G.get_n("grid").free_cell(global_position)
 	parent.died.emit()
 	match G.get_n("circle_manager").store_or_delete_or_respawn(parent):

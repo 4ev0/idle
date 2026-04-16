@@ -5,6 +5,7 @@ class_name ParticleCoin
 @onready var sprite: Sprite2D = $CoinSilver
 @onready var depth: Sprite2D = $Depth
 var coin_label_scene: PackedScene = load("uid://cxaaqmn6mts8a")
+static var label_container: CoinLabelContainer
 
 var spin_spd: float = 8
 var spin: bool = true
@@ -60,7 +61,9 @@ func _physics_process(delta: float) -> void:
 func delete() -> void:
 	var cl: CoinLabel = coin_label_scene.instantiate()
 	cl.global_position = global_position
-	G.get_n("main").add_child(cl)
+	if label_container:
+		label_container.add_child(cl)
+		
 	G.cash += 10
 	shadow.queue_free()
 	queue_free()

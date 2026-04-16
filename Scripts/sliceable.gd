@@ -43,5 +43,8 @@ func _on_mouse_exited(area: Area2D) -> void:
 func slice_condition() -> bool:
 	return true
 
+func set_disabled(enabled: bool) -> void:
+	disabled = enabled
+
 func get_dir_to_cursor() -> Vector2:
 	return global_position.direction_to(cursor.global_position)

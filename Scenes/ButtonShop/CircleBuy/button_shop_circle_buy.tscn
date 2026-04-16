@@ -12,6 +12,7 @@ size = Vector2(14, 14)
 script = ExtResource("2_vvh58")
 circle_type = 0
 circle_amount = 0
+available = false
 hit_buffer = 1
 
 [node name="Graphics" parent="." index="0" unique_id=1544941131]

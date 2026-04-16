@@ -7,4 +7,5 @@ func _enter_tree() -> void:
 	G.nodes["main"] = self
 	
 func _ready() -> void:
+	G.window = get_window()
 	G.main_ready.emit()

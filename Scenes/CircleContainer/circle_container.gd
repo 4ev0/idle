@@ -6,6 +6,7 @@ var circle_scene: PackedScene = load("uid://dty5cnth88hfs")
 var special_circle_scenes: Dictionary[CircleManager.CircleTypes, PackedScene] = {
 	CircleManager.CircleTypes.CHEST : load("uid://1g7e6y7f6y6b")
 }
+
 signal circle_died
 
 func add_circle(type: CircleManager.CircleTypes = CircleManager.CircleTypes.TOMATO, r: int = 6) -> void:
