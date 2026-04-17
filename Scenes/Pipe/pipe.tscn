@@ -154,7 +154,7 @@ script = ExtResource("4_tp8ww")
 metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
 
 [node name="Pickup" type="Area2D" parent="Controller" unique_id=1369665477]
-position = Vector2(11, -24)
+position = Vector2(11, -16)
 script = ExtResource("3_5lvcx")
 dir = -1
 auto_picked = false
@@ -166,6 +166,7 @@ script = ExtResource("4_tp8ww")
 metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/Pickup" unique_id=410277359]
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_lnhug")
 
 [node name="CapsuleContainer" type="Node2D" parent="." unique_id=1743789923]

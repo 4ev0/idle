@@ -141,7 +141,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cr0sj"]
-size = Vector2(17, 9)
+size = Vector2(11, 9)
 
 [node name="ShopTool" type="Control" unique_id=553715286]
 visible = false

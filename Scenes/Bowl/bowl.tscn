@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://by3fuhgk5x2x1"]
+
+[ext_resource type="Script" uid="uid://bofjwslqts7ya" path="res://Scenes/Bowl/bowl.gd" id="1_3uci8"]
+[ext_resource type="Texture2D" uid="uid://cy64iptfhmelx" path="res://Assets/spoon.png" id="1_k1y0k"]
+[ext_resource type="Texture2D" uid="uid://bra4f8uh5qa8t" path="res://Assets/bowl.png" id="1_s1cxq"]
+[ext_resource type="Script" uid="uid://cylraso6dqp30" path="res://Scenes/Bowl/graphics.gd" id="2_4xp2v"]
+[ext_resource type="Script" uid="uid://c074grwls4b74" path="res://Scenes/Bowl/controller.gd" id="3_m5hvg"]
+[ext_resource type="Script" uid="uid://cxllrkp7skdvq" path="res://Scripts/pickup_component.gd" id="4_6sbin"]
+[ext_resource type="Script" uid="uid://bdfxxarh3ap7g" path="res://Scripts/component_writer.gd" id="5_3uci8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4xp2v"]
+size = Vector2(46, 5)
+
+[node name="Bowl" type="Node2D" unique_id=2002434400]
+script = ExtResource("1_3uci8")
+
+[node name="Graphics" type="Node2D" parent="." unique_id=1065098295]
+script = ExtResource("2_4xp2v")
+
+[node name="ComponentWriter" type="Node" parent="Graphics" unique_id=103903236]
+script = ExtResource("5_3uci8")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
+
+[node name="Spoon" type="Sprite2D" parent="Graphics" unique_id=962459717]
+position = Vector2(14, 0)
+texture = ExtResource("1_k1y0k")
+offset = Vector2(0, -16)
+hframes = 3
+frame = 1
+
+[node name="Bowl" type="Sprite2D" parent="Graphics" unique_id=932853260]
+texture = ExtResource("1_s1cxq")
+
+[node name="BowlLeft" type="Marker2D" parent="Graphics" unique_id=1331600053]
+position = Vector2(-21, -6)
+
+[node name="BowlRight" type="Marker2D" parent="Graphics" unique_id=1600198126]
+position = Vector2(22, -6)
+
+[node name="Controller" type="Node2D" parent="." unique_id=2047642695]
+script = ExtResource("3_m5hvg")
+
+[node name="ComponentWriter" type="Node" parent="Controller" unique_id=738072850]
+script = ExtResource("5_3uci8")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
+
+[node name="Pickup" type="Area2D" parent="Controller" unique_id=2027602499]
+position = Vector2(0, -24)
+script = ExtResource("4_6sbin")
+dir = -1
+min_velocity = 1.0
+metadata/_custom_type_script = "uid://cxllrkp7skdvq"
+
+[node name="ComponentWriter" type="Node" parent="Controller/Pickup" unique_id=1170552163]
+script = ExtResource("5_3uci8")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/Pickup" unique_id=2144305064]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_4xp2v")

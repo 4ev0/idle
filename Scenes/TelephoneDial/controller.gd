@@ -5,7 +5,6 @@ var parent: TelephoneDial
 @onready var cursor: Cursor = G.get_n("cursor")
 @onready var dial_area: Area2D = $DialArea
 @onready var dial_collision: CollisionShape2D = dial_area.get_node("CollisionShape2D")
-
 @onready var button_container: Node2D = $ButtonContainer
 @onready var submission_area: Area2D = $SubmissionArea
 var init_mouse_pos: Vector2
@@ -29,7 +28,7 @@ func _physics_process(delta: float) -> void:
 		
 	var ang: float = init_mouse_pos.angle_to(get_local_mouse_position())
 	button_container.rotation = ang
-	queue_redraw()
+	#queue_redraw()
 
 func _on_button_area_entered(number: int) -> void:
 	if parent.focused:

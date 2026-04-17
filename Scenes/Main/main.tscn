@@ -36,10 +36,12 @@ custom_cursor = false
 
 [node name="Camera" type="Camera2D" parent="." unique_id=2110349832 groups=["g"]]
 position = Vector2(160, 90)
+position_smoothing_speed = 10.0
 script = ExtResource("8_4e4y2")
 
 [node name="LayerCursor" parent="." unique_id=791419552 instance=ExtResource("7_xlvfx")]
 layer = 2
+follow_viewport_enabled = true
 
 [node name="LayerChestScreen" parent="." unique_id=1138933061 instance=ExtResource("13_vk4q2")]
 visible = false

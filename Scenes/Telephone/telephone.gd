@@ -13,6 +13,9 @@ var handset_y: float = 0:
 			
 var handset_offset_y: float = 0
 @onready var target_rotation: float = deg_to_rad(-18) 
-var picked: bool = false
+var picked: bool = false:
+	set(v):
+		picked = v
+		G.cursor_buys = picked
 
 signal handset_picked

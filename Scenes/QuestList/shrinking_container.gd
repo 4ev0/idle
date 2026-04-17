@@ -21,9 +21,6 @@ func _physics_process(delta: float) -> void:
 			d(pos_y + prev_pos_y + sy + y, y)
 		
 		prev_pos_y = i.position.y
-			#prints(pos_y + sy, y + sy, size.y)
-		#if y > size.y:
-			#print("a")
 		if y < 1:
 			if floor(i.position.y) == 0:
 				#if i is ProgressBar:

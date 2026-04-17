@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://jdqd20sdh0lk" path="res://Shaders/bayer_mat_dither.gdshader" id="1_flgk0"]
 [ext_resource type="Script" uid="uid://c311xuhbw137s" path="res://Scripts/state_changer.gd" id="1_vifcx"]
-[ext_resource type="Script" uid="uid://c3fv33jelj02o" path="res://Scenes/Game/room.gd" id="2_pmm7v"]
+[ext_resource type="Script" uid="uid://c3fv33jelj02o" path="res://Scenes/Game/room_table.gd" id="2_pmm7v"]
 [ext_resource type="Texture2D" uid="uid://bnud66p0i6k6g" path="res://Assets/table.png" id="2_vifcx"]
 [ext_resource type="PackedScene" uid="uid://61cdjwgr7qun" path="res://Scenes/Grid/grid.tscn" id="3_xfil1"]
 [ext_resource type="PackedScene" uid="uid://c1dljlx3v7kph" path="res://Scenes/CircleContainer/circle_container.tscn" id="4_huoen"]
@@ -20,7 +20,6 @@
 [ext_resource type="Script" uid="uid://dtu4xjwa0w2yk" path="res://Scenes/Game/shop_tool_manager.gd" id="12_a6ftd"]
 [ext_resource type="PackedScene" uid="uid://q5a621f3j2mg" path="res://Scenes/TelephoneDial/telephone_dial.tscn" id="12_ypmwd"]
 [ext_resource type="Script" uid="uid://bvykrgvjvjva" path="res://Scenes/Game/quest_manager.gd" id="14_2vowc"]
-[ext_resource type="PackedScene" uid="uid://by3fuhgk5x2x1" path="res://Scenes/Bowl/bowl.tscn" id="14_3gqeb"]
 [ext_resource type="Script" uid="uid://bw0iw5udc3pgu" path="res://Scripts/circle_manager.gd" id="14_8e3kh"]
 [ext_resource type="Resource" uid="uid://q2qh1h13hc5u" path="res://Resources/data_circle_tomato.tres" id="15_56qi8"]
 [ext_resource type="Script" uid="uid://dx8y26yhyg3o7" path="res://Scenes/Main/label_cash.gd" id="16_56qi8"]
@@ -72,8 +71,8 @@ position = Vector2(160, 90)
 script = ExtResource("2_pmm7v")
 
 [node name="ColorRect" type="ColorRect" parent="Factory/RoomTable" unique_id=600841154]
-offset_left = -168.0
-offset_top = -98.0
+offset_left = -160.0
+offset_top = -90.0
 offset_right = 184.0
 offset_bottom = 94.0
 color = Color(0.09019608, 0.09019608, 0.09019608, 1)
@@ -108,7 +107,7 @@ position = Vector2(-160, -90)
 position = Vector2(130, 67)
 
 [node name="Telephone" parent="Factory/RoomTable" unique_id=409880358 instance=ExtResource("7_7jvlm")]
-position = Vector2(119, -17)
+position = Vector2(95, -17)
 
 [node name="Pipe" parent="Factory/RoomTable" unique_id=1461174019 instance=ExtResource("8_oejk7")]
 position = Vector2(42, 0)
@@ -133,6 +132,7 @@ position = Vector2(80, 78)
 script = ExtResource("12_2lc0x")
 parent_room = NodePath("..")
 target_room = NodePath("../../RoomSalad")
+working_states = Array[int]([])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Factory/RoomTable/RoomChanger" unique_id=428263171]
 shape = SubResource("RectangleShape2D_4ti5a")
@@ -157,7 +157,6 @@ shape = SubResource("RectangleShape2D_pmm7v")
 
 [node name="RoomSalad" type="Node2D" parent="Factory" unique_id=1641610846]
 position = Vector2(160, 270)
-script = ExtResource("2_pmm7v")
 
 [node name="ColorRect2" type="ColorRect" parent="Factory/RoomSalad" unique_id=1639809700]
 offset_left = -160.0
@@ -186,12 +185,8 @@ shape = SubResource("RectangleShape2D_4ti5a")
 [node name="Marker2D" type="Marker2D" parent="Factory/RoomSalad/RoomChanger" unique_id=1781859614]
 position = Vector2(32, 10)
 
-[node name="Bowl" parent="Factory/RoomSalad" unique_id=2002434400 instance=ExtResource("14_3gqeb")]
-position = Vector2(-48, 26)
-
 [node name="RoomMap" type="Node2D" parent="Factory" unique_id=328386985]
 position = Vector2(504, 90)
-script = ExtResource("2_pmm7v")
 
 [node name="ColorRect3" type="ColorRect" parent="Factory/RoomMap" unique_id=832388791]
 offset_left = -160.0
@@ -458,12 +453,12 @@ script = ExtResource("14_2vowc")
 [node name="CircleManager" type="Node" parent="." unique_id=1498096980 groups=["g"]]
 script = ExtResource("14_8e3kh")
 circle_list = Dictionary[int, int]({
-1: 90
+1: 7
 })
 circle_data = Dictionary[int, Resource]({
 1: ExtResource("15_56qi8")
 })
-circles_on_table = 90
+circles_on_table = 7
 metadata/_custom_type_script = "uid://bw0iw5udc3pgu"
 
 [node name="LayerUI" type="CanvasLayer" parent="." unique_id=1244352334 groups=["g"]]
@@ -487,7 +482,7 @@ script = ExtResource("16_56qi8")
 
 [node name="RoomChangeManager" type="Node" parent="." unique_id=266613327 node_paths=PackedStringArray("initial_room")]
 script = ExtResource("24_4ti5a")
-initial_room = NodePath("../Factory/RoomSalad")
+initial_room = NodePath("../Factory/RoomTable")
 
 [node name="Timer" type="Timer" parent="RoomChangeManager" unique_id=606298939]
 wait_time = 0.6

@@ -53,6 +53,8 @@ var game_state: GameStates = GameStates.GAME:
 		state_changed.emit(game_state)
 		print(GameStates.keys()[game_state])
 
+var cursor_buys: bool = false
+
 signal cash_updated(v: int)
 signal main_ready
 signal lvl_uped

@@ -15,5 +15,5 @@ func _on_lever_pulled() -> void:
 
 func shake_cam() -> void:
 	if camera:
-		camera.shake(1, 0.1)
+		camera.shake(10, 0.1)
 	

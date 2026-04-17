@@ -11,18 +11,18 @@ var collision_shape: CollisionShape2D:
 		return collision_shape
 
 @export var disabled: bool = false
+var entered: bool = false
 
 signal sliced
 
 func _ready() -> void:
-	area_exited.connect(_on_mouse_exited)
 	monitorable = false
 	
 func set_collision_radius(r: float) -> void:
 	if collision_shape:
 		collision_shape.shape.radius = r
-	
-func _on_mouse_exited(area: Area2D) -> void:
+
+func slice() -> void:
 	if disabled:
 		return
 		
@@ -39,7 +39,7 @@ func _on_mouse_exited(area: Area2D) -> void:
 			sliced.emit()
 	else:
 		print(cursor.velocity.length())
-
+	
 func slice_condition() -> bool:
 	return true
 
