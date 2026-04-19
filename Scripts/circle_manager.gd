@@ -20,8 +20,10 @@ var spawned_circles: Dictionary[CircleTypes, Array]
 		spawn_circles()
 
 signal circle_spawned(type: CircleTypes)
+signal circle_died(type: CircleTypes)
 
 func _ready() -> void:
+	CircleController.manager = self
 	var k: Array = CircleTypes.keys()
 	for i in range(1, CircleTypes.size()):
 		spawned_circles[CircleTypes[k[i]]] = []

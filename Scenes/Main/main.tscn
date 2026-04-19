@@ -10,6 +10,18 @@
 [ext_resource type="PackedScene" uid="uid://dy4b4brh7j6p1" path="res://Scenes/LayerChestScreen/layer_chest_screen.tscn" id="13_vk4q2"]
 [ext_resource type="PackedScene" uid="uid://b7hf188tlruw" path="res://Scenes/Transition/transition.tscn" id="18_es6iu"]
 
+[sub_resource type="Gradient" id="Gradient_hryqi"]
+offsets = PackedFloat32Array(0.693662, 1)
+colors = PackedColorArray(0.16924527, 0.1692453, 0.16924527, 0, 0, 0, 0, 0.4509804)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_imbg2"]
+gradient = SubResource("Gradient_hryqi")
+width = 112
+height = 112
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
 [node name="Main" type="Node2D" unique_id=1507799017]
 script = ExtResource("1_lixft")
 
@@ -25,6 +37,7 @@ start_circles = Dictionary[int, int]({
 cash = 50
 xp = 100
 infinite_cash = true
+complete_salad_goal = true
 merge_type = 2
 metadata/_custom_type_script = "uid://boaom8khtl786"
 
@@ -50,3 +63,18 @@ visible = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=437233136]
 color = Color(0.8811, 0.94825494, 0.99, 1)
+
+[node name="PostFX" type="CanvasLayer" parent="." unique_id=673186389]
+
+[node name="TextureRect" type="TextureRect" parent="PostFX" unique_id=430596106]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -4.0
+offset_right = 6.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_imbg2")

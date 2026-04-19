@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://b8yhyy3uu323t" path="res://Scenes/Game/coin_container.gd" id="9_nxex1"]
 [ext_resource type="Script" uid="uid://cs21nfd1heaxo" path="res://Scenes/Game/shop_product_manager.gd" id="10_lemb1"]
 [ext_resource type="Script" uid="uid://ctfu6bflfka6y" path="res://Scenes/Game/coin_label_container.gd" id="10_pa3qg"]
+[ext_resource type="Texture2D" uid="uid://hyipfcdhs45h" path="res://Assets/pipe2.png" id="11_fl2fe"]
 [ext_resource type="Script" uid="uid://dm8ss63fr1bcb" path="res://Scenes/Game/telephone_upgrade.gd" id="11_ypmwd"]
 [ext_resource type="Script" uid="uid://bxdeoeiwqxngp" path="res://Scenes/RoomTransition/room_changer.gd" id="12_2lc0x"]
 [ext_resource type="Script" uid="uid://dtu4xjwa0w2yk" path="res://Scenes/Game/shop_tool_manager.gd" id="12_a6ftd"]
@@ -22,10 +23,18 @@
 [ext_resource type="Script" uid="uid://bvykrgvjvjva" path="res://Scenes/Game/quest_manager.gd" id="14_2vowc"]
 [ext_resource type="PackedScene" uid="uid://by3fuhgk5x2x1" path="res://Scenes/Bowl/bowl.tscn" id="14_3gqeb"]
 [ext_resource type="Script" uid="uid://bw0iw5udc3pgu" path="res://Scripts/circle_manager.gd" id="14_8e3kh"]
+[ext_resource type="Texture2D" uid="uid://8wlbt80l5xls" path="res://Assets/map_table.png" id="15_7pdpw"]
 [ext_resource type="Resource" uid="uid://q2qh1h13hc5u" path="res://Resources/data_circle_tomato.tres" id="15_56qi8"]
 [ext_resource type="Script" uid="uid://dx8y26yhyg3o7" path="res://Scenes/Main/label_cash.gd" id="16_56qi8"]
+[ext_resource type="Texture2D" uid="uid://cv1y13pcmjetc" path="res://Assets/map_paper1.png" id="16_gqd4u"]
+[ext_resource type="Script" uid="uid://dtgxn3jo160qc" path="res://Scenes/Game/salad_progress.gd" id="17_d3jd4"]
 [ext_resource type="PackedScene" uid="uid://nh6exgy0yw48" path="res://Scenes/QuestList/quest_list.tscn" id="18_yox4t"]
+[ext_resource type="PackedScene" uid="uid://b4eqy7h7l223e" path="res://Scenes/DropSpot/drop_spot.tscn" id="19_56h2t"]
+[ext_resource type="Texture2D" uid="uid://gm11tpma8xq0" path="res://Assets/down_pointer.png" id="20_diago"]
+[ext_resource type="Script" uid="uid://dblo1lf5nk1eb" path="res://Scenes/Game/down_pointer.gd" id="21_fl2fe"]
+[ext_resource type="Script" uid="uid://b15qtudpk5sty" path="res://Scripts/pulse.gd" id="22_56h2t"]
 [ext_resource type="Script" uid="uid://do666p5l74tin" path="res://Scenes/Game/room_change_manager.gd" id="24_4ti5a"]
+[ext_resource type="Script" uid="uid://ulgcxexoha0b" path="res://Scenes/Game/salad_manager.gd" id="29_1l3pd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ypmwd"]
 shader = ExtResource("1_flgk0")
@@ -59,9 +68,28 @@ size = Vector2(64, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pmm7v"]
 size = Vector2(20, 124)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_56bk2"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6k7u1"]
+bg_color = Color(0.66, 0.19800001, 0.165, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i1e5p"]
 
 [node name="Game" type="Node2D" unique_id=435544845]
+
+[node name="QuestManager" type="Node" parent="." unique_id=189391783 groups=["g"]]
+script = ExtResource("14_2vowc")
+
+[node name="SaladManager" type="Node" parent="." unique_id=2030786378 groups=["g"]]
+script = ExtResource("29_1l3pd")
 
 [node name="Factory" type="Node2D" parent="." unique_id=759195891]
 unique_name_in_owner = true
@@ -86,29 +114,35 @@ offset_right = 184.0
 offset_bottom = 96.0
 texture = SubResource("NoiseTexture2D_oejk7")
 
-[node name="Table" type="Sprite2D" parent="Factory/RoomTable" unique_id=1223654119]
-position = Vector2(-64, -2)
-texture = ExtResource("2_vifcx")
-
-[node name="JuiceGroup" type="CanvasGroup" parent="Factory/RoomTable" unique_id=1088164821 groups=["g"]]
-self_modulate = Color(1, 1, 1, 0.52156866)
-position = Vector2(-160, -90)
-
-[node name="ShadowGroup" type="CanvasGroup" parent="Factory/RoomTable" unique_id=1992419262 groups=["g"]]
-self_modulate = Color(1, 1, 1, 0.7411765)
-position = Vector2(-160, -90)
-
-[node name="Grid" parent="Factory/RoomTable" unique_id=1595610565 instance=ExtResource("3_xfil1")]
-position = Vector2(-64, -2)
-
-[node name="CircleContainer" parent="Factory/RoomTable" unique_id=973414043 instance=ExtResource("4_huoen")]
-position = Vector2(-160, -90)
-
 [node name="Crate" parent="Factory/RoomTable" unique_id=1149799375 instance=ExtResource("6_vifcx")]
 position = Vector2(130, 67)
 
 [node name="Telephone" parent="Factory/RoomTable" unique_id=409880358 instance=ExtResource("7_7jvlm")]
 position = Vector2(119, -17)
+
+[node name="Table" type="Node2D" parent="Factory/RoomTable" unique_id=1003166676]
+
+[node name="SpriteTable" type="Sprite2D" parent="Factory/RoomTable/Table" unique_id=1223654119]
+position = Vector2(-64, -2)
+texture = ExtResource("2_vifcx")
+
+[node name="JuiceGroup" type="CanvasGroup" parent="Factory/RoomTable/Table" unique_id=1088164821 groups=["g"]]
+self_modulate = Color(1, 1, 1, 0.52156866)
+position = Vector2(-160, -90)
+
+[node name="ShadowGroup" type="CanvasGroup" parent="Factory/RoomTable/Table" unique_id=1992419262 groups=["g"]]
+self_modulate = Color(1, 1, 1, 0.7411765)
+position = Vector2(-160, -90)
+
+[node name="Grid" parent="Factory/RoomTable/Table" unique_id=1595610565 instance=ExtResource("3_xfil1")]
+position = Vector2(-64, -2)
+
+[node name="CircleContainer" parent="Factory/RoomTable/Table" unique_id=973414043 instance=ExtResource("4_huoen")]
+position = Vector2(-160, -90)
+
+[node name="Pipe2" type="Sprite2D" parent="Factory/RoomTable" unique_id=1824837364]
+position = Vector2(47, -1)
+texture = ExtResource("11_fl2fe")
 
 [node name="Pipe" parent="Factory/RoomTable" unique_id=1461174019 instance=ExtResource("8_oejk7")]
 position = Vector2(42, 0)
@@ -187,7 +221,47 @@ shape = SubResource("RectangleShape2D_4ti5a")
 position = Vector2(32, 10)
 
 [node name="Bowl" parent="Factory/RoomSalad" unique_id=2002434400 instance=ExtResource("14_3gqeb")]
-position = Vector2(-48, 26)
+position = Vector2(-48, 35)
+
+[node name="SaladProgress" type="Control" parent="Factory/RoomSalad" unique_id=629217114]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -160.0
+offset_top = 50.0
+offset_right = -32.0
+offset_bottom = 98.0
+script = ExtResource("17_d3jd4")
+
+[node name="MarginContainer" type="MarginContainer" parent="Factory/RoomSalad/SaladProgress" unique_id=454961317]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Factory/RoomSalad/SaladProgress/MarginContainer" unique_id=1606746978]
+layout_mode = 2
+
+[node name="ProgressBarMix" type="ProgressBar" parent="Factory/RoomSalad/SaladProgress/MarginContainer/VBoxContainer" unique_id=1384860225]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_56bk2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6k7u1")
+show_percentage = false
+
+[node name="LabelWeight" type="Label" parent="Factory/RoomSalad/SaladProgress/MarginContainer/VBoxContainer" unique_id=1576634993]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.62352943)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6156863)
+theme_override_constants/shadow_outline_size = 0
+
+[node name="DropSpot" parent="Factory/RoomSalad" unique_id=1040777669 instance=ExtResource("19_56h2t")]
+position = Vector2(96, 31)
 
 [node name="RoomMap" type="Node2D" parent="Factory" unique_id=328386985]
 position = Vector2(504, 90)
@@ -216,6 +290,27 @@ target_room = NodePath("../../RoomTable")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Factory/RoomMap/RoomChanger4" unique_id=822315471]
 shape = SubResource("RectangleShape2D_pmm7v")
+
+[node name="MapTable" type="Sprite2D" parent="Factory" unique_id=1207151042]
+position = Vector2(506, 90)
+texture = ExtResource("15_7pdpw")
+
+[node name="MapPaper1" type="Sprite2D" parent="Factory" unique_id=6714480]
+position = Vector2(394, 69)
+texture = ExtResource("16_gqd4u")
+
+[node name="DownPointer" type="Sprite2D" parent="Factory" unique_id=381002894]
+visible = false
+z_index = 1
+position = Vector2(210, 160)
+texture = ExtResource("20_diago")
+script = ExtResource("21_fl2fe")
+
+[node name="Pulse" type="Node" parent="Factory/DownPointer" unique_id=590867908]
+script = ExtResource("22_56h2t")
+min_v = 0.5
+duration = 1.0
+metadata/_custom_type_script = "uid://b15qtudpk5sty"
 
 [node name="Shop" type="Node2D" parent="." unique_id=893517563]
 unique_name_in_owner = true
@@ -452,19 +547,27 @@ color = Color(0.10747976, 0.10747973, 0.10747973, 1)
 [node name="TelephoneDial" parent="TelephoneUpgrade" unique_id=239160478 instance=ExtResource("12_ypmwd")]
 position = Vector2(270, 92)
 
-[node name="QuestManager" type="Node" parent="." unique_id=189391783 groups=["g"]]
-script = ExtResource("14_2vowc")
-
 [node name="CircleManager" type="Node" parent="." unique_id=1498096980 groups=["g"]]
 script = ExtResource("14_8e3kh")
 circle_list = Dictionary[int, int]({
-1: 90
+1: 10
 })
 circle_data = Dictionary[int, Resource]({
 1: ExtResource("15_56qi8")
 })
-circles_on_table = 90
 metadata/_custom_type_script = "uid://bw0iw5udc3pgu"
+
+[node name="RoomChangeManager" type="Node" parent="." unique_id=266613327 node_paths=PackedStringArray("initial_room")]
+script = ExtResource("24_4ti5a")
+initial_room = NodePath("../Factory/RoomSalad")
+
+[node name="Timer" type="Timer" parent="RoomChangeManager" unique_id=606298939]
+wait_time = 0.6
+one_shot = true
+
+[node name="TimerBuffer" type="Timer" parent="RoomChangeManager" unique_id=204317008]
+wait_time = 0.1
+one_shot = true
 
 [node name="LayerUI" type="CanvasLayer" parent="." unique_id=1244352334 groups=["g"]]
 
@@ -484,18 +587,6 @@ scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 script = ExtResource("16_56qi8")
-
-[node name="RoomChangeManager" type="Node" parent="." unique_id=266613327 node_paths=PackedStringArray("initial_room")]
-script = ExtResource("24_4ti5a")
-initial_room = NodePath("../Factory/RoomSalad")
-
-[node name="Timer" type="Timer" parent="RoomChangeManager" unique_id=606298939]
-wait_time = 0.6
-one_shot = true
-
-[node name="TimerBuffer" type="Timer" parent="RoomChangeManager" unique_id=204317008]
-wait_time = 0.1
-one_shot = true
 
 [editable path="Shop/ShopProductManager/ButtonShopTomatoBuy"]
 [editable path="Shop/ShopProductManager/ButtonShop10TomatoBut"]

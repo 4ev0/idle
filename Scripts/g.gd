@@ -3,6 +3,12 @@ extends Node
 var tree: SceneTree
 var window: Window
 
+enum Pickups {
+	NULL,
+	HANDSET,
+	BOWL
+}
+
 enum Currencies {
 	DOLLAR,
 	CIRCLE_WHITE,
@@ -53,7 +59,7 @@ var game_state: GameStates = GameStates.GAME:
 		state_changed.emit(game_state)
 		print(GameStates.keys()[game_state])
 
-var cursor_buys: bool = false
+var cursor_carrying: Pickups = Pickups.NULL
 
 signal cash_updated(v: int)
 signal main_ready
@@ -92,3 +98,13 @@ func add_shadow(shadow: Node2D) -> Node2D:
 	sg.add_child(new_s)
 	shadow.queue_free()
 	return new_s
+
+func is_cursor_busy() -> bool:
+	return cursor_carrying != Pickups.NULL
+
+func set_cursor_carrying(pickup: Pickups, is_picked: bool) -> void:
+	if is_picked:
+		cursor_carrying = pickup
+	else:
+		if pickup == cursor_carrying:
+			cursor_carrying = Pickups.NULL

@@ -16,6 +16,6 @@ var handset_offset_y: float = 0
 var picked: bool = false:
 	set(v):
 		picked = v
-		G.cursor_buys = picked
+		G.set_cursor_carrying(G.Pickups.HANDSET, picked)
 
 signal handset_picked

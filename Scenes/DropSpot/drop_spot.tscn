@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://b4eqy7h7l223e"]
+
+[ext_resource type="Script" uid="uid://x05h4wgq15yn" path="res://Scenes/DropSpot/drop_spot.gd" id="1_fjhcm"]
+[ext_resource type="Script" uid="uid://p0ngd2yq50bl" path="res://Scenes/DropSpot/controller.gd" id="2_tgro8"]
+[ext_resource type="Script" uid="uid://bdfxxarh3ap7g" path="res://Scripts/component_writer.gd" id="3_tgro8"]
+
+[sub_resource type="Gradient" id="Gradient_fl2fe"]
+offsets = PackedFloat32Array(0, 0.7640845)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_56h2t"]
+gradient = SubResource("Gradient_fl2fe")
+width = 32
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e37le"]
+size = Vector2(96, 156)
+
+[node name="DropSpot" type="Node2D" unique_id=1040777669]
+script = ExtResource("1_fjhcm")
+
+[node name="Graphics" type="Node2D" parent="." unique_id=1072726976]
+
+[node name="TextureRect" type="TextureRect" parent="Graphics" unique_id=20122561]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.74048
+offset_top = 62.760223
+offset_right = 76.77997
+offset_bottom = 159.4619
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5707964
+texture = SubResource("GradientTexture1D_56h2t")
+
+[node name="Controller" type="Node2D" parent="." unique_id=1147260700]
+script = ExtResource("2_tgro8")
+
+[node name="ComponentWriter" type="Node" parent="Controller" unique_id=464777980]
+script = ExtResource("3_tgro8")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
+
+[node name="Area2D" type="Area2D" parent="Controller" unique_id=281462095]
+position = Vector2(0, -14)
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/Area2D" unique_id=1240934909]
+shape = SubResource("RectangleShape2D_e37le")

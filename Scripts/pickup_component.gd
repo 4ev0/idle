@@ -6,6 +6,9 @@ var picked: bool = false
 @export var auto_picked: bool = true
 
 func slice_condition() -> bool:
+	return check_picked()
+
+func check_picked() -> bool:
 	if picked:
 		if sign(get_dir_to_cursor().y) == sign(dir):
 			if auto_picked:
@@ -20,3 +23,4 @@ func slice_condition() -> bool:
 			return true
 			
 	return false
+	

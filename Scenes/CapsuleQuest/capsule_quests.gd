@@ -30,7 +30,8 @@ func _on_quest_completed() -> void:
 		await capsule_dropped
 		
 	if camera:
-		camera.shake(1, 0.1)
+		camera.shake(10, 0.1)
+		
 	quest_completed = true
 	await get_tree().create_timer(2.1).timeout
 	active = true

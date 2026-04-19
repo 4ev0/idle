@@ -26,8 +26,7 @@ func _ready() -> void:
 	camera.position_smoothing_enabled = true
 	
 func _on_change_requested(target_room: Room, parent_room: Room) -> void:
-	prints(target_room, parent_room)
-	if G.cursor_buys:
+	if G.is_cursor_busy():
 		return
 		
 	if !timer_buffer.is_stopped():

@@ -34,6 +34,7 @@ func new_cut_quest(n: String, d: String, target_v: int, circle_type: CircleManag
 	return q
 	
 func _ready() -> void:
+	CircleController.quest_manager = self
 	for i in range(1, CircleManager.CircleTypes.size()):
 		cutted[i] = {"v" : 0, "connected_quests" : []}
 	

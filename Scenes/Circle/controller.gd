@@ -4,12 +4,8 @@ class_name CircleController
 var parent: Circle
 var mouse_in: bool = false
 var hit_ready: bool = true
-@onready var qm: QuestManager = G.get_n("quest_manager"):
-	get:
-		if !qm:
-			qm = G.get_n("quest_manager")
-		
-		return qm
+static var quest_manager: QuestManager
+static var manager: CircleManager
 static var coin_container: CoinContainer
 
 var sliceable: Sliceable
@@ -42,8 +38,12 @@ func spawn() -> void:
 	parent.spawned.emit()
 
 func die() -> void:
-	if qm:
-		qm.count_cutted(parent.type)
+	var type: CircleManager.CircleTypes = parent.type
+	if manager:
+		manager.circle_died.emit(type)
+	
+	if quest_manager:
+		quest_manager.count_cutted(type)
 	
 	var c: ParticleCoin = coin_scene.instantiate()
 	c.global_position = global_position

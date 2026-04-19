@@ -9,6 +9,13 @@ class_name Debug
 @export var print_writing: bool = false
 @export var xp: int = 0
 @export var infinite_cash: bool = false
+@export var complete_salad_goal: bool = false:
+	set(v):
+		complete_salad_goal = v
+		if complete_salad_goal:
+			var sm: SaladManager = G.get_n("salad_manager")
+			if sm:
+				sm.weight = sm.target_weight
 
 @export_category("merge debug")
 @export var merge_type: CircleManager.CircleTypes
@@ -26,6 +33,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	await owner.ready
+	complete_salad_goal = complete_salad_goal
 	G.cash = cash
 	G.set("xp", xp)
 	var ck: CircleContainer = G.get_n("circle_container")

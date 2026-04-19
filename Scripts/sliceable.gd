@@ -34,11 +34,8 @@ func slice() -> void:
 	if !working_states.has(G.game_state):
 		return
 		
-	if cursor.velocity.length() >= min_velocity:
-		if slice_condition():
-			sliced.emit()
-	else:
-		print(cursor.velocity.length())
+	if slice_condition():
+		sliced.emit()
 	
 func slice_condition() -> bool:
 	return true

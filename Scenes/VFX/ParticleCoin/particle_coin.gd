@@ -39,15 +39,6 @@ func _ready() -> void:
 	tw.tween_callback(func() -> void:
 		delete())
 	
-	#tw.set_parallel()
-	#var wait: float = randf_range(1.3, 1.6)
-	#var wait2: float = wait - 0.8
-	#tw.tween_property(sprite, "position:y", -65, 0.5).set_ease(Tween.EASE_IN).set_delay(wait2)
-	#tw.tween_property(sprite, "scale:y", randf_range(0.6, 0.7), 0.15).set_ease(Tween.EASE_OUT).set_delay(wait2)
-	#tw.tween_property(sprite, "position:y", 0, 0.5).set_ease(Tween.EASE_IN).set_delay(wait2 + 0.5)
-	#ttw.tween_property(self, "position", G.get_n("cash_marker").global_position , 1).set_ease(Tween.EASE_OUT).set_delay(wait)
-	 #+ Vector2(randf_range(5, 30), randf_range(5, 30))
-	
 func _physics_process(delta: float) -> void:
 	shadow.scale = sprite.scale
 	if !spin:

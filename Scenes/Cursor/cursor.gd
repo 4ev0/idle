@@ -37,22 +37,30 @@ func set_disabled(enabled: bool) -> void:
 	collision.set_deferred("disabled", enabled)
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("disable_cursor"):
+		set_disabled(true)
+		
+	if Input.is_action_just_released("disable_cursor"):
+		set_disabled(false)
+		
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	global_position = mouse_pos
+	dir = prev_mouse_pos.direction_to(mouse_pos)
 
 	velocity = prev_mouse_pos - mouse_pos
-	if area.monitorable && !collision.disabled:
-		query.shape.length = velocity.length()
-		query.transform.origin = mouse_pos
-		query.transform = query.transform.looking_at(prev_mouse_pos)
-		query.transform = query.transform.rotated_local(-PI/2)
-		for result in get_world_2d().direct_space_state.intersect_shape(query):
-			var collider: CollisionObject2D = result.collider
-			if collider is Sliceable:
-				collider.slice()
-				
-	prev_mouse_pos = mouse_pos
+	if mouse_pos.distance_to(prev_mouse_pos) > 1:
+		if area.monitorable && !collision.disabled:
+			var length: float = velocity.length()
+			query.shape.length = length
+			query.transform.origin = mouse_pos
+			query.transform = query.transform.looking_at(prev_mouse_pos)
+			query.transform = query.transform.rotated_local(-PI/2)
+			for result in get_world_2d().direct_space_state.intersect_shape(query):
+				var collider: CollisionObject2D = result.collider
+				if collider is Sliceable:
+					if collider.min_velocity <= length:
+						collider.slice()
+					else:
+						print(length)
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		dir = event.relative
+	prev_mouse_pos = mouse_pos
