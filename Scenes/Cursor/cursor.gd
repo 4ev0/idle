@@ -37,17 +37,15 @@ func set_disabled(enabled: bool) -> void:
 	collision.set_deferred("disabled", enabled)
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("disable_cursor"):
-		set_disabled(true)
-		
-	if Input.is_action_just_released("disable_cursor"):
-		set_disabled(false)
-		
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	global_position = mouse_pos
 	dir = prev_mouse_pos.direction_to(mouse_pos)
 
 	velocity = prev_mouse_pos - mouse_pos
+	if Input.is_action_pressed("disable_cursor"):
+		prev_mouse_pos = mouse_pos
+		return
+		
 	if mouse_pos.distance_to(prev_mouse_pos) > 1:
 		if area.monitorable && !collision.disabled:
 			var length: float = velocity.length()

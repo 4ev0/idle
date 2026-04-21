@@ -38,7 +38,7 @@ func _ready() -> void:
 	for i in range(1, CircleManager.CircleTypes.size()):
 		cutted[i] = {"v" : 0, "connected_quests" : []}
 	
-	quests["50tomato"] = new_cut_quest("50tomato", "cut 50 tomatoes", 50, CircleManager.CircleTypes.TOMATO, 
+	quests["50tomato"] = new_cut_quest("50tomato", "cut 50 tomatoes", 1, CircleManager.CircleTypes.TOMATO, 
 	Callable(func(q: Quest) -> void: 
 		G.get_n("shop_product_manager").change_product_state(CircleManager.CircleTypes.TOMATO, 10)
 		))

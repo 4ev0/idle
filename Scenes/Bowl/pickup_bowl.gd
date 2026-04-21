@@ -10,7 +10,7 @@ func _ready() -> void:
 	salad_manager = parent.salad_manager
 
 func slice_condition() -> bool:
-	if !salad_manager.is_enough_weight() || parent.spoon_in:
+	if parent.spoon_in:
 		return false
 		
 	return check_picked()

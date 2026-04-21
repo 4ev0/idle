@@ -1,0 +1,192 @@
+[gd_scene format=3 uid="uid://856dktccf7g8"]
+
+[ext_resource type="Texture2D" uid="uid://b1s3cdtbmf30s" path="res://Assets/pipe.png" id="1_3qu6u"]
+[ext_resource type="Script" uid="uid://b024ok6hxc82m" path="res://Scenes/Pipe/pipe.gd" id="1_tp8ww"]
+[ext_resource type="Script" uid="uid://dqfplmfwkllq8" path="res://Scenes/Pipe/graphics.gd" id="2_lnhug"]
+[ext_resource type="Texture2D" uid="uid://qm3833eqchb0" path="res://Assets/pipe_lever.png" id="2_q2vkm"]
+[ext_resource type="Script" uid="uid://cxllrkp7skdvq" path="res://Scripts/pickup_component.gd" id="3_5lvcx"]
+[ext_resource type="Script" uid="uid://bnbdhcjjvympf" path="res://Scenes/Pipe/controller.gd" id="3_tp8ww"]
+[ext_resource type="Texture2D" uid="uid://8s0r7qigbrlt" path="res://Assets/pipe_bg.png" id="4_2uoea"]
+[ext_resource type="Script" uid="uid://bdfxxarh3ap7g" path="res://Scripts/component_writer.gd" id="4_tp8ww"]
+[ext_resource type="Texture2D" uid="uid://bsewc3envbwmx" path="res://Assets/pipe_lever_top.png" id="5_v3et3"]
+[ext_resource type="PackedScene" uid="uid://b0rbbgn28ibra" path="res://Scenes/CapsuleQuest/capsule_quests.tscn" id="10_ejywm"]
+[ext_resource type="Script" uid="uid://ba7ta07xjo63g" path="res://Scenes/Pipe/capsule_container.gd" id="10_vwfit"]
+
+[sub_resource type="Animation" id="Animation_v3et3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PipeLever:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PipeLeverTop:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(11, -30)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PipeLever:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_mr25m"]
+resource_name = "pull"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PipeLever:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.43333334, 0.56666666, 0.96666664),
+"transitions": PackedFloat32Array(0.25000012, 1, 1.8025011, 1),
+"update": 0,
+"values": [Vector2(1, 0.75), Vector2(1, -1), Vector2(1, -1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PipeLeverTop:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.08, 0.18, 0.62, 0.72, 0.81, 0.82, 0.85, 0.9, 0.93),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(11, -26), Vector2(11, -11), Vector2(11, -3), Vector2(11, 7), Vector2(11, 7), Vector2(11, 6), Vector2(11, -4), Vector2(11, -5), Vector2(11, -12), Vector2(11, -20), Vector2(11, -25)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shake_cam"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PipeLever:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.84),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2uoea"]
+_data = {
+&"RESET": SubResource("Animation_v3et3"),
+&"pull": SubResource("Animation_mr25m")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnhug"]
+size = Vector2(6, 18)
+
+[node name="Pipe" type="Node2D" unique_id=1461174019]
+script = ExtResource("1_tp8ww")
+
+[node name="Graphics" type="Node2D" parent="." unique_id=836386356]
+script = ExtResource("2_lnhug")
+
+[node name="ComponentWriter" type="Node" parent="Graphics" unique_id=1178805578]
+script = ExtResource("4_tp8ww")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
+
+[node name="PipeBg" type="Sprite2D" parent="Graphics" unique_id=845824874]
+show_behind_parent = true
+texture = ExtResource("4_2uoea")
+
+[node name="Pipe" type="Sprite2D" parent="Graphics" unique_id=2102790657]
+z_index = 1
+texture = ExtResource("1_3qu6u")
+
+[node name="PipeLeverTop" type="Sprite2D" parent="Graphics" unique_id=1878779615]
+z_index = 1
+position = Vector2(11, -30)
+texture = ExtResource("5_v3et3")
+
+[node name="PipeLever" type="Sprite2D" parent="Graphics" unique_id=994881224]
+z_index = 1
+position = Vector2(11, -9)
+texture = ExtResource("2_q2vkm")
+offset = Vector2(0, -11)
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics" unique_id=1944538686]
+libraries/ = SubResource("AnimationLibrary_2uoea")
+
+[node name="Controller" type="Node2D" parent="." unique_id=1356887696]
+script = ExtResource("3_tp8ww")
+
+[node name="ComponentWriter" type="Node" parent="Controller" unique_id=237842279]
+script = ExtResource("4_tp8ww")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
+
+[node name="Pickup" type="Area2D" parent="Controller" unique_id=1369665477]
+position = Vector2(11, -16)
+script = ExtResource("3_5lvcx")
+dir = -1
+auto_picked = false
+min_velocity = 2.0
+metadata/_custom_type_script = "uid://cxllrkp7skdvq"
+
+[node name="ComponentWriter" type="Node" parent="Controller/Pickup" unique_id=1458385986]
+script = ExtResource("4_tp8ww")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/Pickup" unique_id=410277359]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_lnhug")
+
+[node name="CapsuleContainer" type="Node2D" parent="." unique_id=1743789923]
+script = ExtResource("10_vwfit")
+
+[node name="ComponentWriter" type="Node" parent="CapsuleContainer" unique_id=1840931302]
+script = ExtResource("4_tp8ww")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
+
+[node name="CapsuleAbovePos" type="Marker2D" parent="CapsuleContainer" unique_id=291873332]
+position = Vector2(-3, -27)
+
+[node name="CapsuleInPos" type="Marker2D" parent="CapsuleContainer" unique_id=1897830978]
+position = Vector2(-3, 17)
+
+[node name="CapsuleQuests" parent="CapsuleContainer" unique_id=1556365795 node_paths=PackedStringArray("above_marker", "in_marker") instance=ExtResource("10_ejywm")]
+unique_name_in_owner = true
+offset_left = -3.0
+offset_top = 17.0
+offset_right = -3.0
+offset_bottom = 17.0
+above_marker = NodePath("../CapsuleAbovePos")
+in_marker = NodePath("../CapsuleInPos")

@@ -13,7 +13,7 @@ gradient = SubResource("Gradient_fl2fe")
 width = 32
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e37le"]
-size = Vector2(96, 156)
+size = Vector2(96, 66)
 
 [node name="DropSpot" type="Node2D" unique_id=1040777669]
 script = ExtResource("1_fjhcm")
@@ -35,6 +35,19 @@ grow_vertical = 2
 rotation = -1.5707964
 texture = SubResource("GradientTexture1D_56h2t")
 
+[node name="LabelQuota" type="Label" parent="Graphics" unique_id=629054100]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 12.5
+offset_right = 20.0
+offset_bottom = 35.5
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Controller" type="Node2D" parent="." unique_id=1147260700]
 script = ExtResource("2_tgro8")
 
@@ -43,7 +56,7 @@ script = ExtResource("3_tgro8")
 metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
 
 [node name="Area2D" type="Area2D" parent="Controller" unique_id=281462095]
-position = Vector2(0, -14)
+position = Vector2(0, -70)
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/Area2D" unique_id=1240934909]

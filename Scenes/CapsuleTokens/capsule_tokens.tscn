@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://mh52be04e4tu"]
+
+[ext_resource type="PackedScene" uid="uid://c7gtxtlj3u4sv" path="res://Scenes/ButtonPar/button_par.tscn" id="1_3uu3a"]
+[ext_resource type="Script" uid="uid://b64cprh0ivbpy" path="res://Scenes/CapsuleTokens/capsule_tokens.gd" id="2_j8kjd"]
+[ext_resource type="Texture2D" uid="uid://c8ti1elo2c78k" path="res://Assets/capsule_tokens.png" id="3_6d7kx"]
+[ext_resource type="Script" uid="uid://xlaq1m44sfl3" path="res://Scenes/CapsuleTokens/graphics.gd" id="3_7j2u1"]
+[ext_resource type="Script" uid="uid://ccgp73emu25re" path="res://Scenes/CapsuleTokens/controller.gd" id="5_vpqnc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7j2u1"]
+size = Vector2(6, 14)
+
+[node name="CapsuleTokens" unique_id=1556365795 instance=ExtResource("1_3uu3a")]
+script = ExtResource("2_j8kjd")
+falling_t = 0.13
+active = true
+
+[node name="Graphics" parent="." index="0" unique_id=1544941131]
+script = ExtResource("3_7j2u1")
+hit_r_deg = 8.0
+
+[node name="CapsuleSpriteContainer" type="Node2D" parent="Graphics" index="1" unique_id=1427483696]
+
+[node name="CapsuleSprite" type="Sprite2D" parent="Graphics/CapsuleSpriteContainer" index="0" unique_id=111884361]
+unique_name_in_owner = true
+texture = ExtResource("3_6d7kx")
+offset = Vector2(0, -11)
+
+[node name="Controller" parent="." index="1" unique_id=865613728]
+script = ExtResource("5_vpqnc")
+
+[node name="Sliceable" parent="Controller" index="1" unique_id=632753328]
+position = Vector2(0, -11)
+
+[node name="CollisionShape2D" parent="Controller/Sliceable" index="1" unique_id=1125003320]
+shape = SubResource("RectangleShape2D_7j2u1")

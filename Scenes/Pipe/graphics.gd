@@ -14,6 +14,6 @@ func _on_lever_pulled() -> void:
 		animation_player.play("pull")
 
 func shake_cam() -> void:
-	if camera:
+	if camera && !parent.is_capsule_in():
 		camera.shake(10, 0.1)
 	

@@ -6,9 +6,11 @@ class_name Debug
 	set(v):
 		cash = v
 		G.cash = cash
+		
 @export var print_writing: bool = false
 @export var xp: int = 0
 @export var infinite_cash: bool = false
+@export var infinite_tokens: bool = false
 @export var complete_salad_goal: bool = false:
 	set(v):
 		complete_salad_goal = v

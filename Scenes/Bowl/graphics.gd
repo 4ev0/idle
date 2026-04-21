@@ -34,10 +34,10 @@ func _physics_process(delta: float) -> void:
 		if !parent.in_drop_spot():
 			if abs(bowl_sprite.rotation) <= 0:
 				return
+
 			bowl_sprite.rotation = lerp_angle(bowl_sprite.rotation, 0, 0.3)
 		else:
-			bowl_sprite.rotation = parent.angle
-	
+			bowl_sprite.rotation = lerp_angle(bowl_sprite.rotation, parent.angle, 0.5) 
 	
 func _on_spoon_entered() -> void:
 	spoon_in = true

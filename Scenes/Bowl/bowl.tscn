@@ -38,6 +38,13 @@ frame = 1
 texture = ExtResource("1_s1cxq")
 offset = Vector2(0, -10)
 
+[node name="DebugLabel" type="Label" parent="Graphics" unique_id=1586708060]
+unique_name_in_owner = true
+offset_left = 35.0
+offset_top = -24.0
+offset_right = 75.0
+offset_bottom = -1.0
+
 [node name="Controller" type="Node2D" parent="." unique_id=2047642695]
 script = ExtResource("3_m5hvg")
 

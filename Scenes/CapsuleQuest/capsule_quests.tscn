@@ -21,7 +21,7 @@ script = ExtResource("2_pe7y4")
 
 [node name="CapsuleSpriteContainer" type="Node2D" parent="Graphics" index="0" unique_id=1810944108]
 
-[node name="CapsuleQuest" type="Sprite2D" parent="Graphics/CapsuleSpriteContainer" index="0" unique_id=1178512522]
+[node name="CapsuleSprite" type="Sprite2D" parent="Graphics/CapsuleSpriteContainer" index="0" unique_id=1178512522]
 unique_name_in_owner = true
 texture = ExtResource("1_rm7hp")
 offset = Vector2(0, -7)

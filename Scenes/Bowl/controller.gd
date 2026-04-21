@@ -30,6 +30,10 @@ func _ready() -> void:
 		salad_manager.target_changed.connect(_on_target_weight_changed)
 	
 func _on_target_weight_changed(v: int) -> void:
+	if G.is_cursor_busy():
+		print(pickup.disabled)
+		await G.cursor_freed
+		
 	pickup.set_disabled(true)
 	pickup_spoon.set_disabled(true)
 
@@ -39,6 +43,7 @@ func _on_enough_weight() -> void:
 func _on_mixed() -> void:
 	pickup_spoon.set_disabled(true)
 	pickup.set_disabled(false)
+	parent.weight_v = salad_manager.weight
 	
 func _on_spoon_exited() -> void:
 	pickup_spoon.picked = false
@@ -61,6 +66,7 @@ func _physics_process(delta: float) -> void:
 				if mouse_pos.x <= bowl_left:
 					dir = -1
 	
+	%DebugLabel.text = "%0.2f\nasd0.2f" %[int(pickup.disabled)]
 	if !parent.in_drop_spot() || !ds_center_pos || !ds_half_width:
 		return
 	
@@ -68,6 +74,9 @@ func _physics_process(delta: float) -> void:
 	var distance: float = clampf(abs(ds_center_pos.x - mouse_x) - 10, 1, ds_half_width)
 	var ddir: int = -1 if abs(ds_center_pos.x) < abs(mouse_x) else 1
 	parent.angle = deg_to_rad(180 - (180 / ((ds_half_width) / distance) * ddir))
+	if parent.weight_v > 0:
+		if parent.angle > deg_to_rad(90) && parent.angle < deg_to_rad(270):
+			parent.weight_v -= 10
 	
 func _on_spoon_sliced() -> void:
 	change_spoon_state()

@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://b8yhyy3uu323t" path="res://Scenes/Game/coin_container.gd" id="9_nxex1"]
 [ext_resource type="Script" uid="uid://cs21nfd1heaxo" path="res://Scenes/Game/shop_product_manager.gd" id="10_lemb1"]
 [ext_resource type="Script" uid="uid://ctfu6bflfka6y" path="res://Scenes/Game/coin_label_container.gd" id="10_pa3qg"]
-[ext_resource type="Texture2D" uid="uid://hyipfcdhs45h" path="res://Assets/pipe2.png" id="11_fl2fe"]
+[ext_resource type="PackedScene" uid="uid://d17q8sbe5i8go" path="res://Scenes/Pipe2/pipe_2.tscn" id="11_56h2t"]
 [ext_resource type="Script" uid="uid://dm8ss63fr1bcb" path="res://Scenes/Game/telephone_upgrade.gd" id="11_ypmwd"]
 [ext_resource type="Script" uid="uid://bxdeoeiwqxngp" path="res://Scenes/RoomTransition/room_changer.gd" id="12_2lc0x"]
 [ext_resource type="Script" uid="uid://dtu4xjwa0w2yk" path="res://Scenes/Game/shop_tool_manager.gd" id="12_a6ftd"]
@@ -25,7 +25,7 @@
 [ext_resource type="Script" uid="uid://bw0iw5udc3pgu" path="res://Scripts/circle_manager.gd" id="14_8e3kh"]
 [ext_resource type="Texture2D" uid="uid://8wlbt80l5xls" path="res://Assets/map_table.png" id="15_7pdpw"]
 [ext_resource type="Resource" uid="uid://q2qh1h13hc5u" path="res://Resources/data_circle_tomato.tres" id="15_56qi8"]
-[ext_resource type="Script" uid="uid://dx8y26yhyg3o7" path="res://Scenes/Main/label_cash.gd" id="16_56qi8"]
+[ext_resource type="Script" uid="uid://dx8y26yhyg3o7" path="res://Scripts/UI/label_cash.gd" id="16_56qi8"]
 [ext_resource type="Texture2D" uid="uid://cv1y13pcmjetc" path="res://Assets/map_paper1.png" id="16_gqd4u"]
 [ext_resource type="Script" uid="uid://dtgxn3jo160qc" path="res://Scenes/Game/salad_progress.gd" id="17_d3jd4"]
 [ext_resource type="PackedScene" uid="uid://nh6exgy0yw48" path="res://Scenes/QuestList/quest_list.tscn" id="18_yox4t"]
@@ -35,6 +35,7 @@
 [ext_resource type="Script" uid="uid://b15qtudpk5sty" path="res://Scripts/pulse.gd" id="22_56h2t"]
 [ext_resource type="Script" uid="uid://do666p5l74tin" path="res://Scenes/Game/room_change_manager.gd" id="24_4ti5a"]
 [ext_resource type="Script" uid="uid://ulgcxexoha0b" path="res://Scenes/Game/salad_manager.gd" id="29_1l3pd"]
+[ext_resource type="Script" uid="uid://cnw7rvnjr6nr" path="res://Scripts/UI/label_tokens.gd" id="36_lcvqc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ypmwd"]
 shader = ExtResource("1_flgk0")
@@ -140,9 +141,8 @@ position = Vector2(-64, -2)
 [node name="CircleContainer" parent="Factory/RoomTable/Table" unique_id=973414043 instance=ExtResource("4_huoen")]
 position = Vector2(-160, -90)
 
-[node name="Pipe2" type="Sprite2D" parent="Factory/RoomTable" unique_id=1824837364]
-position = Vector2(47, -1)
-texture = ExtResource("11_fl2fe")
+[node name="Pipe2" parent="Factory/RoomTable" unique_id=582633063 instance=ExtResource("11_56h2t")]
+position = Vector2(48, 0)
 
 [node name="Pipe" parent="Factory/RoomTable" unique_id=1461174019 instance=ExtResource("8_oejk7")]
 position = Vector2(42, 0)
@@ -559,7 +559,7 @@ metadata/_custom_type_script = "uid://bw0iw5udc3pgu"
 
 [node name="RoomChangeManager" type="Node" parent="." unique_id=266613327 node_paths=PackedStringArray("initial_room")]
 script = ExtResource("24_4ti5a")
-initial_room = NodePath("../Factory/RoomSalad")
+initial_room = NodePath("../Factory/RoomTable")
 
 [node name="Timer" type="Timer" parent="RoomChangeManager" unique_id=606298939]
 wait_time = 0.6
@@ -571,15 +571,17 @@ one_shot = true
 
 [node name="LayerUI" type="CanvasLayer" parent="." unique_id=1244352334 groups=["g"]]
 
-[node name="LabelCash" type="RichTextLabel" parent="LayerUI" unique_id=2117241774]
-clip_contents = false
+[node name="VBoxContainer" type="VBoxContainer" parent="LayerUI" unique_id=1522079755]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -19.0
-offset_bottom = 23.0
+offset_left = -40.0
+offset_bottom = 40.0
 grow_horizontal = 0
-pivot_offset = Vector2(9, 12)
+
+[node name="LabelCash" type="RichTextLabel" parent="LayerUI/VBoxContainer" unique_id=2117241774]
+clip_contents = false
+layout_mode = 2
 bbcode_enabled = true
 text = "$1"
 fit_content = true
@@ -587,6 +589,17 @@ scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 script = ExtResource("16_56qi8")
+
+[node name="LabelTokens" type="RichTextLabel" parent="LayerUI/VBoxContainer" unique_id=993782472]
+clip_contents = false
+layout_mode = 2
+bbcode_enabled = true
+text = "O1"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+script = ExtResource("36_lcvqc")
 
 [editable path="Shop/ShopProductManager/ButtonShopTomatoBuy"]
 [editable path="Shop/ShopProductManager/ButtonShop10TomatoBut"]

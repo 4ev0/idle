@@ -53,20 +53,34 @@ var cash: int = 0:
 		cash = v
 		cash_updated.emit(cash)
 
+var tokens: int = 0:
+	set(v):
+		if v < tokens && nodes.debug.infinite_tokens:
+			v = tokens
+		
+		tokens = v
+		tokens_updated.emit(tokens)
+		
 var game_state: GameStates = GameStates.GAME:
 	set(v):
 		game_state = v
 		state_changed.emit(game_state)
 		print(GameStates.keys()[game_state])
 
-var cursor_carrying: Pickups = Pickups.NULL
+var cursor_carrying: Pickups = Pickups.NULL:
+	set(v):
+		cursor_carrying = v
+		if cursor_carrying == Pickups.NULL:
+			cursor_freed.emit()
 
 signal cash_updated(v: int)
+signal tokens_updated(v: int)
 signal main_ready
 signal lvl_uped
 signal chest_broken
 signal chest_closed
 signal state_changed(state: GameStates)
+signal cursor_freed
 
 func _ready() -> void:
 	ButtonCircleBuyGraphics.hidden_texture = load("uid://c1t58btrcikcl")
