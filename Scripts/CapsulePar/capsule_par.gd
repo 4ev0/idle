@@ -13,5 +13,5 @@ signal active_changed(enabled: bool, args: Variant)
 func set_active(v: bool) -> void:
 	if active == v:
 		return
-		
+	
 	active = v

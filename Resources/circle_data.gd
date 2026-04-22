@@ -6,3 +6,4 @@ class_name CircleData
 @export var cost: int = 0
 @export var xp: int = 8
 @export var color : Color = Color.WHITE
+@export var stage_weight: int = 5

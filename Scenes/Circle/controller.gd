@@ -7,6 +7,7 @@ var hit_ready: bool = true
 static var quest_manager: QuestManager
 static var manager: CircleManager
 static var coin_container: CoinContainer
+static var bowl: Bowl
 
 var sliceable: Sliceable
 
@@ -19,16 +20,27 @@ func _ready() -> void:
 		parent.visibility_changed.connect(_on_visibility_changed)
 	
 	parent.respawn_requested.connect(spawn)
+	parent.frame_updated.connect(_on_frame_updated)
 	spawn()
+	
+func _on_frame_updated(f: int) -> void:
+	bowl.weight += parent.data.stage_weight
 	
 func _on_visibility_changed() -> void:
 	sliceable.disabled = !parent.visible
 	
 func _on_sliced() -> void:
-	parent.value -= G.strength - parent.data.durability
+	var new_v: float = parent.value - G.strength - parent.data.durability
+	if new_v > 0:
+		var stage: int = parent.data.hp - (parent.data.hp / (parent.frame_count - parent.frame))
+		if new_v <= stage:
+			parent.frame += stage / new_v # wtf
+		
+	parent.value = new_v
 	parent.sliced.emit(get_global_mouse_position())
 
 func spawn() -> void:
+	parent.frame = 0
 	parent.show()
 	var grid: Grid = G.get_n("grid")
 	var target_cell_pos : Vector2 = grid.get_rand_free_cell()

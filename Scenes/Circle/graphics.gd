@@ -17,32 +17,37 @@ var stw: Tween
 @onready var hit_circle: HitCircle
 
 func _ready() -> void:
-	parent.value_updated.connect(_on_value_updated)
+	#parent.value_updated.connect(_on_value_updated)
 
 	parent.sliced.connect(_on_sliced)
 	parent.spawned.connect(_on_spawned)
 	parent.died.connect(_on_died)
+	parent.frame_count = sprite.sprite_frames.get_frame_count("default")
+	parent.frame_updated.connect(_on_frame_updated)
+	
+func _on_frame_updated(f: int) -> void:
+	sprite.frame = f 
+	tw = setup_tw(tw)
+	stw = setup_tw(stw)
+	
+	sprite.scale = Vector2(0.75, 1.2)
+	sprite_shadow.scale = Vector2(0.8, 1)
+	sprite.position = Vector2(0, -3)
+	tw.tween_property(sprite, "scale", Vector2.ONE, 0.15).set_ease(Tween.EASE_IN_OUT)
+	stw.tween_property(sprite_shadow, "scale", Vector2.ONE, 0.23).set_ease(Tween.EASE_IN_OUT)
+	tw.tween_property(sprite, "position", Vector2.ZERO, 0.23).set_ease(Tween.EASE_IN_OUT)
+	var p: GPUParticles2D = particles.get(sprite.frame) #todo: spawn particles outside of an object
+	if p:
+		p.restart()
+		p.emitting = true
+	
+	sprite_shadow.frame = sprite.frame
+	
 
 func _on_value_updated(new_v: float) -> void:
 	#todo: make more beautiful 
-	var vv: float = parent.data.hp - (parent.data.hp / (sprite.sprite_frames.get_frame_count("default") - sprite.frame))
-	if new_v <= vv:
-		sprite.frame += vv / new_v 
-		tw = setup_tw(tw)
-		stw = setup_tw(stw)
-		
-		sprite.scale = Vector2(0.75, 1.2)
-		sprite_shadow.scale = Vector2(0.8, 1)
-		sprite.position = Vector2(0, -3)
-		tw.tween_property(sprite, "scale", Vector2.ONE, 0.15).set_ease(Tween.EASE_IN_OUT)
-		stw.tween_property(sprite_shadow, "scale", Vector2.ONE, 0.23).set_ease(Tween.EASE_IN_OUT)
-		tw.tween_property(sprite, "position", Vector2.ZERO, 0.23).set_ease(Tween.EASE_IN_OUT)
-		var p: GPUParticles2D = particles.get(sprite.frame) #todo: spawn particles outside of an object
-		if p:
-			p.restart()
-			p.emitting = true
-		
-	sprite_shadow.frame = sprite.frame
+	var vv: float = parent.data.hp - (parent.data.hp / (parent.frame_count - sprite.frame))
+	#if new_v <= vv:
 
 func _on_sliced(mouse_pos: Vector2) -> void:
 	if parent.value >= parent.data.hp:

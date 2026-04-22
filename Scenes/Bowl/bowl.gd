@@ -23,6 +23,28 @@ var mix_v: int = 0:
 			mixed.emit()
 			spoon_exited.emit()
 		
+var max_weight: int = 500:
+	set(v):
+		if max_weight == v:
+			return
+			
+		max_weight = v
+		max_weight_changed.emit(max_weight)
+		
+var weight: int = 500:
+	set(v):
+		v = min(v, max_weight)
+		if weight == v:
+			return
+			
+		if v > weight || v == 0:
+			mix_v = 0
+			if !_bowl_picked:
+				controller.check_mixed()
+			
+		weight = v
+		weight_changed.emit(weight)
+	
 var _bowl_picked: bool = false
 var _in_drop_spot: bool = false:
 	set(v):
@@ -31,24 +53,23 @@ var _in_drop_spot: bool = false:
 			angle = 0
 			
 var angle: float = 0
-var weight_v: float = 0:
-	set(v):
-		if weight_v == 0 && v < weight_v:
-			return
-			
-		weight_v = max(0, v)
-		
-		if weight_v == 0:
-			mix_v = 0
-			controller.salad_manager.salad_submitted.emit()
 
+signal weight_changed(v: int)
+signal max_weight_changed(v: int)
 signal mix_value_changed(v: int)
 signal mixed
 signal spoon_entered
 signal spoon_exited
 signal bowl_picked
 signal bowl_placed
-signal salad_submitted
+
+func _enter_tree() -> void:
+	CircleController.bowl = self
+
+func _ready() -> void:
+	await G.main_ready
+	weight_changed.emit(weight)
+	max_weight_changed.emit(max_weight)
 
 func add_mix() -> void:
 	mix_v += mix_step

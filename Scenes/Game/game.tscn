@@ -30,9 +30,6 @@
 [ext_resource type="Script" uid="uid://dtgxn3jo160qc" path="res://Scenes/Game/salad_progress.gd" id="17_d3jd4"]
 [ext_resource type="PackedScene" uid="uid://nh6exgy0yw48" path="res://Scenes/QuestList/quest_list.tscn" id="18_yox4t"]
 [ext_resource type="PackedScene" uid="uid://b4eqy7h7l223e" path="res://Scenes/DropSpot/drop_spot.tscn" id="19_56h2t"]
-[ext_resource type="Texture2D" uid="uid://gm11tpma8xq0" path="res://Assets/down_pointer.png" id="20_diago"]
-[ext_resource type="Script" uid="uid://dblo1lf5nk1eb" path="res://Scenes/Game/down_pointer.gd" id="21_fl2fe"]
-[ext_resource type="Script" uid="uid://b15qtudpk5sty" path="res://Scripts/pulse.gd" id="22_56h2t"]
 [ext_resource type="Script" uid="uid://do666p5l74tin" path="res://Scenes/Game/room_change_manager.gd" id="24_4ti5a"]
 [ext_resource type="Script" uid="uid://ulgcxexoha0b" path="res://Scenes/Game/salad_manager.gd" id="29_1l3pd"]
 [ext_resource type="Script" uid="uid://cnw7rvnjr6nr" path="res://Scripts/UI/label_tokens.gd" id="36_lcvqc"]
@@ -298,19 +295,6 @@ texture = ExtResource("15_7pdpw")
 [node name="MapPaper1" type="Sprite2D" parent="Factory" unique_id=6714480]
 position = Vector2(394, 69)
 texture = ExtResource("16_gqd4u")
-
-[node name="DownPointer" type="Sprite2D" parent="Factory" unique_id=381002894]
-visible = false
-z_index = 1
-position = Vector2(210, 160)
-texture = ExtResource("20_diago")
-script = ExtResource("21_fl2fe")
-
-[node name="Pulse" type="Node" parent="Factory/DownPointer" unique_id=590867908]
-script = ExtResource("22_56h2t")
-min_v = 0.5
-duration = 1.0
-metadata/_custom_type_script = "uid://b15qtudpk5sty"
 
 [node name="Shop" type="Node2D" parent="." unique_id=893517563]
 unique_name_in_owner = true
@@ -578,6 +562,7 @@ anchor_right = 1.0
 offset_left = -40.0
 offset_bottom = 40.0
 grow_horizontal = 0
+theme_override_constants/separation = -7
 
 [node name="LabelCash" type="RichTextLabel" parent="LayerUI/VBoxContainer" unique_id=2117241774]
 clip_contents = false
@@ -594,7 +579,7 @@ script = ExtResource("16_56qi8")
 clip_contents = false
 layout_mode = 2
 bbcode_enabled = true
-text = "O1"
+text = "O0"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0

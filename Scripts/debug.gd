@@ -15,9 +15,9 @@ class_name Debug
 	set(v):
 		complete_salad_goal = v
 		if complete_salad_goal:
-			var sm: SaladManager = G.get_n("salad_manager")
-			if sm:
-				sm.weight = sm.target_weight
+			var dp: DropSpot = G.get_n("drop_spot")
+			if dp:
+				dp.weight = dp.target_weight
 
 @export_category("merge debug")
 @export var merge_type: CircleManager.CircleTypes
@@ -29,7 +29,6 @@ class_name Debug
 			if ck:
 				ck.merge_circles(merge_type)
 				
-
 func _enter_tree() -> void:
 	G.nodes.debug = self
 

@@ -47,16 +47,18 @@ var circle_atlas_textures: Dictionary = load("uid://d32wwffqfu8ui").textures
 var strength: float = 10
 var cash: int = 0:
 	set(v):
-		if v < cash && nodes.debug.infinite_cash:
-			v = cash
+		if v < cash && is_instance_valid(nodes.get("debug")):
+			if nodes.debug.infinite_cash:
+				v = cash
 			
 		cash = v
 		cash_updated.emit(cash)
 
 var tokens: int = 0:
 	set(v):
-		if v < tokens && nodes.debug.infinite_tokens:
-			v = tokens
+		if v < tokens && is_instance_valid(nodes.get("debug")):
+			if  nodes.debug.infinite_tokens:
+				v = tokens
 		
 		tokens = v
 		tokens_updated.emit(tokens)
@@ -81,6 +83,7 @@ signal chest_broken
 signal chest_closed
 signal state_changed(state: GameStates)
 signal cursor_freed
+signal salad_submitted
 
 func _ready() -> void:
 	ButtonCircleBuyGraphics.hidden_texture = load("uid://c1t58btrcikcl")

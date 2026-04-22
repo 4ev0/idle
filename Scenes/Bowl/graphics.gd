@@ -1,4 +1,5 @@
 extends Node2D
+class_name BowlGraphics
 
 const EXITED_SPOON_HEIGHT: float = -31
 
