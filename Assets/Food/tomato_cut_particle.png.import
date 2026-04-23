@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://doqsabc4sld2g"
-path="res://.godot/imported/tomato_cut_particle.png-aee29d7f7be7eec956608623f8938d49.ctex"
+path="res://.godot/imported/tomato_cut_particle.png-1b17be768276973b5a04225d4b5f3cfe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/tomato_cut_particle.png"
-dest_files=["res://.godot/imported/tomato_cut_particle.png-aee29d7f7be7eec956608623f8938d49.ctex"]
+source_file="res://Assets/Food/tomato_cut_particle.png"
+dest_files=["res://.godot/imported/tomato_cut_particle.png-1b17be768276973b5a04225d4b5f3cfe.ctex"]
 
 [params]
 

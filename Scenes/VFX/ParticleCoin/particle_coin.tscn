@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d4fdx4i465f84" path="res://Assets/coin_silver.png" id="1_dh34t"]
 
 [node name="ParticleCoin" type="Node2D" unique_id=1076028724]
+y_sort_enabled = true
 script = ExtResource("1_5rnhj")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=149975460]
@@ -15,4 +16,6 @@ texture = ExtResource("1_dh34t")
 texture = ExtResource("1_dh34t")
 
 [node name="CoinSilver" type="Sprite2D" parent="." unique_id=33679943]
+z_index = 3
+y_sort_enabled = true
 texture = ExtResource("1_dh34t")

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AllCircleData" format=3 uid="uid://b2lec44doso4w"]
+
+[ext_resource type="Script" uid="uid://64ocepqsgtt4" path="res://Resources/circle_data.gd" id="1_t33o1"]
+[ext_resource type="Script" uid="uid://bsd2l2hk0356l" path="res://Resources/all_circle_data.gd" id="2_je15q"]
+[ext_resource type="Resource" uid="uid://q2qh1h13hc5u" path="res://Resources/data_circle_tomato.tres" id="2_tebky"]
+[ext_resource type="Resource" uid="uid://cavqoy3wyepf7" path="res://Resources/data_circle_carrot.tres" id="3_qkbe1"]
+
+[resource]
+script = ExtResource("2_je15q")
+all_data = Dictionary[int, ExtResource("1_t33o1")]({
+1: ExtResource("2_tebky"),
+2: ExtResource("3_qkbe1")
+})
+metadata/_custom_type_script = "uid://bsd2l2hk0356l"

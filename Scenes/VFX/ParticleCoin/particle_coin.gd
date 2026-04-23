@@ -21,6 +21,8 @@ func _ready() -> void:
 	tw.tween_property(sprite, "position:y", -25, 0.3).set_ease(Tween.EASE_OUT)
 	tw.tween_property(sprite, "position:y", 0, 0.35).set_ease(Tween.EASE_IN).set_delay(0.53)
 	tw.tween_property(sprite, "scale:x", 0.35, 0.35).set_ease(Tween.EASE_IN).set_delay(0.5)
+	tw.tween_callback(func() -> void:
+		sprite.z_index = 2).set_delay(0.67)
 	tw.tween_property(self, "scale_b", 1.2, 0.35).set_ease(Tween.EASE_IN).set_delay(0.53)
 	
 	tw.set_parallel(false)

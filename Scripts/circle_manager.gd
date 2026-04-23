@@ -4,20 +4,21 @@ class_name CircleManager
 enum CircleTypes {
 	NULL,
 	TOMATO,
-	RED,
+	CARROT,
 	CHEST }
 
 @onready var container: CircleContainer = G.get_n("circle_container")
 @export var circle_list: Dictionary[CircleTypes, int] = {}
 var circles_to_add: Array[CircleTypes] = []
 var last_circle_list: Dictionary[CircleTypes, int] = {}
-@export var circle_data: Dictionary[CircleTypes, Resource]
 var stored_circles: Dictionary[CircleTypes, Array]
 var spawned_circles: Dictionary[CircleTypes, Array]
 @export var circles_on_table: int = 1:
 	set(v):
 		circles_on_table = v
 		spawn_circles()
+
+static var circle_data: Dictionary[CircleTypes, CircleData]
 
 signal circle_spawned(type: CircleTypes)
 signal circle_died(type: CircleTypes)
@@ -47,10 +48,37 @@ func pick_circle() -> CircleTypes:
 	
 	return target_circle
 
+func spawn_circle_at(_target_circle: CircleTypes = 0, global_pos: Vector2 = Vector2.ZERO, ignore_crate: bool = false) -> void:
+	var target_circle: CircleTypes = _target_circle
+
+	if G.game_state != G.GameStates.GAME:
+		return
+		
+	if target_circle == 0:
+		target_circle = pick_circle()
+	
+	if target_circle == 0:
+		if ignore_crate:
+			target_circle = 1
+		else:
+			return
+	
+	circle_spawned.emit(target_circle)
+	await get_tree().create_timer(0.1).timeout
+	if stored_circles[target_circle].size() > 0:
+		stored_circles[target_circle][0].respawn_requested.emit()
+		stored_circles[target_circle].remove_at(0)
+	else:
+		container.add_circle(target_circle, 6, global_pos)
+	
+	if !ignore_crate:
+		update_to_add_list(target_circle)
+
 func spawn_circles(_target_circle: CircleTypes = 0, amount: int = 0) -> void:
 	amount = max(0, circles_on_table - get_spawned_circle_amount()) if amount == 0 else amount
 	for i in range(amount):
 		var target_circle: CircleTypes = _target_circle
+
 		if G.game_state != G.GameStates.GAME:
 			break
 			
@@ -68,7 +96,6 @@ func spawn_circles(_target_circle: CircleTypes = 0, amount: int = 0) -> void:
 		else:
 			container.add_circle(target_circle)
 		
-		update_to_add_list(target_circle)
 		
 func merge_circles(type: CircleTypes) -> bool:
 	if CircleTypes.size()-1 < type + 1:

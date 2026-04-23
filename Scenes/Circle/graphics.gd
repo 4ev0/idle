@@ -2,14 +2,11 @@ extends Node2D
 class_name CircleGraphics
 
 var parent: Circle
-@onready var texture_progress_bar: TextureProgressBar = $TextureProgressBar
-@onready var texture_scale: Vector2 = texture_progress_bar.size
-@onready var sprite: AnimatedSprite2D = get_node("AnimatedSprite2D")
-@onready var sprite_shadow: Node2D = get_node("AnimatedSprite2D2")
-@onready var gpu_particles_2d: GPUParticles2D = get_node("GPUParticles2D")
-@onready var particles: Dictionary = {1 : get_node("GPUParticles2D"), 2 : get_node("GPUParticles2D2") }
-
-var slide_particle_scene: PackedScene = load("uid://b6gitxgsj51kg")
+@onready var sprite: Sprite2D = $Sprite
+@onready var sprite_shadow: Sprite2D = $SpriteShadow
+var juice_particle_scene: PackedScene = load("uid://b6gitxgsj51kg")
+static var slice_particle_container: CircleSliceParticleContainer
+static var pop_particle_container: CirclePopParticleContainer
 
 var tw: Tween
 var stw: Tween
@@ -17,16 +14,21 @@ var stw: Tween
 @onready var hit_circle: HitCircle
 
 func _ready() -> void:
-	#parent.value_updated.connect(_on_value_updated)
-
+	var type: CircleManager.CircleTypes = parent.type
+	sprite.texture = G.circle_atlas_textures[type].duplicate()
+	sprite_shadow.texture = sprite.texture
+	parent.frame_count = G.circle_frames[type]
+	
 	parent.sliced.connect(_on_sliced)
 	parent.spawned.connect(_on_spawned)
 	parent.died.connect(_on_died)
-	parent.frame_count = sprite.sprite_frames.get_frame_count("default")
 	parent.frame_updated.connect(_on_frame_updated)
 	
 func _on_frame_updated(f: int) -> void:
-	sprite.frame = f 
+	sprite.texture.region.position = Vector2(0, 16 * f)
+	if f == parent.frame_count || f == 0:
+		return
+		
 	tw = setup_tw(tw)
 	stw = setup_tw(stw)
 	
@@ -36,30 +38,18 @@ func _on_frame_updated(f: int) -> void:
 	tw.tween_property(sprite, "scale", Vector2.ONE, 0.15).set_ease(Tween.EASE_IN_OUT)
 	stw.tween_property(sprite_shadow, "scale", Vector2.ONE, 0.23).set_ease(Tween.EASE_IN_OUT)
 	tw.tween_property(sprite, "position", Vector2.ZERO, 0.23).set_ease(Tween.EASE_IN_OUT)
-	var p: GPUParticles2D = particles.get(sprite.frame) #todo: spawn particles outside of an object
-	if p:
-		p.restart()
-		p.emitting = true
+	slice_particle_container.add_particle(parent.type, f, parent.global_position)
 	
-	sprite_shadow.frame = sprite.frame
-	
-
-func _on_value_updated(new_v: float) -> void:
-	#todo: make more beautiful 
-	var vv: float = parent.data.hp - (parent.data.hp / (parent.frame_count - sprite.frame))
-	#if new_v <= vv:
-
 func _on_sliced(mouse_pos: Vector2) -> void:
 	if parent.value >= parent.data.hp:
 		return
-		
+	
 	spawn_juice()
 	var hc: HitCircle = HitCircle.new()
 	hc.global_position = global_position.direction_to(mouse_pos) * parent.radius
 	add_child(hc)
 
 func _on_spawned() -> void:
-	sprite.frame = 0
 	tw = setup_tw(tw)
 	stw = setup_tw(stw)
 	
@@ -87,16 +77,13 @@ func setup_tw(target: Tween) -> Tween:
 	return target
 
 func _on_died() -> void:
-	var e: EffectPop = EffectPop.new()
-	e.color = Color("#b91d1d")
-	e.global_position = global_position
-	G.get_n("main").add_child(e)
+	pop_particle_container.add_particle(parent.data.paritcle_color, global_position)
 
 func spawn_juice() -> void:
 	var group = G.get_n("juice_group")
 	if group:
-		var p: JuiceParticle = slide_particle_scene.instantiate()
-		p.modulate = Color("#b91d1d")
+		var p: JuiceParticle = juice_particle_scene.instantiate()
+		p.modulate = parent.data.paritcle_color
 		p.direction = global_position.direction_to(get_global_mouse_position())
 		p.global_position = global_position
 		group.add_child(p)

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CircleSliceParticles" format=3 uid="uid://dsv1xvj714ci7"]
+
+[ext_resource type="Script" uid="uid://3x082qu5bri6" path="res://Resources/res_circle_slice_particles.gd" id="1_4q2cr"]
+[ext_resource type="PackedScene" uid="uid://bsku8rn34vfib" path="res://Scenes/VFX/CircleSliceParticles/slice_particle_tomato.tscn" id="1_dlx1a"]
+[ext_resource type="PackedScene" uid="uid://cjjwxtmhpkuu1" path="res://Scenes/VFX/CircleSliceParticles/slice_particle_carrot.tscn" id="2_sc2wi"]
+
+[resource]
+script = ExtResource("1_4q2cr")
+particle_scenes = Dictionary[int, PackedScene]({
+1: ExtResource("1_dlx1a"),
+2: ExtResource("2_sc2wi")
+})
+metadata/_custom_type_script = "uid://3x082qu5bri6"

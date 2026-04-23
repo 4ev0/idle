@@ -1,15 +1,25 @@
 [gd_resource type="Resource" script_class="CircleTextures" format=3 uid="uid://d32wwffqfu8ui"]
 
 [ext_resource type="Script" uid="uid://cjls4beapmh3y" path="res://Resources/textures_circle.gd" id="1_qojxh"]
-[ext_resource type="Texture2D" uid="uid://dtsg4nm15dhei" path="res://Assets/tomato.png" id="2_wscsn"]
+[ext_resource type="Texture2D" uid="uid://dtsg4nm15dhei" path="res://Assets/Food/tomato.png" id="2_wscsn"]
+[ext_resource type="Texture2D" uid="uid://gqpold1w1pa1" path="res://Assets/Food/carrot.png" id="3_qdfh8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qdfh8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wscsn"]
 atlas = ExtResource("2_wscsn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lshwo"]
+atlas = ExtResource("3_qdfh8")
 region = Rect2(0, 0, 16, 16)
 
 [resource]
 script = ExtResource("1_qojxh")
 textures = Dictionary[int, AtlasTexture]({
-1: SubResource("AtlasTexture_qdfh8")
+1: SubResource("AtlasTexture_wscsn"),
+2: SubResource("AtlasTexture_lshwo")
+})
+textures_frames = Dictionary[int, int]({
+1: 3,
+2: 5
 })
 metadata/_custom_type_script = "uid://cjls4beapmh3y"

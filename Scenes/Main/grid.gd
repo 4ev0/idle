@@ -20,6 +20,9 @@ var free_cells : Array[Vector2i]:
 				
 var occupied_cells: Array[Vector2i] = []
 
+func _enter_tree() -> void:
+	CircleController.grid = self
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey && event.is_pressed() && event.keycode == KEY_H:
 		graphics.visible = !graphics.visible

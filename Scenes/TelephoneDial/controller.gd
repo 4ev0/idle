@@ -9,10 +9,10 @@ var parent: TelephoneDial
 @onready var submission_area: Area2D = $SubmissionArea
 var init_mouse_pos: Vector2
 var button_number: int = -1
-var spin: bool = false
 var tw: Tween
 
 func _ready() -> void:
+	set_physics_process(false)
 	DialButtonArea.controller = self
 	for a in button_container.get_children():
 		if a is DialButtonArea:
@@ -23,14 +23,14 @@ func _ready() -> void:
 	parent.disable.connect(_on_disabled)
 	
 func _physics_process(delta: float) -> void:
-	if !spin:
-		return
-		
 	var ang: float = init_mouse_pos.angle_to(get_local_mouse_position())
 	button_container.rotation = ang
 	#queue_redraw()
 
 func _on_button_area_entered(number: int) -> void:
+	if G.game_state != G.GameStates.TELEPHONE_UPGRADE:
+		return
+		
 	if parent.focused:
 		return
 
@@ -39,7 +39,7 @@ func _on_button_area_entered(number: int) -> void:
 	
 	button_number = number
 	parent.focused = true
-	spin = true
+	set_physics_process(true)
 	button_container.rotation = 0
 	init_mouse_pos = get_local_mouse_position()
 
@@ -53,10 +53,9 @@ func _on_dial_area_exited(area: Area2D) -> void:
 		return
 		
 	rotate_back()
-	parent.focused = false
 
 func rotate_back() -> void:
-	spin = false
+	set_physics_process(false)
 	button_number = -1
 	set_buttons_disabled(true)
 	if tw:

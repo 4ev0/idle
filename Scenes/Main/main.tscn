@@ -23,23 +23,15 @@ fill_from = Vector2(0.5, 0.5)
 metadata/_snap_enabled = true
 
 [node name="Main" type="Node2D" unique_id=1507799017]
+y_sort_enabled = true
 script = ExtResource("1_lixft")
 
 [node name="Initializer" type="Node" parent="." unique_id=668347709]
 script = ExtResource("2_qw60k")
 metadata/_custom_type_script = "uid://xnv2kgpno3yr"
 
-[node name="Debug" type="Node" parent="." unique_id=530505277]
+[node name="Debug" type="Node2D" parent="." unique_id=853221567]
 script = ExtResource("3_p6jpk")
-start_circles = Dictionary[int, int]({
-1: 0
-})
-cash = 50
-xp = 100
-infinite_cash = true
-complete_salad_goal = true
-merge_type = 2
-metadata/_custom_type_script = "uid://boaom8khtl786"
 
 [node name="VisualController" type="Node" parent="." unique_id=351351275 groups=["g"]]
 script = ExtResource("2_y3v7k")

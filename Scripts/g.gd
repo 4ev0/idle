@@ -6,6 +6,7 @@ var window: Window
 enum Pickups {
 	NULL,
 	HANDSET,
+	EXIT_HANDSET,
 	BOWL
 }
 
@@ -42,7 +43,9 @@ var nodes: Dictionary = {}
 		#
 #var lvls: Array[int] = [100, 200, 300, 400, 500, 600, 700, 800]
 
-var circle_atlas_textures: Dictionary = load("uid://d32wwffqfu8ui").textures
+var circle_atlas_textures: Dictionary
+var circle_frames: Dictionary
+var particle_containers: Dictionary
 
 var strength: float = 10
 var cash: int = 0:
@@ -65,6 +68,9 @@ var tokens: int = 0:
 		
 var game_state: GameStates = GameStates.GAME:
 	set(v):
+		if v == game_state:
+			return
+			
 		game_state = v
 		state_changed.emit(game_state)
 		print(GameStates.keys()[game_state])
@@ -87,6 +93,10 @@ signal salad_submitted
 
 func _ready() -> void:
 	ButtonCircleBuyGraphics.hidden_texture = load("uid://c1t58btrcikcl")
+	CircleManager.circle_data = load("uid://b2lec44doso4w").all_data
+	var circle_texture_res: CircleTextures = load("uid://d32wwffqfu8ui")
+	circle_atlas_textures = circle_texture_res.textures
+	circle_frames = circle_texture_res.textures_frames
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey && event.is_pressed():

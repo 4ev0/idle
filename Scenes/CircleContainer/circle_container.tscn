@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://pq5f1qp1sbkg" path="res://Scenes/CircleContainer/circle_container.gd" id="1_0shn1"]
 [ext_resource type="Resource" uid="uid://q2qh1h13hc5u" path="res://Resources/data_circle_tomato.tres" id="2_faldd"]
-[ext_resource type="Resource" uid="uid://cavqoy3wyepf7" path="res://Resources/data_circle_red.tres" id="3_rx151"]
+[ext_resource type="Resource" uid="uid://cavqoy3wyepf7" path="res://Resources/data_circle_carrot.tres" id="3_rx151"]
 [ext_resource type="Resource" uid="uid://cp6bui6k0lvya" path="res://Resources/data_circle_chest.tres" id="4_faldd"]
 
 [node name="CircleContainer" type="Node2D" unique_id=973414043 groups=["g"]]

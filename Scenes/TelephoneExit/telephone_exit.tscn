@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://valh7nveljwd"]
+
+[ext_resource type="Script" uid="uid://cxllrkp7skdvq" path="res://Scripts/pickup_component.gd" id="1_7rp30"]
+[ext_resource type="Script" uid="uid://csuaq46pfk4v5" path="res://Scenes/TelephoneExit/telephone_exit.gd" id="1_k1f7y"]
+[ext_resource type="Script" uid="uid://bhj06dl8je485" path="res://Scenes/TelephoneExit/controller.gd" id="2_ib68e"]
+[ext_resource type="Script" uid="uid://bdfxxarh3ap7g" path="res://Scripts/component_writer.gd" id="4_w6qqv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e5os7"]
+size = Vector2(90, 12)
+
+[node name="TelephoneExit" type="Node2D" unique_id=665212851]
+script = ExtResource("1_k1f7y")
+
+[node name="Controller" type="Node2D" parent="." unique_id=957847986]
+script = ExtResource("2_ib68e")
+
+[node name="ComponentWriter" type="Node" parent="Controller" unique_id=874959837]
+script = ExtResource("4_w6qqv")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
+
+[node name="Pickup" type="Area2D" parent="Controller" unique_id=1081353788]
+monitorable = false
+script = ExtResource("1_7rp30")
+dir = -1
+min_velocity = 0.7
+working_states = Array[int]([2])
+metadata/_custom_type_script = "uid://cxllrkp7skdvq"
+
+[node name="ComponentWriter" type="Node" parent="Controller/Pickup" unique_id=529996609]
+script = ExtResource("4_w6qqv")
+metadata/_custom_type_script = "uid://bdfxxarh3ap7g"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/Pickup" unique_id=854878217]
+shape = SubResource("RectangleShape2D_e5os7")
+
+[node name="Label" type="Label" parent="Controller" unique_id=61499448]
+offset_left = -13.0
+offset_top = 22.0
+offset_right = 27.0
+offset_bottom = 45.0
+
+[node name="MarkerExit" type="Marker2D" parent="." unique_id=1860878552]
+position = Vector2(0, 38)

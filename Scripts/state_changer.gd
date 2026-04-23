@@ -14,6 +14,8 @@ func _ready() -> void:
 func _on_state_changed(state: G.GameStates) -> void:
 	if state != target_state:
 		hide()
+	else:
+		show()
 	
 func _on_visibility_changed() -> void:
 	if visible:

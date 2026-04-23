@@ -10,3 +10,7 @@ var disabled: bool = true:
 
 signal button_submitted
 signal disable(enabled: bool)
+
+func _ready() -> void:
+	var par: Node2D = get_parent()
+	par.visibility_changed.connect(Callable(func() -> void: disabled = !par.visible))

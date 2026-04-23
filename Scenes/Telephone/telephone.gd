@@ -7,7 +7,8 @@ var handset_y: float = 0:
 		if v == max_handset_y:
 			handset_y = 0
 			picked = false
-			handset_picked.emit()
+			G.game_state = G.GameStates.TELEPHONE_UPGRADE
+			telephone_used.emit()
 		else:
 			handset_y = v
 			
@@ -17,5 +18,8 @@ var picked: bool = false:
 	set(v):
 		picked = v
 		G.set_cursor_carrying(G.Pickups.HANDSET, picked)
+		if picked:
+			handset_picked.emit()
 
+signal telephone_used
 signal handset_picked

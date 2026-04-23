@@ -16,15 +16,15 @@
 [ext_resource type="Script" uid="uid://cs21nfd1heaxo" path="res://Scenes/Game/shop_product_manager.gd" id="10_lemb1"]
 [ext_resource type="Script" uid="uid://ctfu6bflfka6y" path="res://Scenes/Game/coin_label_container.gd" id="10_pa3qg"]
 [ext_resource type="PackedScene" uid="uid://d17q8sbe5i8go" path="res://Scenes/Pipe2/pipe_2.tscn" id="11_56h2t"]
-[ext_resource type="Script" uid="uid://dm8ss63fr1bcb" path="res://Scenes/Game/telephone_upgrade.gd" id="11_ypmwd"]
 [ext_resource type="Script" uid="uid://bxdeoeiwqxngp" path="res://Scenes/RoomTransition/room_changer.gd" id="12_2lc0x"]
 [ext_resource type="Script" uid="uid://dtu4xjwa0w2yk" path="res://Scenes/Game/shop_tool_manager.gd" id="12_a6ftd"]
 [ext_resource type="PackedScene" uid="uid://q5a621f3j2mg" path="res://Scenes/TelephoneDial/telephone_dial.tscn" id="12_ypmwd"]
 [ext_resource type="Script" uid="uid://bvykrgvjvjva" path="res://Scenes/Game/quest_manager.gd" id="14_2vowc"]
 [ext_resource type="PackedScene" uid="uid://by3fuhgk5x2x1" path="res://Scenes/Bowl/bowl.tscn" id="14_3gqeb"]
 [ext_resource type="Script" uid="uid://bw0iw5udc3pgu" path="res://Scripts/circle_manager.gd" id="14_8e3kh"]
+[ext_resource type="Script" uid="uid://d32nro3ahdu5e" path="res://Scenes/Game/circle_slice_particle_container.gd" id="14_56h2t"]
+[ext_resource type="Script" uid="uid://bfycn78btngje" path="res://Scenes/Game/circle_pop_particle_container.gd" id="14_fl2fe"]
 [ext_resource type="Texture2D" uid="uid://8wlbt80l5xls" path="res://Assets/map_table.png" id="15_7pdpw"]
-[ext_resource type="Resource" uid="uid://q2qh1h13hc5u" path="res://Resources/data_circle_tomato.tres" id="15_56qi8"]
 [ext_resource type="Script" uid="uid://dx8y26yhyg3o7" path="res://Scripts/UI/label_cash.gd" id="16_56qi8"]
 [ext_resource type="Texture2D" uid="uid://cv1y13pcmjetc" path="res://Assets/map_paper1.png" id="16_gqd4u"]
 [ext_resource type="Script" uid="uid://dtgxn3jo160qc" path="res://Scenes/Game/salad_progress.gd" id="17_d3jd4"]
@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://b4eqy7h7l223e" path="res://Scenes/DropSpot/drop_spot.tscn" id="19_56h2t"]
 [ext_resource type="Script" uid="uid://do666p5l74tin" path="res://Scenes/Game/room_change_manager.gd" id="24_4ti5a"]
 [ext_resource type="Script" uid="uid://ulgcxexoha0b" path="res://Scenes/Game/salad_manager.gd" id="29_1l3pd"]
+[ext_resource type="PackedScene" uid="uid://valh7nveljwd" path="res://Scenes/TelephoneExit/telephone_exit.tscn" id="29_fl2fe"]
 [ext_resource type="Script" uid="uid://cnw7rvnjr6nr" path="res://Scripts/UI/label_tokens.gd" id="36_lcvqc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ypmwd"]
@@ -82,6 +83,7 @@ corner_radius_bottom_right = 3
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i1e5p"]
 
 [node name="Game" type="Node2D" unique_id=435544845]
+y_sort_enabled = true
 
 [node name="QuestManager" type="Node" parent="." unique_id=189391783 groups=["g"]]
 script = ExtResource("14_2vowc")
@@ -91,13 +93,16 @@ script = ExtResource("29_1l3pd")
 
 [node name="Factory" type="Node2D" parent="." unique_id=759195891]
 unique_name_in_owner = true
+y_sort_enabled = true
 script = ExtResource("1_vifcx")
 
 [node name="RoomTable" type="Node2D" parent="Factory" unique_id=2106561433]
+y_sort_enabled = true
 position = Vector2(160, 90)
 script = ExtResource("2_pmm7v")
 
 [node name="ColorRect" type="ColorRect" parent="Factory/RoomTable" unique_id=600841154]
+z_index = -1
 offset_left = -168.0
 offset_top = -98.0
 offset_right = 184.0
@@ -105,6 +110,7 @@ offset_bottom = 94.0
 color = Color(0.09019608, 0.09019608, 0.09019608, 1)
 
 [node name="TextureRect" type="TextureRect" parent="Factory/RoomTable" unique_id=1821756432]
+z_index = -1
 material = SubResource("ShaderMaterial_ypmwd")
 offset_left = -165.0
 offset_top = -94.0
@@ -121,6 +127,7 @@ position = Vector2(119, -17)
 [node name="Table" type="Node2D" parent="Factory/RoomTable" unique_id=1003166676]
 
 [node name="SpriteTable" type="Sprite2D" parent="Factory/RoomTable/Table" unique_id=1223654119]
+z_index = -1
 position = Vector2(-64, -2)
 texture = ExtResource("2_vifcx")
 
@@ -148,12 +155,23 @@ position = Vector2(42, 0)
 position = Vector2(-160, -90)
 script = ExtResource("9_nxex1")
 
+[node name="CirclePopParticleContainer" type="Node2D" parent="Factory/RoomTable" unique_id=1553369051]
+z_index = 1
+position = Vector2(-160, -90)
+script = ExtResource("14_fl2fe")
+
+[node name="CircleSliceParticleContainer" type="Node2D" parent="Factory/RoomTable" unique_id=95350127]
+position = Vector2(-160, -90)
+script = ExtResource("14_56h2t")
+
 [node name="CoinLabelContainer" type="Node2D" parent="Factory/RoomTable" unique_id=1116755003]
+z_index = 2
 position = Vector2(-160, -90)
 script = ExtResource("10_pa3qg")
 
 [node name="QuestList" parent="Factory/RoomTable" unique_id=1984024753 instance=ExtResource("18_yox4t")]
 visible = false
+z_index = 2
 offset_left = -134.0
 offset_top = -67.0
 offset_right = -6.0
@@ -221,6 +239,7 @@ position = Vector2(32, 10)
 position = Vector2(-48, 35)
 
 [node name="SaladProgress" type="Control" parent="Factory/RoomSalad" unique_id=629217114]
+z_index = 3
 layout_mode = 3
 anchors_preset = 0
 offset_left = -160.0
@@ -518,7 +537,7 @@ script = ExtResource("5_ciybh")
 [node name="TelephoneUpgrade" type="Node2D" parent="." unique_id=572736264]
 unique_name_in_owner = true
 visible = false
-script = ExtResource("11_ypmwd")
+script = ExtResource("1_vifcx")
 target_state = 2
 
 [node name="ColorRect" type="ColorRect" parent="TelephoneUpgrade" unique_id=1234066815]
@@ -529,15 +548,15 @@ offset_bottom = 209.0
 color = Color(0.10747976, 0.10747973, 0.10747973, 1)
 
 [node name="TelephoneDial" parent="TelephoneUpgrade" unique_id=239160478 instance=ExtResource("12_ypmwd")]
-position = Vector2(270, 92)
+position = Vector2(270, 132)
+
+[node name="TelephoneExit" parent="TelephoneUpgrade" unique_id=665212851 instance=ExtResource("29_fl2fe")]
+position = Vector2(258, 53)
 
 [node name="CircleManager" type="Node" parent="." unique_id=1498096980 groups=["g"]]
 script = ExtResource("14_8e3kh")
 circle_list = Dictionary[int, int]({
 1: 10
-})
-circle_data = Dictionary[int, Resource]({
-1: ExtResource("15_56qi8")
 })
 metadata/_custom_type_script = "uid://bw0iw5udc3pgu"
 

@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://cjjwxtmhpkuu1"]
+
+[ext_resource type="Script" uid="uid://6ivdq4qy6mvf" path="res://Scenes/VFX/CircleSliceParticles/slice_particle.gd" id="1_18fgw"]
+[ext_resource type="Texture2D" uid="uid://bghleql8b60e8" path="res://Assets/Food/carrot_cut_particle.png" id="2_7lgcs"]
+[ext_resource type="Texture2D" uid="uid://gqpold1w1pa1" path="res://Assets/Food/carrot.png" id="3_7lgcs"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_18fgw"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 17.84
+initial_velocity_min = 99.009995
+initial_velocity_max = 128.70999
+angular_velocity_min = -42.770016
+angular_velocity_max = 57.029984
+gravity = Vector3(0, 240, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gn8ts"]
+atlas = ExtResource("3_7lgcs")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="Curve" id="Curve_f1y74"]
+_limits = [0.0, 1.4, 0.0, 1.0]
+_data = [Vector2(0, 1.4), 0.0, 0.0, 0, 0, Vector2(0.11904761, 1), -2.0293753, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_5eoas"]
+_data = [Vector2(0, 0.46774197), 0.0, 4.2580643, 0, 0, Vector2(0.52164507, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_2gamo"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_5s741"]
+curve_x = SubResource("Curve_f1y74")
+curve_y = SubResource("Curve_5eoas")
+curve_z = SubResource("Curve_2gamo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_43fqj"]
+particle_flag_disable_z = true
+angle_min = -65.19999
+angle_max = 59.80001
+direction = Vector3(0, -1, 0)
+spread = 17.84
+initial_velocity_min = 99.009995
+initial_velocity_max = 128.70999
+angular_velocity_min = -42.770016
+angular_velocity_max = 57.029984
+gravity = Vector3(0, 270, 0)
+scale_curve = SubResource("CurveXYZTexture_5s741")
+
+[node name="SliceParticleCarrot" type="Node2D" unique_id=221233433]
+script = ExtResource("1_18fgw")
+type = 2
+repeat_last = true
+max_repeat = 5
+metadata/_custom_type_script = "uid://6ivdq4qy6mvf"
+
+[node name="1" type="GPUParticles2D" parent="." unique_id=683610493]
+emitting = false
+amount = 1
+texture = ExtResource("2_7lgcs")
+lifetime = 2.0
+one_shot = true
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_18fgw")
+
+[node name="2" type="GPUParticles2D" parent="." unique_id=1595863040]
+emitting = false
+amount = 1
+texture = SubResource("AtlasTexture_gn8ts")
+lifetime = 2.0
+one_shot = true
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_43fqj")

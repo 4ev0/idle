@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name Debug
 
 @export var start_circles: Dictionary[CircleManager.CircleTypes, int]
@@ -28,6 +28,13 @@ class_name Debug
 			var ck: CircleContainer = G.get_n("circle_container")
 			if ck:
 				ck.merge_circles(merge_type)
+				
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey && event.is_pressed():
+		match event.keycode:
+			KEY_A:
+				G.get_n("circle_manager").spawn_circle_at(2, get_global_mouse_position(), true)
+				
 				
 func _enter_tree() -> void:
 	G.nodes.debug = self

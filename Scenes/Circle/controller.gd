@@ -4,10 +4,12 @@ class_name CircleController
 var parent: Circle
 var mouse_in: bool = false
 var hit_ready: bool = true
+var stage_buffer: float = 0
 static var quest_manager: QuestManager
 static var manager: CircleManager
 static var coin_container: CoinContainer
 static var bowl: Bowl
+static var grid: Grid
 
 var sliceable: Sliceable
 
@@ -30,20 +32,34 @@ func _on_visibility_changed() -> void:
 	sliceable.disabled = !parent.visible
 	
 func _on_sliced() -> void:
-	var new_v: float = parent.value - G.strength - parent.data.durability
-	if new_v > 0:
-		var stage: int = parent.data.hp - (parent.data.hp / (parent.frame_count - parent.frame))
-		if new_v <= stage:
-			parent.frame += stage / new_v # wtf
-		
+	var str: int = G.strength
+	var new_v: float = parent.value - str #- parent.data.durability
+	var stage_step: float = parent.data.hp / parent.frame_count
+	var v: float = str / stage_step
+	if str < stage_step:
+		stage_buffer += v
+	
+	if stage_buffer >= 1:
+		for i in range(floor(stage_buffer)):
+			parent.frame += 1
+			stage_buffer -= 1
+	else:
+		for i in range(floor(v)):
+			parent.frame += 1
+				
 	parent.value = new_v
 	parent.sliced.emit(get_global_mouse_position())
 
 func spawn() -> void:
 	parent.frame = 0
 	parent.show()
-	var grid: Grid = G.get_n("grid")
-	var target_cell_pos : Vector2 = grid.get_rand_free_cell()
+	var target_cell_pos : Vector2
+	if !parent.target_pos || !grid.is_cell_free(grid.get_cell_coords(parent.target_pos)):
+		target_cell_pos = grid.get_rand_free_cell()
+	else:
+		target_cell_pos = grid.get_cell_coords(parent.target_pos)
+		parent.target_pos = Vector2.ZERO
+		
 	parent.global_position = grid.get_cell_center(target_cell_pos)
 	grid.occupy_cell(target_cell_pos)
 	parent.value = parent.data.hp
@@ -70,7 +86,7 @@ func die() -> void:
 		"store":
 			parent.hide()
 		"respawn":
-			spawn()
+			call_deferred("spawn")
 		"delete":
 			parent.queue_free()
 	
