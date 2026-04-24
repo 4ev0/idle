@@ -175,3 +175,8 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/SubmissionArea" unique_id=248347873]
 position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_mmbgd")
+
+[node name="Label" type="Label" parent="Controller" unique_id=849760729]
+offset_left = -94.0
+offset_right = -54.0
+offset_bottom = 23.0

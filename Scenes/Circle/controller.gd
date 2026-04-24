@@ -74,13 +74,14 @@ func die() -> void:
 		quest_manager.count_cutted(type)
 	
 	var c: ParticleCoin = coin_scene.instantiate()
+	c.value = parent.data.cost
 	c.global_position = global_position
 	if coin_container:
 		coin_container.add_child(c)
 	else:
 		G.get_n("main").add_child(c)
 		
-	G.get_n("grid").free_cell(global_position)
+	grid.free_cell(global_position)
 	parent.died.emit()
 	match G.get_n("circle_manager").store_or_delete_or_respawn(parent):
 		"store":

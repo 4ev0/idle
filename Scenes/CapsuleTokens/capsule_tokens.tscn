@@ -11,6 +11,7 @@ size = Vector2(6, 14)
 
 [node name="CapsuleTokens" unique_id=1556365795 instance=ExtResource("1_3uu3a")]
 script = ExtResource("2_j8kjd")
+value = 10
 falling_t = 0.13
 active = true
 

@@ -26,7 +26,6 @@ offset_right = 13.0
 offset_bottom = 49.0
 above_marker = NodePath("../CapsuleAbovePos")
 in_marker = NodePath("../CapsuleInPos")
-active = false
 
 [node name="CapsuleAbovePos" type="Marker2D" parent="CapsuleContainer" unique_id=240768185]
 position = Vector2(13, 24)

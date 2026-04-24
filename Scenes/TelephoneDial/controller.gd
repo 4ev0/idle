@@ -9,6 +9,7 @@ var parent: TelephoneDial
 @onready var submission_area: Area2D = $SubmissionArea
 var init_mouse_pos: Vector2
 var button_number: int = -1
+var state: String = ""
 var tw: Tween
 
 func _ready() -> void:
@@ -23,9 +24,11 @@ func _ready() -> void:
 	parent.disable.connect(_on_disabled)
 	
 func _physics_process(delta: float) -> void:
+	$Label.text = "%0.2f" %rad_to_deg(button_container.rotation)
 	var ang: float = init_mouse_pos.angle_to(get_local_mouse_position())
+	if ang < 0:
+		ang = PI + PI + ang
 	button_container.rotation = ang
-	#queue_redraw()
 
 func _on_button_area_entered(number: int) -> void:
 	if G.game_state != G.GameStates.TELEPHONE_UPGRADE:
@@ -62,7 +65,7 @@ func rotate_back() -> void:
 		tw.kill()
 		
 	tw = create_tween()
-	var t: float = abs(button_container.rotation * 0.35)
+	var t: float = min(abs(button_container.rotation * 0.2), 0.76)
 	tw.tween_property(button_container, "rotation", 0, t).set_ease(Tween.EASE_IN_OUT)
 	tw.tween_callback(func() -> void: 
 		parent.focused = false

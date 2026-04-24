@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://bfy0hy66hqmtm"]
+
+[ext_resource type="Script" uid="uid://d2pg6efwvontm" path="res://Scenes/Token/token.gd" id="1_qqaoq"]
+[ext_resource type="Texture2D" uid="uid://dqjq4rikbxb1w" path="res://Assets/token.png" id="1_so7pd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqaoq"]
+atlas = ExtResource("1_so7pd")
+region = Rect2(0, 0, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opjcu"]
+atlas = ExtResource("1_so7pd")
+region = Rect2(4, 0, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8wh2"]
+atlas = ExtResource("1_so7pd")
+region = Rect2(8, 0, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwxsm"]
+atlas = ExtResource("1_so7pd")
+region = Rect2(12, 0, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jxlc"]
+atlas = ExtResource("1_so7pd")
+region = Rect2(16, 0, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1joo"]
+atlas = ExtResource("1_so7pd")
+region = Rect2(20, 0, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eihms"]
+atlas = ExtResource("1_so7pd")
+region = Rect2(24, 0, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40i7f"]
+atlas = ExtResource("1_so7pd")
+region = Rect2(28, 0, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsoe2"]
+atlas = ExtResource("1_so7pd")
+region = Rect2(32, 0, 4, 4)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ftk3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqaoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opjcu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8wh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwxsm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jxlc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1joo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eihms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40i7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsoe2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Token" type="Node2D" unique_id=428668707]
+z_index = 3
+script = ExtResource("1_qqaoq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=623456438]
+sprite_frames = SubResource("SpriteFrames_1ftk3")
+autoplay = "default"
+frame_progress = 0.2539379

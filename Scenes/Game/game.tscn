@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://nh6exgy0yw48" path="res://Scenes/QuestList/quest_list.tscn" id="18_yox4t"]
 [ext_resource type="PackedScene" uid="uid://b4eqy7h7l223e" path="res://Scenes/DropSpot/drop_spot.tscn" id="19_56h2t"]
 [ext_resource type="Script" uid="uid://do666p5l74tin" path="res://Scenes/Game/room_change_manager.gd" id="24_4ti5a"]
+[ext_resource type="Script" uid="uid://dp7a8bvbtj7k1" path="res://Scenes/Game/token_container.gd" id="24_56h2t"]
 [ext_resource type="Script" uid="uid://ulgcxexoha0b" path="res://Scenes/Game/salad_manager.gd" id="29_1l3pd"]
 [ext_resource type="PackedScene" uid="uid://valh7nveljwd" path="res://Scenes/TelephoneExit/telephone_exit.tscn" id="29_fl2fe"]
 [ext_resource type="Script" uid="uid://cnw7rvnjr6nr" path="res://Scripts/UI/label_tokens.gd" id="36_lcvqc"]
@@ -146,7 +147,7 @@ position = Vector2(-64, -2)
 position = Vector2(-160, -90)
 
 [node name="Pipe2" parent="Factory/RoomTable" unique_id=582633063 instance=ExtResource("11_56h2t")]
-position = Vector2(48, 0)
+position = Vector2(46, 0)
 
 [node name="Pipe" parent="Factory/RoomTable" unique_id=1461174019 instance=ExtResource("8_oejk7")]
 position = Vector2(42, 0)
@@ -307,13 +308,16 @@ target_room = NodePath("../../RoomTable")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Factory/RoomMap/RoomChanger4" unique_id=822315471]
 shape = SubResource("RectangleShape2D_pmm7v")
 
-[node name="MapTable" type="Sprite2D" parent="Factory" unique_id=1207151042]
-position = Vector2(506, 90)
+[node name="MapTable" type="Sprite2D" parent="Factory/RoomMap" unique_id=1207151042]
+position = Vector2(2, 0)
 texture = ExtResource("15_7pdpw")
 
-[node name="MapPaper1" type="Sprite2D" parent="Factory" unique_id=6714480]
-position = Vector2(394, 69)
+[node name="MapPaper1" type="Sprite2D" parent="Factory/RoomMap" unique_id=6714480]
+position = Vector2(-110, -21)
 texture = ExtResource("16_gqd4u")
+
+[node name="TokenContainer" type="Node2D" parent="Factory" unique_id=211918370]
+script = ExtResource("24_56h2t")
 
 [node name="Shop" type="Node2D" parent="." unique_id=893517563]
 unique_name_in_owner = true
@@ -536,7 +540,6 @@ script = ExtResource("5_ciybh")
 
 [node name="TelephoneUpgrade" type="Node2D" parent="." unique_id=572736264]
 unique_name_in_owner = true
-visible = false
 script = ExtResource("1_vifcx")
 target_state = 2
 
@@ -574,18 +577,11 @@ one_shot = true
 
 [node name="LayerUI" type="CanvasLayer" parent="." unique_id=1244352334 groups=["g"]]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LayerUI" unique_id=1522079755]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
-theme_override_constants/separation = -7
-
-[node name="LabelCash" type="RichTextLabel" parent="LayerUI/VBoxContainer" unique_id=2117241774]
+[node name="LabelCash" type="RichTextLabel" parent="LayerUI" unique_id=2117241774]
 clip_contents = false
-layout_mode = 2
+offset_left = 280.0
+offset_right = 320.0
+offset_bottom = 23.0
 bbcode_enabled = true
 text = "$1"
 fit_content = true
@@ -594,9 +590,18 @@ autowrap_mode = 0
 horizontal_alignment = 1
 script = ExtResource("16_56qi8")
 
-[node name="LabelTokens" type="RichTextLabel" parent="LayerUI/VBoxContainer" unique_id=993782472]
+[node name="LabelTokens" type="RichTextLabel" parent="LayerUI" unique_id=993782472]
 clip_contents = false
-layout_mode = 2
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -70.0
+offset_bottom = -47.0
+grow_horizontal = 0
+grow_vertical = 2
 bbcode_enabled = true
 text = "O0"
 fit_content = true
@@ -604,6 +609,9 @@ scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 script = ExtResource("36_lcvqc")
+
+[node name="MarkerCollector" type="Marker2D" parent="LayerUI/LabelTokens" unique_id=363229481]
+position = Vector2(32, 12)
 
 [editable path="Shop/ShopProductManager/ButtonShopTomatoBuy"]
 [editable path="Shop/ShopProductManager/ButtonShop10TomatoBut"]
