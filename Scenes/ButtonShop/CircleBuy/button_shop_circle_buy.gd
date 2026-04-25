@@ -12,3 +12,4 @@ class_name ButtonShopCircleBuy
 		available_changed.emit(available)
 
 signal available_changed(enabled: bool)
+signal returned

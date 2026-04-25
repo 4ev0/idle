@@ -13,6 +13,7 @@ var tw: Tween
 var ttw: Tween
 
 func _ready() -> void:	
+	tool_sprite.texture = G.shop_tool_textures[parent.type]
 	parent.picked.connect(_on_picked)
 	parent.placed.connect(_on_placed)
 	parent.appear_required.connect(_on_appear_required)

@@ -3,6 +3,12 @@ extends Node
 var tree: SceneTree
 var window: Window
 
+enum ShopToolTypes {
+	NULL,
+	MAGGLASS,
+	RETURN
+}
+
 enum Pickups {
 	NULL,
 	HANDSET,
@@ -46,6 +52,7 @@ var nodes: Dictionary = {}
 var circle_atlas_textures: Dictionary
 var circle_frames: Dictionary
 var particle_containers: Dictionary
+@onready var shop_tool_textures: Dictionary = load("uid://jcsyi03a4cad").textures
 
 var strength: float = 10
 var cash: int = 0:
@@ -80,6 +87,8 @@ var cursor_carrying: Pickups = Pickups.NULL:
 		cursor_carrying = v
 		if cursor_carrying == Pickups.NULL:
 			cursor_freed.emit()
+
+var tool_picked: ShopToolTypes = ShopToolTypes.NULL
 
 signal cash_updated(v: int)
 signal tokens_updated(v: int)

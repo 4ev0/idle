@@ -5,6 +5,10 @@ class_name ButtonOpenShop
 @onready var factory: StateChanger = %Factory
 @onready var telephone_upgrade: StateChanger = %TelephoneUpgrade
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey && event.is_pressed() && event.keycode == KEY_S:
+		_pressed()
+
 func _pressed() -> void:
 	var t: Transition = G.get_n("transition")
 	if t:

@@ -10,6 +10,12 @@ func _ready() -> void:
 	
 func _on_sliced() -> void:
 	if pickup.picked:
+		if G.tool_picked:
+			pickup.picked = false
+			return
+			
+		G.tool_picked = parent.type
 		parent.picked.emit()
 	else:
+		G.tool_picked = 0
 		parent.placed.emit()

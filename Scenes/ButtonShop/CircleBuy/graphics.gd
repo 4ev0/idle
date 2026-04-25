@@ -13,6 +13,7 @@ func _ready() -> void:
 	purchase.purchased.connect(_on_purchased)
 	set_texture(parent.available)
 	parent.available_changed.connect(_on_available_changed)
+	parent.returned.connect(_on_returned)
 	G.state_changed.connect(_on_state_changed)
 
 func _on_state_changed(state: G.GameStates) -> void:
@@ -74,4 +75,18 @@ func _on_purchased() -> void:
 		circle_sprite.scale = Vector2.ZERO
 		circle_sprite.modulate.a = 1 )
 	tw.tween_property(circle_sprite, "scale", Vector2.ONE, 0.18).set_ease(Tween.EASE_OUT)
+	
+func _on_returned() -> void:
+	if tw:
+		tw.kill()
+		
+	tw = create_tween()
+	circle_sprite.position.y = 0
+	circle_sprite.scale = Vector2(0.46, 0.46)
+	circle_sprite.modulate.a = 0.45
+	label_container.position.y = label_pos.y
+	label_container.scale = Vector2.ONE
+	tw.set_parallel()
+	tw.tween_property(circle_sprite, "scale", Vector2.ONE, 0.15).set_ease(Tween.EASE_IN)
+	tw.tween_property(circle_sprite, "modulate:a", 1, 0.15).set_ease(Tween.EASE_IN)
 	

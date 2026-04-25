@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ShopToolTextures" format=3 uid="uid://jcsyi03a4cad"]
+
+[ext_resource type="Script" uid="uid://60a7vf2207n0" path="res://Resources/textures_shop_tools.gd" id="1_rfgp6"]
+[ext_resource type="Texture2D" uid="uid://d253rqpvuwc8e" path="res://Assets/magnifying_glass.png" id="2_sj7il"]
+[ext_resource type="Texture2D" uid="uid://dirl8ch1u0wwk" path="res://Assets/shop_return.png" id="3_t1mtt"]
+[ext_resource type="Texture2D" uid="uid://c1t58btrcikcl" path="res://Assets/hidden_product.png" id="4_t1mtt"]
+
+[resource]
+script = ExtResource("1_rfgp6")
+textures = Dictionary[int, Texture2D]({
+0: ExtResource("4_t1mtt"),
+1: ExtResource("2_sj7il"),
+2: ExtResource("3_t1mtt")
+})
+metadata/_custom_type_script = "uid://60a7vf2207n0"

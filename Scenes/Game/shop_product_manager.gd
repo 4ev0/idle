@@ -4,6 +4,12 @@ class_name ShopProductManager
 @export var products: Dictionary = {}
 @onready var types: Array = CircleManager.CircleTypes.keys()
 
+signal purchased(amount: int, type: CircleManager.CircleTypes)
+signal returned(amount: int, type: CircleManager.CircleTypes)
+
+func _enter_tree() -> void:
+	ButtonShopCircleBuyController.product_manager = self
+
 func _ready() -> void:
 	for i in get_children():
 		if i.circle_type == CircleManager.CircleTypes.NULL:

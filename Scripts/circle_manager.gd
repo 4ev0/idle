@@ -23,8 +23,11 @@ static var circle_data: Dictionary[CircleTypes, CircleData]
 signal circle_spawned(type: CircleTypes)
 signal circle_died(type: CircleTypes)
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	CircleController.manager = self
+	ButtonShopCircleBuyController.circle_manager = self
+
+func _ready() -> void:
 	var k: Array = CircleTypes.keys()
 	for i in range(1, CircleTypes.size()):
 		spawned_circles[CircleTypes[k[i]]] = []
@@ -72,10 +75,11 @@ func spawn_circle_at(_target_circle: CircleTypes = 0, global_pos: Vector2 = Vect
 		container.add_circle(target_circle, 6, global_pos)
 	
 	if !ignore_crate:
-		update_to_add_list(target_circle)
+		remove_circle_from_crate(target_circle)
 
 func spawn_circles(_target_circle: CircleTypes = 0, amount: int = 0) -> void:
 	amount = max(0, circles_on_table - get_spawned_circle_amount()) if amount == 0 else amount
+	prints("a", circles_on_table, get_spawned_circle_amount())
 	for i in range(amount):
 		var target_circle: CircleTypes = _target_circle
 
@@ -89,6 +93,7 @@ func spawn_circles(_target_circle: CircleTypes = 0, amount: int = 0) -> void:
 			break
 		
 		circle_spawned.emit(target_circle)
+		remove_circle_from_crate(target_circle)
 		await get_tree().create_timer(0.1).timeout
 		if stored_circles[target_circle].size() > 0:
 			stored_circles[target_circle][0].respawn_requested.emit()
@@ -145,32 +150,42 @@ func _on_lvl_uped() -> void:
 func store_or_delete_or_respawn(circle: Circle) -> String:
 	#todo: probably doesn't work :P
 	var type: CircleTypes = circle.type
+	var new_c_type: CircleTypes = pick_circle()
 	if circles_to_add.has(type) && get_spawned_circle_amount() <= circles_on_table:
-		var new_c_type: CircleTypes = pick_circle()
 		if new_c_type == type:
-			update_to_add_list(type)
+			remove_circle_from_crate(type)
 			circle_spawned.emit(type)
 			return "respawn"
 		else:
 			stored_circles[type].append(circle) 
+			remove_from_spawned(circle)
 			spawn_circles(new_c_type)
 			return "store"
 	else:
-		var list_pointer: Array = spawned_circles[type]
-		if list_pointer.has(circle):
-			list_pointer.erase(circle)
-		
+		remove_from_spawned(circle)
+		spawn_circles(new_c_type)
 		return "delete"
 
-func update_to_add_list(type: CircleTypes) -> void:
-	circle_list[type] -= 1
-	if circle_list[type] <= 0:
-		circles_to_add.erase(type)
+func remove_from_spawned(circle: Circle) -> void:
+	var list_pointer: Array = spawned_circles[circle.type]
+	if list_pointer.has(circle):
+		list_pointer.erase(circle)
+
+#func update_to_add_list(type: CircleTypes) -> void:
+	#circle_list[type] -= 1
+	#print(circle_list[type])
+	#if circle_list[type] <= 0:
+		#circles_to_add.erase(type)
 
 func add_circles_to_crate(type: CircleTypes, amount: int) -> void:
 	circle_list[type] += amount
 	if !circles_to_add.has(type):
 		circles_to_add.append(type)
+
+func remove_circle_from_crate(type: CircleTypes, amount: int = 1) -> void:
+	circle_list[type] = max(0, circle_list[type] - amount)
+	if circle_list[type] == 0 && circles_to_add.has(type):
+		circles_to_add.erase(type)
 
 func _on_state_changed(state: G.GameStates) -> void:
 	if state == G.GameStates.GAME:
