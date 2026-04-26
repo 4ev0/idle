@@ -1,0 +1,308 @@
+[gd_scene format=3 uid="uid://oafxhowf56x"]
+
+[ext_resource type="Script" uid="uid://c311xuhbw137s" path="res://Scripts/state_changer.gd" id="1_qqjit"]
+[ext_resource type="Script" uid="uid://c3fv33jelj02o" path="res://Scenes/Game/room.gd" id="2_eh7v6"]
+[ext_resource type="Shader" uid="uid://jdqd20sdh0lk" path="res://Shaders/bayer_mat_dither.gdshader" id="3_vsdst"]
+[ext_resource type="PackedScene" uid="uid://dgttkbwbtrllk" path="res://Scenes/Crate/crate.tscn" id="4_0nqf6"]
+[ext_resource type="PackedScene" uid="uid://dl54qocimd4t0" path="res://Scenes/Telephone/telephone.tscn" id="5_4mmn1"]
+[ext_resource type="Texture2D" uid="uid://bnud66p0i6k6g" path="res://Assets/table.png" id="6_564c8"]
+[ext_resource type="PackedScene" uid="uid://61cdjwgr7qun" path="res://Scenes/Grid/grid.tscn" id="7_or1lu"]
+[ext_resource type="PackedScene" uid="uid://c1dljlx3v7kph" path="res://Scenes/CircleContainer/circle_container.tscn" id="8_utk3l"]
+[ext_resource type="PackedScene" uid="uid://d17q8sbe5i8go" path="res://Scenes/Pipe2/pipe_2.tscn" id="9_2rpbi"]
+[ext_resource type="PackedScene" uid="uid://856dktccf7g8" path="res://Scenes/Pipe/pipe.tscn" id="10_s2wor"]
+[ext_resource type="Script" uid="uid://b8yhyy3uu323t" path="res://Scenes/Game/Factory/coin_container.gd" id="11_3awtn"]
+[ext_resource type="Script" uid="uid://bfycn78btngje" path="res://Scenes/Game/Factory/circle_pop_particle_container.gd" id="12_p37rv"]
+[ext_resource type="Script" uid="uid://d32nro3ahdu5e" path="res://Scenes/Game/Factory/circle_slice_particle_container.gd" id="13_whoqq"]
+[ext_resource type="Script" uid="uid://ctfu6bflfka6y" path="res://Scenes/Game/Factory/coin_label_container.gd" id="14_r8xyb"]
+[ext_resource type="PackedScene" uid="uid://nh6exgy0yw48" path="res://Scenes/QuestList/quest_list.tscn" id="15_3d35w"]
+[ext_resource type="Script" uid="uid://bxdeoeiwqxngp" path="res://Scenes/RoomTransition/room_changer.gd" id="16_gqs1y"]
+[ext_resource type="PackedScene" uid="uid://by3fuhgk5x2x1" path="res://Scenes/Bowl/bowl.tscn" id="17_urygw"]
+[ext_resource type="Script" uid="uid://dtgxn3jo160qc" path="res://Scenes/Game/Factory/salad_progress.gd" id="18_d5wbj"]
+[ext_resource type="PackedScene" uid="uid://b4eqy7h7l223e" path="res://Scenes/DropSpot/drop_spot.tscn" id="19_3gvop"]
+[ext_resource type="Texture2D" uid="uid://8wlbt80l5xls" path="res://Assets/map_table.png" id="20_ld7xy"]
+[ext_resource type="Texture2D" uid="uid://cv1y13pcmjetc" path="res://Assets/map_paper1.png" id="21_0m2dq"]
+[ext_resource type="Script" uid="uid://dp7a8bvbtj7k1" path="res://Scenes/Game/Shop/token_container.gd" id="22_nced6"]
+[ext_resource type="Script" uid="uid://do666p5l74tin" path="res://Scenes/Game/room_change_manager.gd" id="23_eh7v6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ypmwd"]
+shader = ExtResource("3_vsdst")
+shader_parameter/dither_type = 0
+shader_parameter/invert = false
+shader_parameter/matrix_size = 8
+shader_parameter/debug = false
+shader_parameter/flat_dither_level = 0.606000028785
+shader_parameter/gradient_point_opaque = Vector2(0, 0)
+shader_parameter/gradient_point_trans = Vector2(0, 0)
+shader_parameter/dither_point = Vector2(0, 0)
+shader_parameter/dither_point_radius = 16.0
+
+[sub_resource type="Gradient" id="Gradient_c4b4r"]
+colors = PackedColorArray(0.2752, 0.2990933, 0.32, 1, 0, 0, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1t20g"]
+noise_type = 0
+frequency = 0.0855
+offset = Vector3(351.65, -60.15, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oejk7"]
+width = 128
+height = 128
+noise = SubResource("FastNoiseLite_1t20g")
+color_ramp = SubResource("Gradient_c4b4r")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ti5a"]
+size = Vector2(64, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmm7v"]
+size = Vector2(20, 124)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_56bk2"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6k7u1"]
+bg_color = Color(0.66, 0.19800001, 0.165, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+
+[node name="Factory" type="Node2D" unique_id=1319843131]
+y_sort_enabled = true
+script = ExtResource("1_qqjit")
+
+[node name="RoomTable" type="Node2D" parent="." unique_id=1647892416]
+y_sort_enabled = true
+position = Vector2(160, 90)
+script = ExtResource("2_eh7v6")
+
+[node name="ColorRect" type="ColorRect" parent="RoomTable" unique_id=2104652481]
+z_index = -1
+offset_left = -168.0
+offset_top = -98.0
+offset_right = 184.0
+offset_bottom = 94.0
+color = Color(0.09019608, 0.09019608, 0.09019608, 1)
+
+[node name="TextureRect" type="TextureRect" parent="RoomTable" unique_id=1717475080]
+z_index = -1
+material = SubResource("ShaderMaterial_ypmwd")
+offset_left = -165.0
+offset_top = -94.0
+offset_right = 184.0
+offset_bottom = 96.0
+texture = SubResource("NoiseTexture2D_oejk7")
+
+[node name="Crate" parent="RoomTable" unique_id=1149799375 instance=ExtResource("4_0nqf6")]
+position = Vector2(130, 67)
+
+[node name="Telephone" parent="RoomTable" unique_id=409880358 instance=ExtResource("5_4mmn1")]
+position = Vector2(119, -17)
+
+[node name="Table" type="Node2D" parent="RoomTable" unique_id=829979221]
+
+[node name="SpriteTable" type="Sprite2D" parent="RoomTable/Table" unique_id=2121456067]
+z_index = -1
+position = Vector2(-64, -2)
+texture = ExtResource("6_564c8")
+
+[node name="JuiceGroup" type="CanvasGroup" parent="RoomTable/Table" unique_id=819056400 groups=["g"]]
+self_modulate = Color(1, 1, 1, 0.52156866)
+position = Vector2(-160, -90)
+
+[node name="ShadowGroup" type="CanvasGroup" parent="RoomTable/Table" unique_id=1799928558 groups=["g"]]
+self_modulate = Color(1, 1, 1, 0.7411765)
+position = Vector2(-160, -90)
+
+[node name="Grid" parent="RoomTable/Table" unique_id=1595610565 instance=ExtResource("7_or1lu")]
+position = Vector2(-64, -2)
+
+[node name="CircleContainer" parent="RoomTable/Table" unique_id=973414043 instance=ExtResource("8_utk3l")]
+position = Vector2(-160, -90)
+
+[node name="Pipe2" parent="RoomTable" unique_id=582633063 instance=ExtResource("9_2rpbi")]
+position = Vector2(46, 0)
+
+[node name="Pipe" parent="RoomTable" unique_id=1461174019 instance=ExtResource("10_s2wor")]
+position = Vector2(42, 0)
+
+[node name="CoinContainer" type="Node2D" parent="RoomTable" unique_id=1431394461]
+position = Vector2(-160, -90)
+script = ExtResource("11_3awtn")
+
+[node name="CirclePopParticleContainer" type="Node2D" parent="RoomTable" unique_id=460222991]
+z_index = 1
+position = Vector2(-160, -90)
+script = ExtResource("12_p37rv")
+
+[node name="CircleSliceParticleContainer" type="Node2D" parent="RoomTable" unique_id=1464407849]
+position = Vector2(-160, -90)
+script = ExtResource("13_whoqq")
+
+[node name="CoinLabelContainer" type="Node2D" parent="RoomTable" unique_id=334284571]
+z_index = 2
+position = Vector2(-160, -90)
+script = ExtResource("14_r8xyb")
+
+[node name="QuestList" parent="RoomTable" unique_id=1984024753 instance=ExtResource("15_3d35w")]
+visible = false
+z_index = 2
+offset_left = -134.0
+offset_top = -67.0
+offset_right = -6.0
+offset_bottom = 66.0
+
+[node name="RoomChanger" type="Area2D" parent="RoomTable" unique_id=2049641308 node_paths=PackedStringArray("parent_room", "target_room")]
+position = Vector2(80, 78)
+script = ExtResource("16_gqs1y")
+parent_room = NodePath("..")
+target_room = NodePath("../../RoomSalad")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomTable/RoomChanger" unique_id=1298246458]
+shape = SubResource("RectangleShape2D_4ti5a")
+
+[node name="RoomChanger2" type="Area2D" parent="RoomTable" unique_id=1701003156 node_paths=PackedStringArray("parent_room", "target_room")]
+position = Vector2(80, -77)
+script = ExtResource("16_gqs1y")
+parent_room = NodePath("..")
+target_room = NodePath("../../RoomSalad")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomTable/RoomChanger2" unique_id=880447936]
+shape = SubResource("RectangleShape2D_4ti5a")
+
+[node name="RoomChanger3" type="Area2D" parent="RoomTable" unique_id=1338666847 node_paths=PackedStringArray("parent_room", "target_room")]
+position = Vector2(149, -13)
+script = ExtResource("16_gqs1y")
+parent_room = NodePath("..")
+target_room = NodePath("../../RoomMap")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomTable/RoomChanger3" unique_id=1959773371]
+shape = SubResource("RectangleShape2D_pmm7v")
+
+[node name="RoomSalad" type="Node2D" parent="." unique_id=1473035228]
+position = Vector2(160, 270)
+script = ExtResource("2_eh7v6")
+
+[node name="ColorRect2" type="ColorRect" parent="RoomSalad" unique_id=241776618]
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 160.0
+offset_bottom = 94.0
+color = Color(0.09019608, 0.09019608, 0.09019608, 1)
+
+[node name="TextureRect2" type="TextureRect" parent="RoomSalad" unique_id=2087020944]
+material = SubResource("ShaderMaterial_ypmwd")
+offset_left = -165.0
+offset_top = -90.0
+offset_right = 169.0
+offset_bottom = 100.0
+texture = SubResource("NoiseTexture2D_oejk7")
+
+[node name="RoomChanger" type="Area2D" parent="RoomSalad" unique_id=452696570 node_paths=PackedStringArray("parent_room", "target_room")]
+position = Vector2(80, -70)
+script = ExtResource("16_gqs1y")
+parent_room = NodePath("..")
+target_room = NodePath("../../RoomTable")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomSalad/RoomChanger" unique_id=417070730]
+shape = SubResource("RectangleShape2D_4ti5a")
+
+[node name="Marker2D" type="Marker2D" parent="RoomSalad/RoomChanger" unique_id=378401068]
+position = Vector2(32, 10)
+
+[node name="Bowl" parent="RoomSalad" unique_id=2002434400 instance=ExtResource("17_urygw")]
+position = Vector2(-48, 35)
+
+[node name="SaladProgress" type="Control" parent="RoomSalad" unique_id=1765793880]
+z_index = 3
+layout_mode = 3
+anchors_preset = 0
+offset_left = -160.0
+offset_top = 50.0
+offset_right = -32.0
+offset_bottom = 98.0
+script = ExtResource("18_d5wbj")
+
+[node name="MarginContainer" type="MarginContainer" parent="RoomSalad/SaladProgress" unique_id=1130388267]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RoomSalad/SaladProgress/MarginContainer" unique_id=1987925600]
+layout_mode = 2
+
+[node name="ProgressBarMix" type="ProgressBar" parent="RoomSalad/SaladProgress/MarginContainer/VBoxContainer" unique_id=1990251254]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_56bk2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6k7u1")
+show_percentage = false
+
+[node name="LabelWeight" type="Label" parent="RoomSalad/SaladProgress/MarginContainer/VBoxContainer" unique_id=904716133]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.62352943)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6156863)
+theme_override_constants/shadow_outline_size = 0
+
+[node name="DropSpot" parent="RoomSalad" unique_id=1040777669 instance=ExtResource("19_3gvop")]
+position = Vector2(96, 31)
+
+[node name="RoomMap" type="Node2D" parent="." unique_id=684132473]
+position = Vector2(504, 90)
+script = ExtResource("2_eh7v6")
+
+[node name="ColorRect3" type="ColorRect" parent="RoomMap" unique_id=1861570551]
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 160.0
+offset_bottom = 94.0
+color = Color(0.09019608, 0.09019608, 0.09019608, 1)
+
+[node name="TextureRect3" type="TextureRect" parent="RoomMap" unique_id=386421406]
+material = SubResource("ShaderMaterial_ypmwd")
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 174.0
+offset_bottom = 100.0
+texture = SubResource("NoiseTexture2D_oejk7")
+
+[node name="RoomChanger4" type="Area2D" parent="RoomMap" unique_id=1244058949 node_paths=PackedStringArray("parent_room", "target_room")]
+position = Vector2(-147, -13)
+script = ExtResource("16_gqs1y")
+parent_room = NodePath("..")
+target_room = NodePath("../../RoomTable")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomMap/RoomChanger4" unique_id=1740187784]
+shape = SubResource("RectangleShape2D_pmm7v")
+
+[node name="MapTable" type="Sprite2D" parent="RoomMap" unique_id=2065333825]
+position = Vector2(2, 0)
+texture = ExtResource("20_ld7xy")
+
+[node name="MapPaper1" type="Sprite2D" parent="RoomMap" unique_id=488303493]
+position = Vector2(-110, -21)
+texture = ExtResource("21_0m2dq")
+
+[node name="TokenContainer" type="Node2D" parent="." unique_id=1467931032]
+script = ExtResource("22_nced6")
+
+[node name="RoomChangeManager" type="Node" parent="." unique_id=522627351 node_paths=PackedStringArray("initial_room")]
+script = ExtResource("23_eh7v6")
+initial_room = NodePath("../RoomTable")
+
+[node name="Timer" type="Timer" parent="RoomChangeManager" unique_id=1493954138]
+wait_time = 0.6
+one_shot = true
+
+[node name="TimerBuffer" type="Timer" parent="RoomChangeManager" unique_id=1562645257]
+wait_time = 0.1
+one_shot = true

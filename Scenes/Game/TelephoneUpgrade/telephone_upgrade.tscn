@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://duik70vieds1c"]
+
+[ext_resource type="Script" uid="uid://c311xuhbw137s" path="res://Scripts/state_changer.gd" id="1_ehhxs"]
+[ext_resource type="PackedScene" uid="uid://q5a621f3j2mg" path="res://Scenes/TelephoneDial/telephone_dial.tscn" id="2_lrwaf"]
+[ext_resource type="PackedScene" uid="uid://valh7nveljwd" path="res://Scenes/TelephoneExit/telephone_exit.tscn" id="3_lvger"]
+
+[node name="TelephoneUpgrade" type="Node2D" unique_id=1913835513]
+script = ExtResource("1_ehhxs")
+target_state = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=469858196]
+offset_left = -33.0
+offset_top = -28.0
+offset_right = 353.0
+offset_bottom = 209.0
+color = Color(0.10747976, 0.10747973, 0.10747973, 1)
+
+[node name="TelephoneDial" parent="." unique_id=239160478 instance=ExtResource("2_lrwaf")]
+position = Vector2(270, 132)
+
+[node name="TelephoneExit" parent="." unique_id=665212851 instance=ExtResource("3_lvger")]
+position = Vector2(258, 53)

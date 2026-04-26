@@ -43,5 +43,5 @@ func slice_condition() -> bool:
 func set_disabled(enabled: bool) -> void:
 	disabled = enabled
 
-func get_dir_to_cursor() -> Vector2:
-	return global_position.direction_to(cursor.global_position)
+func get_dir_to_cursor(from: Vector2 = global_position) -> Vector2:
+	return from.direction_to(cursor.global_position)

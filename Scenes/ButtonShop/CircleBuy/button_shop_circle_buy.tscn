@@ -35,6 +35,51 @@ offset_bottom = 6.0
 unique_name_in_owner = true
 scale = Vector2(0.99999994, 0.99999994)
 
+[node name="LabelAmount" type="Label" parent="Graphics" index="4" unique_id=1248133394]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -2.0
+offset_right = 15.0
+offset_bottom = 10.0
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5254902)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 6
+text = "x0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelMoneyRemain" type="Label" parent="Graphics" index="5" unique_id=25277263]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = 12.0
+offset_right = 5.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.6156863)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5254902)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 7
+text = "12"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Controller" parent="." index="1" unique_id=865613728]
 script = ExtResource("2_skm1r")
 

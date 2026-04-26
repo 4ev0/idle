@@ -1,0 +1,523 @@
+[gd_scene format=3 uid="uid://bm72lfkk8r6tt"]
+
+[ext_resource type="Script" uid="uid://c311xuhbw137s" path="res://Scripts/state_changer.gd" id="1_h6a3f"]
+[ext_resource type="Texture2D" uid="uid://duvcwhvvnwd1w" path="res://Assets/shop_window.png" id="2_ffdru"]
+[ext_resource type="Texture2D" uid="uid://bfye73xwb7nrq" path="res://Assets/rain_particle.png" id="3_n058g"]
+[ext_resource type="Texture2D" uid="uid://pke1ltaar6eu" path="res://Assets/shop_bg.png" id="4_hhk44"]
+[ext_resource type="Texture2D" uid="uid://byw1j2ytlca06" path="res://Assets/shop_cashier.png" id="5_xxahg"]
+[ext_resource type="Texture2D" uid="uid://cedv7yip0evh8" path="res://Assets/shop_till.png" id="6_l11rm"]
+[ext_resource type="Script" uid="uid://b66sm5742r3vv" path="res://Scenes/Game/Shop/shop_crate.gd" id="7_70dca"]
+[ext_resource type="Texture2D" uid="uid://dtsg4nm15dhei" path="res://Assets/Food/tomato.png" id="8_4leka"]
+[ext_resource type="Script" uid="uid://c5c7l33xnfb8l" path="res://Scenes/Game/Shop/crate_purchase_particle.gd" id="9_pa4pt"]
+[ext_resource type="Texture2D" uid="uid://dwp1monrd47r2" path="res://Assets/shop_crate.png" id="10_dvqw4"]
+[ext_resource type="Texture2D" uid="uid://kv4mtrog3pkl" path="res://Assets/shop_table.png" id="11_3q3kc"]
+[ext_resource type="PackedScene" uid="uid://c4hfv4tpwbwrj" path="res://Scenes/Game/Shop/ShopCardReader/shop_card_reader.tscn" id="12_ffdru"]
+[ext_resource type="Script" uid="uid://cs21nfd1heaxo" path="res://Scenes/Game/Shop/shop_product_manager.gd" id="13_kugo2"]
+[ext_resource type="PackedScene" uid="uid://cf3jf85vdgnmb" path="res://Scenes/ButtonShop/CircleBuy/button_shop_circle_buy.tscn" id="14_loqak"]
+[ext_resource type="Script" uid="uid://dtu4xjwa0w2yk" path="res://Scenes/Game/Shop/shop_tool_manager.gd" id="15_lhvsa"]
+[ext_resource type="PackedScene" uid="uid://c3afs2wrpfstv" path="res://Scenes/ShopTool/shop_tool.tscn" id="16_2xx2b"]
+[ext_resource type="Script" uid="uid://b85uyhv2e1uyv" path="res://Scenes/Game/Shop/label_crate_price.gd" id="17_ffdru"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26aa6"]
+atlas = ExtResource("2_ffdru")
+region = Rect2(0, 0, 96, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gqoa"]
+atlas = ExtResource("2_ffdru")
+region = Rect2(96, 0, 96, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7icik"]
+atlas = ExtResource("2_ffdru")
+region = Rect2(192, 0, 96, 190)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kllvy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26aa6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gqoa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7icik")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="Curve" id="Curve_4gqoa"]
+_data = [Vector2(0, 0.47849464), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_7icik"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_kllvy"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_h5vdi"]
+curve_x = SubResource("Curve_4gqoa")
+curve_y = SubResource("Curve_7icik")
+curve_z = SubResource("Curve_kllvy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j8rd5"]
+lifetime_randomness = 0.14
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(-74.02, 1, 1)
+angle_min = -28.49999
+angle_max = -12.899989
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = -1.6093254e-05
+gravity = Vector3(-250, 500, 0)
+linear_accel_min = 42.159996
+linear_accel_max = 58.379997
+scale_max = 1.3
+scale_curve = SubResource("CurveXYZTexture_h5vdi")
+
+[sub_resource type="Curve" id="Curve_tn4br"]
+_data = [Vector2(0, 0.47849464), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_rht7h"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_bkdpl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_caws5"]
+curve_x = SubResource("Curve_tn4br")
+curve_y = SubResource("Curve_rht7h")
+curve_z = SubResource("Curve_bkdpl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2r0uj"]
+lifetime_randomness = 0.12
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(-74.02, 1, 1)
+angle_min = -28.49999
+angle_max = -28.49999
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = -1.6093254e-05
+gravity = Vector3(-250, 500, 0)
+linear_accel_min = 42.159996
+linear_accel_max = 58.379997
+scale_max = 2.5
+scale_curve = SubResource("CurveXYZTexture_caws5")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kllvy"]
+atlas = ExtResource("8_4leka")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="Curve" id="Curve_h5vdi"]
+_data = [Vector2(0, 0), 0.0, 7.3203187, 0, 0, Vector2(0.25879395, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_j8rd5"]
+curve = SubResource("Curve_h5vdi")
+
+[sub_resource type="Curve" id="Curve_caws5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.23366833, 0), -18.455643, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2r0uj"]
+curve = SubResource("Curve_caws5")
+
+[sub_resource type="Curve" id="Curve_entp3"]
+_data = [Vector2(0, 0), 0.0, 13.422292, 0, 0, Vector2(0.35427135, 1), -0.62717855, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7mp2w"]
+curve = SubResource("Curve_entp3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ckc7s"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(-24.705, 2.215, 1)
+angle_min = -3.5999894
+angle_max = 10.900011
+angular_velocity_min = -89.460014
+angular_velocity_max = 39.76998
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 9.49949e-08
+gravity = Vector3(0, 180, 0)
+scale_curve = SubResource("CurveTexture_7mp2w")
+alpha_curve = SubResource("CurveTexture_j8rd5")
+emission_curve = SubResource("CurveTexture_2r0uj")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = -2.2351742e-08
+
+[sub_resource type="Curve" id="Curve_j8rd5"]
+_data = [Vector2(0.80150753, 1), 0.0, 0.744273, 0, 0, Vector2(1, 0), -17.831554, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tn4br"]
+curve = SubResource("Curve_j8rd5")
+
+[sub_resource type="Curve" id="Curve_2r0uj"]
+_data = [Vector2(0.741206, 0.983871), 0.0, 6.847295, 0, 0, Vector2(1, 0), -9.842998, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_entp3"]
+curve = SubResource("Curve_2r0uj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7mp2w"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(-24.705, 2.215, 1)
+angle_min = -3.5999894
+angle_max = 10.900011
+angular_velocity_min = -89.460014
+angular_velocity_max = 39.76998
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 9.49949e-08
+gravity = Vector3(0, -180, 0)
+scale_curve = SubResource("CurveTexture_entp3")
+alpha_curve = SubResource("CurveTexture_tn4br")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = -2.2351742e-08
+
+[node name="Shop" type="Node2D" unique_id=1759458053]
+script = ExtResource("1_h6a3f")
+target_state = 3
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1609289233]
+offset_right = 320.0
+offset_bottom = 183.0
+color = Color(0.8748501, 0.9009755, 0.8592492, 1)
+
+[node name="ShopWindow" type="AnimatedSprite2D" parent="." unique_id=430885676]
+position = Vector2(173, 93)
+sprite_frames = SubResource("SpriteFrames_kllvy")
+autoplay = "default"
+frame_progress = 0.43501732
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1096305760]
+modulate = Color(1, 1, 1, 0.27450982)
+position = Vector2(216, 8)
+amount = 46
+texture = ExtResource("3_n058g")
+lifetime = 0.5
+speed_scale = 1.5
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_j8rd5")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." unique_id=23554508]
+modulate = Color(1, 1, 1, 0.5686275)
+position = Vector2(216, 5)
+amount = 35
+texture = ExtResource("3_n058g")
+lifetime = 0.8
+speed_scale = 1.5
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_2r0uj")
+
+[node name="ShopBg" type="Sprite2D" parent="." unique_id=811411548]
+position = Vector2(254, 89)
+texture = ExtResource("4_hhk44")
+
+[node name="ShopCashier" type="Sprite2D" parent="." unique_id=8539655]
+position = Vector2(289, 88)
+texture = ExtResource("5_xxahg")
+
+[node name="ShopTill" type="Sprite2D" parent="." unique_id=1475711617]
+position = Vector2(279, 112)
+texture = ExtResource("6_l11rm")
+
+[node name="ShopCrate" type="Node2D" parent="." unique_id=1728153700]
+position = Vector2(203, 137)
+script = ExtResource("7_70dca")
+
+[node name="ParticleContainer" type="Node2D" parent="ShopCrate" unique_id=1071990551]
+position = Vector2(0, -20)
+
+[node name="CratePurchaseParticle" type="GPUParticles2D" parent="ShopCrate/ParticleContainer" unique_id=1347719663]
+position = Vector2(1, -55)
+emitting = false
+amount = 10
+texture = SubResource("AtlasTexture_kllvy")
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.23
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_ckc7s")
+script = ExtResource("9_pa4pt")
+type = "purchase"
+
+[node name="CrateReturnParticle" type="GPUParticles2D" parent="ShopCrate/ParticleContainer" unique_id=902472158]
+position = Vector2(1, -13)
+emitting = false
+amount = 10
+texture = SubResource("AtlasTexture_kllvy")
+lifetime = 0.7
+one_shot = true
+speed_scale = 1.25
+explosiveness = 0.23
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_7mp2w")
+script = ExtResource("9_pa4pt")
+type = "return"
+
+[node name="ShopCrateSprite" type="Sprite2D" parent="ShopCrate" unique_id=1729088863]
+texture = ExtResource("10_dvqw4")
+offset = Vector2(0, -20)
+
+[node name="ShopTable" type="Sprite2D" parent="." unique_id=2146901155]
+position = Vector2(249, 160)
+texture = ExtResource("11_3q3kc")
+
+[node name="ShopCardReader" parent="." unique_id=1793031089 instance=ExtResource("12_ffdru")]
+position = Vector2(240, 127.99997)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=517097746]
+offset_right = 144.0
+offset_bottom = 183.0
+color = Color(0.033853278, 0.033853278, 0.033853274, 1)
+
+[node name="ShopProductManager" type="GridContainer" parent="." unique_id=374874572 groups=["g"]]
+unique_name_in_owner = true
+offset_left = 15.0
+offset_top = 13.0
+offset_right = 19.0
+offset_bottom = 13.0
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 32
+columns = 4
+script = ExtResource("13_kugo2")
+
+[node name="ButtonShopTomatoBuy" parent="ShopProductManager" unique_id=1556365795 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_type = 1
+circle_amount = 1
+available = true
+
+[node name="Purchase" parent="ShopProductManager/ButtonShopTomatoBuy" index="2" unique_id=870633994]
+price = 8.0
+
+[node name="ButtonShopCarrotBut" parent="ShopProductManager" unique_id=585390321 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_type = 2
+circle_amount = 1
+available = true
+
+[node name="Purchase" parent="ShopProductManager/ButtonShopCarrotBut" index="2" unique_id=870633994]
+price = 20.0
+
+[node name="ButtonShop10TomatoBut2" parent="ShopProductManager" unique_id=168411834 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="ShopProductManager/ButtonShop10TomatoBut2" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut3" parent="ShopProductManager" unique_id=342948989 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="ShopProductManager/ButtonShop10TomatoBut3" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut4" parent="ShopProductManager" unique_id=644019691 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_type = 1
+circle_amount = 10
+available = true
+
+[node name="Purchase" parent="ShopProductManager/ButtonShop10TomatoBut4" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut5" parent="ShopProductManager" unique_id=1377161079 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="ShopProductManager/ButtonShop10TomatoBut5" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut6" parent="ShopProductManager" unique_id=1888891553 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="ShopProductManager/ButtonShop10TomatoBut6" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut7" parent="ShopProductManager" unique_id=709601087 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="ShopProductManager/ButtonShop10TomatoBut7" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut8" parent="ShopProductManager" unique_id=478440800 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="ShopProductManager/ButtonShop10TomatoBut8" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut9" parent="ShopProductManager" unique_id=736425660 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="ShopProductManager/ButtonShop10TomatoBut9" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut10" parent="ShopProductManager" unique_id=216848243 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="ShopProductManager/ButtonShop10TomatoBut10" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut11" parent="ShopProductManager" unique_id=1034197081 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="ShopProductManager/ButtonShop10TomatoBut11" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut12" parent="ShopProductManager" unique_id=1189982292 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="ShopProductManager/ButtonShop10TomatoBut12" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut13" parent="ShopProductManager" unique_id=1301615102 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="ShopProductManager/ButtonShop10TomatoBut13" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut14" parent="ShopProductManager" unique_id=1269389737 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="ShopProductManager/ButtonShop10TomatoBut14" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut15" parent="ShopProductManager" unique_id=462007880 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="ShopProductManager/ButtonShop10TomatoBut15" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut16" parent="ShopProductManager" unique_id=2060840462 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="ShopProductManager/ButtonShop10TomatoBut16" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut17" parent="ShopProductManager" unique_id=173369938 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="ShopProductManager/ButtonShop10TomatoBut17" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut18" parent="ShopProductManager" unique_id=1877958419 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="ShopProductManager/ButtonShop10TomatoBut18" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut19" parent="ShopProductManager" unique_id=1199189773 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="ShopProductManager/ButtonShop10TomatoBut19" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut20" parent="ShopProductManager" unique_id=48104609 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="ShopProductManager/ButtonShop10TomatoBut20" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut21" parent="ShopProductManager" unique_id=1057920620 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="ShopProductManager/ButtonShop10TomatoBut21" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut22" parent="ShopProductManager" unique_id=1852734649 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="ShopProductManager/ButtonShop10TomatoBut22" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ButtonShop10TomatoBut23" parent="ShopProductManager" unique_id=730256612 instance=ExtResource("14_loqak")]
+layout_mode = 2
+circle_amount = 10
+
+[node name="Purchase" parent="ShopProductManager/ButtonShop10TomatoBut23" index="2" unique_id=870633994]
+price = 80.0
+
+[node name="ShopToolManager" type="HBoxContainer" parent="." unique_id=415025568]
+offset_left = 149.0
+offset_top = 162.0
+offset_right = 189.0
+offset_bottom = 202.0
+theme_override_constants/separation = 23
+script = ExtResource("15_lhvsa")
+
+[node name="ShopToolGlass" parent="ShopToolManager" unique_id=553715286 instance=ExtResource("16_2xx2b")]
+layout_mode = 2
+type = 1
+
+[node name="ShopToolReturn" parent="ShopToolManager" unique_id=1479057136 instance=ExtResource("16_2xx2b")]
+layout_mode = 2
+type = 2
+
+[node name="ShopToolCreditCard" parent="ShopToolManager" unique_id=1946546644 instance=ExtResource("16_2xx2b")]
+layout_mode = 2
+type = 3
+
+[node name="LabelCratePrice" type="Label" parent="." unique_id=1245893749]
+offset_left = 252.0
+offset_top = 96.0
+offset_right = 262.0
+offset_bottom = 108.0
+theme_override_colors/font_color = Color(0.39793092, 0.78499216, 0.17711216, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4627451)
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 8
+text = "$0"
+script = ExtResource("17_ffdru")
+
+[editable path="ShopProductManager/ButtonShopTomatoBuy"]
+[editable path="ShopProductManager/ButtonShopCarrotBut"]
+[editable path="ShopProductManager/ButtonShop10TomatoBut2"]
+[editable path="ShopProductManager/ButtonShop10TomatoBut3"]
+[editable path="ShopProductManager/ButtonShop10TomatoBut4"]
+[editable path="ShopProductManager/ButtonShop10TomatoBut5"]
+[editable path="ShopProductManager/ButtonShop10TomatoBut6"]
+[editable path="ShopProductManager/ButtonShop10TomatoBut7"]
+[editable path="ShopProductManager/ButtonShop10TomatoBut8"]
+[editable path="ShopProductManager/ButtonShop10TomatoBut9"]
+[editable path="ShopProductManager/ButtonShop10TomatoBut10"]
+[editable path="ShopProductManager/ButtonShop10TomatoBut11"]
+[editable path="ShopProductManager/ButtonShop10TomatoBut12"]
+[editable path="ShopProductManager/ButtonShop10TomatoBut13"]
+[editable path="ShopProductManager/ButtonShop10TomatoBut14"]
+[editable path="ShopProductManager/ButtonShop10TomatoBut15"]
+[editable path="ShopProductManager/ButtonShop10TomatoBut16"]
+[editable path="ShopProductManager/ButtonShop10TomatoBut17"]
+[editable path="ShopProductManager/ButtonShop10TomatoBut18"]
+[editable path="ShopProductManager/ButtonShop10TomatoBut19"]
+[editable path="ShopProductManager/ButtonShop10TomatoBut20"]
+[editable path="ShopProductManager/ButtonShop10TomatoBut21"]
+[editable path="ShopProductManager/ButtonShop10TomatoBut22"]
+[editable path="ShopProductManager/ButtonShop10TomatoBut23"]

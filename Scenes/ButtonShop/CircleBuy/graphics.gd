@@ -4,9 +4,14 @@ class_name ButtonCircleBuyGraphics
 @onready var circle_sprite: Sprite2D = %CircleSprite
 @onready var label_container: Control = $LabelContainer
 @onready var label_pos: Vector2 = label_container.position
-static var hidden_texture: Texture2D
+@onready var label_money_remain: Label = %LabelMoneyRemain
+@onready var label_amount: Label = %LabelAmount
+
+@onready var product_manager: ShopProductManager = parent.product_manager
 var tw: Tween
 var ttw: Tween
+
+static var hidden_texture: Texture2D
 
 func _ready() -> void:
 	super()
@@ -14,7 +19,18 @@ func _ready() -> void:
 	set_texture(parent.available)
 	parent.available_changed.connect(_on_available_changed)
 	parent.returned.connect(_on_returned)
+	product_manager.reserved_cash_updated.connect(_on_cash_updated)
+	product_manager.purchased_circles_updated.connect(_on_purchased_circles_updated)
 	G.state_changed.connect(_on_state_changed)
+
+func _on_cash_updated(v : int) -> void:
+	label_money_remain.text = "$%d" %(G.cash - product_manager.reserved_cash - purchase.current_price)
+
+func _on_purchased_circles_updated(type: CircleManager.CircleTypes, amount: int) -> void:
+	if parent.circle_type != type:
+		return
+		
+	label_amount.text = "x%d" %amount
 
 func _on_state_changed(state: G.GameStates) -> void:
 	if state != G.GameStates.SHOP:
@@ -52,6 +68,9 @@ func set_texture(available: bool) -> void:
 		
 func _on_available_changed(available: bool) -> void:
 	set_texture(available)
+	G.cash_updated.connect(_on_cash_updated)
+	_on_cash_updated(G.cash)
+	label_money_remain.show()
 
 func _on_purchased() -> void:
 	if tw:

@@ -178,8 +178,12 @@ func remove_from_spawned(circle: Circle) -> void:
 		#circles_to_add.erase(type)
 
 func add_circles_to_crate(type: CircleTypes, amount: int) -> void:
+	if !circle_list.has(type):
+		return
+		
 	circle_list[type] += amount
-	if !circles_to_add.has(type):
+	if !circles_to_add.has(type) && circle_list[type] > 0:
+		print(type)
 		circles_to_add.append(type)
 
 func remove_circle_from_crate(type: CircleTypes, amount: int = 1) -> void:

@@ -6,7 +6,8 @@ var window: Window
 enum ShopToolTypes {
 	NULL,
 	MAGGLASS,
-	RETURN
+	RETURN,
+	CREDIT_CARD,
 }
 
 enum Pickups {
